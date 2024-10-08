@@ -6,15 +6,24 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Testing/Test Main.unity
+    guid: 7c55d12c0fe9b694e89c3e818f3f9a45
   - enabled: 1
-    path: Assets/Scenes/Stages/Stage Select.unity
+    path: Assets/Scenes/Stages/Stage Loader.unity
     guid: 2d90e4aa6b7af9a46869484b3d9856b3
+  - enabled: 1
+    path: Assets/Scenes/Mutations/Mutation.unity
+    guid: 8a4a807e44e9ef74e81fc8c90c5e094f
   - enabled: 1
     path: Assets/Scenes/Stages/Garden.unity
     guid: 0c06053a8bccd934e9d9c67a33342340
   - enabled: 1
     path: Assets/Scenes/Stages/Jungle.unity
     guid: 380274f19d07eb947b9cadea845f21b7
+  - enabled: 1
+    path: Assets/Scenes/Stages/Desert.unity
+    guid: 61412c6e29b74f249949ab9f544e033e
+  - enabled: 1
+    path: Assets/Scenes/Stages/Swamp.unity
+    guid: 1b87695ee1b5fa446a70c006f626c79f
   m_configObjects: {}
