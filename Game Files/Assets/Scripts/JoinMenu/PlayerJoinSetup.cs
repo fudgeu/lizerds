@@ -3,6 +3,7 @@ using UnityEngine;
 using TMPro;
 using Tweens;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using Random = System.Random;
 
 public class PlayerJoinSetup : MonoBehaviour
@@ -38,6 +39,10 @@ public class PlayerJoinSetup : MonoBehaviour
                 easeType = EaseType.BackOut,
             }
         );
+        
+        // Get game start manager
+        var gameStartManager = GameObject.FindWithTag("GameStartManager").GetComponent<GameStartManager>();
+        gameStartManager.registerPlayer(this.GameObject());
     }
 
     void Update()
