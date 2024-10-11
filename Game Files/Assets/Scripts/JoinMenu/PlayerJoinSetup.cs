@@ -1,10 +1,11 @@
 using System;
 using UnityEngine;
 using TMPro;
+using Tweens;
 using Unity.Mathematics;
 using Random = System.Random;
 
-public class UiSetup : MonoBehaviour
+public class PlayerJoinSetup : MonoBehaviour
 {
     public int playerNumber = 0;
     public TMP_Text playerLabel;
@@ -26,7 +27,17 @@ public class UiSetup : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody2D>();
         
         // Shoot out in random direction on spawn
-        _rigidbody.velocity = new Vector2(_random.Next(10) / 50f, _random.Next(10) / 50f);
+        _rigidbody.velocity = new Vector2((_random.Next(20) - 10) / 50f, (_random.Next(20) - 10) / 50f);
+        
+        // Exlpode scale effect on spawn
+        gameObject.AddTween(new LocalScaleTween
+            {
+                from = new Vector3(0, 0, 0),
+                to = new Vector3(1, 1, 1),
+                duration = 0.3f,
+                easeType = EaseType.BackOut,
+            }
+        );
     }
 
     void Update()
@@ -34,10 +45,10 @@ public class UiSetup : MonoBehaviour
         Vector3 curPos = transform.position;
         
         // Add gravity towards center
-        _rigidbody.AddForce(-curPos / 10);
+        _rigidbody.AddForce(-curPos / 5);
         
         // Add very slight rotation
-        Vector3 rotationForce = Vector3.Normalize(Quaternion.Euler(0, 0, -135) * curPos);
-        _rigidbody.AddForce(rotationForce / 20);
+        // Vector3 rotationForce = Vector3.Normalize(Quaternion.Euler(0, 0, -135) * curPos);
+        // _rigidbody.AddForce(rotationForce / 40);
     }
 }

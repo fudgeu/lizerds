@@ -344,6 +344,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Back"",
+                    ""type"": ""Button"",
+                    ""id"": ""5c5e0627-a2a8-4a00-a299-9d4caff05ebd"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -489,6 +498,28 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Navigate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""56dceeb0-74e7-4a6a-873b-2df85279c04f"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Back"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f12581cb-f4ae-41aa-8d68-962f8ba5f554"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Back"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -509,6 +540,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_JoinScreen_Join = m_JoinScreen.FindAction("Join", throwIfNotFound: true);
         m_JoinScreen_Leave = m_JoinScreen.FindAction("Leave", throwIfNotFound: true);
         m_JoinScreen_Navigate = m_JoinScreen.FindAction("Navigate", throwIfNotFound: true);
+        m_JoinScreen_Back = m_JoinScreen.FindAction("Back", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -660,6 +692,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_JoinScreen_Join;
     private readonly InputAction m_JoinScreen_Leave;
     private readonly InputAction m_JoinScreen_Navigate;
+    private readonly InputAction m_JoinScreen_Back;
     public struct JoinScreenActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -668,6 +701,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @Join => m_Wrapper.m_JoinScreen_Join;
         public InputAction @Leave => m_Wrapper.m_JoinScreen_Leave;
         public InputAction @Navigate => m_Wrapper.m_JoinScreen_Navigate;
+        public InputAction @Back => m_Wrapper.m_JoinScreen_Back;
         public InputActionMap Get() { return m_Wrapper.m_JoinScreen; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -689,6 +723,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Navigate.started += instance.OnNavigate;
             @Navigate.performed += instance.OnNavigate;
             @Navigate.canceled += instance.OnNavigate;
+            @Back.started += instance.OnBack;
+            @Back.performed += instance.OnBack;
+            @Back.canceled += instance.OnBack;
         }
 
         private void UnregisterCallbacks(IJoinScreenActions instance)
@@ -705,6 +742,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Navigate.started -= instance.OnNavigate;
             @Navigate.performed -= instance.OnNavigate;
             @Navigate.canceled -= instance.OnNavigate;
+            @Back.started -= instance.OnBack;
+            @Back.performed -= instance.OnBack;
+            @Back.canceled -= instance.OnBack;
         }
 
         public void RemoveCallbacks(IJoinScreenActions instance)
@@ -737,5 +777,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnJoin(InputAction.CallbackContext context);
         void OnLeave(InputAction.CallbackContext context);
         void OnNavigate(InputAction.CallbackContext context);
+        void OnBack(InputAction.CallbackContext context);
     }
 }
