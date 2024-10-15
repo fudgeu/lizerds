@@ -292,7 +292,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: GardenBackground
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2638510531622132248, guid: 164c7a8b362c2c24cbf20e0b301d33a8, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -302,6 +303,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7602319626670981639, guid: 164c7a8b362c2c24cbf20e0b301d33a8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2754148759400747856}
+    - targetCorrespondingSourceObject: {fileID: 7602319626670981639, guid: 164c7a8b362c2c24cbf20e0b301d33a8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2754148759400747860}
   m_SourcePrefab: {fileID: 100100000, guid: 164c7a8b362c2c24cbf20e0b301d33a8, type: 3}
 --- !u!1 &2754148759400747851 stripped
 GameObject:
@@ -417,6 +421,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 3995753368858124257, guid: 308e3cea316b36f468e14d1178e6d34e, type: 3}
+--- !u!114 &2754148759400747860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2754148759400747851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc99856be312b1ca9b3685a6f954ffe0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  platformV: 8
+  leafHeight1: 6
+  leafHeight2: 4
+  leafX1: 2
+  leafX2: 0
+  drop: {fileID: 9173131176146868919, guid: 33bb849d754010247bbd76ade4ed115f, type: 3}
+  lever: {fileID: 9173131176146868919, guid: 33bb849d754010247bbd76ade4ed115f, type: 3}
+  slide: {fileID: 9173131176146868919, guid: 33bb849d754010247bbd76ade4ed115f, type: 3}
+  puff: {fileID: 9173131176146868919, guid: 33bb849d754010247bbd76ade4ed115f, type: 3}
+  seesaw: {fileID: 9173131176146868919, guid: 33bb849d754010247bbd76ade4ed115f, type: 3}
+  spring: {fileID: 9173131176146868919, guid: 33bb849d754010247bbd76ade4ed115f, type: 3}
+  sway: {fileID: 9173131176146868919, guid: 33bb849d754010247bbd76ade4ed115f, type: 3}
+  test1: {fileID: 9173131176146868919, guid: 33bb849d754010247bbd76ade4ed115f, type: 3}
+  test2: {fileID: 9173131176146868919, guid: 33bb849d754010247bbd76ade4ed115f, type: 3}
+  test3: {fileID: 9173131176146868919, guid: 33bb849d754010247bbd76ade4ed115f, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

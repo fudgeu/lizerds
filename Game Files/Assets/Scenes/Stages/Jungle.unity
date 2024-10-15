@@ -288,6 +288,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: JungleBackground
       objectReference: {fileID: 0}
+    - target: {fileID: 7203688932794202314, guid: d097fd5d169afe84cbb59e135d9081ba, type: 3}
+      propertyPath: drop
+      value: 
+      objectReference: {fileID: 9173131176146868919, guid: 33bb849d754010247bbd76ade4ed115f, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
