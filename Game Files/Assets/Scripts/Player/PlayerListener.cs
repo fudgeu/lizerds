@@ -10,7 +10,18 @@ public class PlayerListener : MonoBehaviour
 {
     public static event Action GameCon;
 
+    public static PlayerListener Instance;
+
     private bool gameEnded;
+
+    void Update()
+    {
+        if (transform.position.y < -5.0f)
+        {
+            WinLevel();
+        }
+    }
+
     public void WinLevel()
     {
         if (!gameEnded)
@@ -30,5 +41,11 @@ public class PlayerListener : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             gameEnded = true;
         }
+    }
+
+    public void MutationDone()
+    {
+        
+
     }
 }

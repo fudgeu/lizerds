@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class JungleGen : MonoBehaviour
+public class DesertGen : MonoBehaviour
 {
     //platform values mainly for testing
     [SerializeField] int platformV, leafHeight1, leafHeight2, leafX1, leafX2;

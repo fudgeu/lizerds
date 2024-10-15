@@ -5,11 +5,11 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Testing/Test Main.unity
     guid: 7c55d12c0fe9b694e89c3e818f3f9a45
   - enabled: 1
-    path: Assets/Scenes/Stages/Stage Loader.unity
+    path: Assets/Scenes/Stages/Loading.unity
     guid: 2d90e4aa6b7af9a46869484b3d9856b3
   - enabled: 1
     path: Assets/Scenes/Mutations/Mutation.unity
