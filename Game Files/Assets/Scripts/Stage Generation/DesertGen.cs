@@ -5,7 +5,8 @@ using UnityEngine;
 public class DesertGen : MonoBehaviour
 {
     //platform values mainly for testing
-    [SerializeField] int platformV, leafHeight1, leafHeight2, leafX1, leafX2;
+    [SerializeField] int height1, height2;
+    [SerializeField] int length1, length2;
 
     //fields to add game objects to file
     [SerializeField] GameObject drop, lever, slide;
@@ -24,22 +25,23 @@ public class DesertGen : MonoBehaviour
         populate(leaves, mushrooms, obstacle);
 
         //obtain random leaf platforms
-        GameObject leftP = mushrooms[Random.Range(0, leaves.Length)];
-        GameObject rightP = mushrooms[Random.Range(0, leaves.Length)];
+        GameObject lLeaf = leaves[Random.Range(0, leaves.Length)];
+        GameObject rLeaf = leaves[Random.Range(0, leaves.Length)];
 
         //obtain random mushroom platforms
-        GameObject leafl1 = leaves[Random.Range(0, leaves.Length)];
-        GameObject leafl2 = leaves[Random.Range(0, leaves.Length)];
-        GameObject leafr1 = leaves[Random.Range(0, leaves.Length)];
-        GameObject leafr2 = leaves[Random.Range(0, leaves.Length)];
+        GameObject cMush = mushrooms[Random.Range(0, mushrooms.Length)];
+        GameObject lMush = mushrooms[Random.Range(0, mushrooms.Length)];
+        GameObject rMush = mushrooms[Random.Range(0, mushrooms.Length)];
 
         //obtain random obstacle platform
-        GameObject center = obstacle[Random.Range(0, leaves.Length)];
+        GameObject cObs = obstacle[Random.Range(0, obstacle.Length)];
+        GameObject lObs = obstacle[Random.Range(0, obstacle.Length)];
+        GameObject rObs = obstacle[Random.Range(0, obstacle.Length)];
 
         //generate platforms
-        leafGen(leafl1);
-        mushGen(leftP);
-        spawnPlat(center, 0, 0);
+        leafGen(lLeaf, rLeaf);
+        mushGen(cMush, lMush, rMush);
+        obsGen(cObs, lObs, rObs);
     }
 
     //function to populate the object arrays
@@ -68,19 +70,27 @@ public class DesertGen : MonoBehaviour
     }
 
     //generate the mushroom platforms
-    void mushGen(GameObject m)
+    void mushGen(GameObject centerM, GameObject leftM, GameObject rightM)
     {
-        spawnPlat(m, platformV, 0);
-        spawnPlat(m, platformV * -1, 0);
+        spawnPlat(centerM, 0, 0);
+        spawnPlat(leftM, length2 * -1, height2);
+        spawnPlat(rightM, length2, height2);
     }
 
     //generate the leaf platforms
-    void leafGen(GameObject l)
+    void leafGen(GameObject leftL, GameObject rightL)
     {
-        spawnPlat(l, leafX1, leafHeight1);
-        spawnPlat(l, leafX1 * -1, leafHeight1);
-        spawnPlat(l, leafX2, leafHeight2);
-        spawnPlat(l, leafX2 * -1, leafHeight2);
+        spawnPlat(leftL, length1 * -1, height1);
+        spawnPlat(rightL, length1, height1);
+
+    }
+
+    //generate the obstacle platforms
+    void obsGen(GameObject centerO, GameObject leftO, GameObject rightO)
+    {
+        spawnPlat(centerO, 0, height2);
+        spawnPlat(leftO, length2 * -1, 0);
+        spawnPlat(rightO, length2, 0);
     }
 
     //spawns platform at givne coordinates

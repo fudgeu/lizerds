@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Tilemaps;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GardenGen : MonoBehaviour
 {
@@ -25,22 +23,22 @@ public class GardenGen : MonoBehaviour
         //populate the arrays
         populate(leaves, mushrooms, obstacle);
 
-        //obtain random leaf platforms
-        GameObject leftP = mushrooms[Random.Range(0, leaves.Length)];
-        GameObject rightP = mushrooms[Random.Range(0, leaves.Length)];
-
         //obtain random mushroom platforms
-        GameObject leafl1 = leaves[Random.Range(0, leaves.Length)];
-        GameObject leafl2 = leaves[Random.Range(0, leaves.Length)];
-        GameObject leafr1 = leaves[Random.Range(0, leaves.Length)];
-        GameObject leafr2 = leaves[Random.Range(0, leaves.Length)];
+        GameObject lMush = mushrooms[Random.Range(0, mushrooms.Length)];
+        GameObject rMush = mushrooms[Random.Range(0, mushrooms.Length)];
+
+        //obtain random leaf platforms
+        GameObject lLeaf1 = leaves[Random.Range(0, leaves.Length)];
+        GameObject lLeaf2 = leaves[Random.Range(0, leaves.Length)];
+        GameObject rLeaf1 = leaves[Random.Range(0, leaves.Length)];
+        GameObject rLeaf2 = leaves[Random.Range(0, leaves.Length)];
 
         //obtain random obstacle platform
-        GameObject center = obstacle[Random.Range(0, leaves.Length)];
+        GameObject center = obstacle[Random.Range(0, obstacle.Length)];
 
         //generate platforms
-        leafGen(leafl1);
-        mushGen(leftP);
+        leafGen(lLeaf1, lLeaf2, rLeaf1, rLeaf2);
+        mushGen(lMush, rMush);
         spawnPlat(center, 0, 0);
     }
 
@@ -70,19 +68,19 @@ public class GardenGen : MonoBehaviour
     }
 
     //generate the mushroom platforms
-    void mushGen(GameObject m)
+    void mushGen(GameObject leftM, GameObject rightM)
     {
-        spawnPlat(m, platformV, 0);
-        spawnPlat(m, platformV * -1, 0);
+        spawnPlat(leftM, platformV, 0);
+        spawnPlat(rightM, platformV * -1, 0);
     }
 
     //generate the leaf platforms
-    void leafGen(GameObject l)
+    void leafGen(GameObject ll1, GameObject ll2, GameObject lr1, GameObject lr2)
     {
-        spawnPlat(l, leafX1, leafHeight1);
-        spawnPlat(l, leafX1 * -1, leafHeight1);
-        spawnPlat(l, leafX2, leafHeight2);
-        spawnPlat(l, leafX2 * -1, leafHeight2);
+        spawnPlat(ll1, leafX1, leafHeight1);
+        spawnPlat(ll2, leafX1 * -1, leafHeight1);
+        spawnPlat(lr1, leafX2, leafHeight2);
+        spawnPlat(lr2, leafX2 * -1, leafHeight2);
     }
 
     //spawns platform at givne coordinates

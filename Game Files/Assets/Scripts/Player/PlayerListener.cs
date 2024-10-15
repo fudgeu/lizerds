@@ -14,6 +14,11 @@ public class PlayerListener : MonoBehaviour
 
     private bool gameEnded;
 
+    private void Start()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
+
     void Update()
     {
         if (transform.position.y < -5.0f)

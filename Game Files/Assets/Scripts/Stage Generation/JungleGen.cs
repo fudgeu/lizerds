@@ -5,7 +5,8 @@ using UnityEngine;
 public class JungleGen : MonoBehaviour
 {
     //platform values mainly for testing
-    [SerializeField] int platformV, leafHeight1, leafHeight2, leafX1, leafX2;
+    [SerializeField] int height1, height2, height3;
+    [SerializeField] int length1, length2;
 
     //fields to add game objects to file
     [SerializeField] GameObject drop, lever, slide;
@@ -24,22 +25,24 @@ public class JungleGen : MonoBehaviour
         populate(leaves, mushrooms, obstacle);
 
         //obtain random leaf platforms
-        GameObject leftP = mushrooms[Random.Range(0, leaves.Length)];
-        GameObject rightP = mushrooms[Random.Range(0, leaves.Length)];
+        GameObject lLeaf1 = leaves[Random.Range(0, leaves.Length)];
+        GameObject lLeaf2 = leaves[Random.Range(0, leaves.Length)];
+        GameObject rLeaf1 = leaves[Random.Range(0, leaves.Length)];
+        GameObject rLeaf2 = leaves[Random.Range(0, leaves.Length)];
 
         //obtain random mushroom platforms
-        GameObject leafl1 = leaves[Random.Range(0, leaves.Length)];
-        GameObject leafl2 = leaves[Random.Range(0, leaves.Length)];
-        GameObject leafr1 = leaves[Random.Range(0, leaves.Length)];
-        GameObject leafr2 = leaves[Random.Range(0, leaves.Length)];
+        GameObject cMush = mushrooms[Random.Range(0, mushrooms.Length)];
+        GameObject lMush = mushrooms[Random.Range(0, mushrooms.Length)];
+        GameObject rMush = mushrooms[Random.Range(0, mushrooms.Length)];
 
         //obtain random obstacle platform
-        GameObject center = obstacle[Random.Range(0, leaves.Length)];
+        GameObject lObs = obstacle[Random.Range(0, obstacle.Length)];
+        GameObject rObs = obstacle[Random.Range(0, obstacle.Length)];
 
         //generate platforms
-        leafGen(leafl1);
-        mushGen(leftP);
-        spawnPlat(center, 0, 0);
+        leafGen(lLeaf1, lLeaf2, rLeaf1, rLeaf2);
+        mushGen(cMush, lMush, rMush);
+        obsGen(lObs, rObs);
     }
 
     //function to populate the object arrays
@@ -68,19 +71,27 @@ public class JungleGen : MonoBehaviour
     }
 
     //generate the mushroom platforms
-    void mushGen(GameObject m)
+    void mushGen(GameObject centerM, GameObject leftM, GameObject rightM)
     {
-        spawnPlat(m, platformV, 0);
-        spawnPlat(m, platformV * -1, 0);
+        spawnPlat(centerM, 0, height2);
+        spawnPlat(leftM, length1 * -1, 0);
+        spawnPlat(rightM, length1, 0);
     }
 
     //generate the leaf platforms
-    void leafGen(GameObject l)
+    void leafGen(GameObject leftM1, GameObject leftM2, GameObject rightM1, GameObject rightM2)
     {
-        spawnPlat(l, leafX1, leafHeight1);
-        spawnPlat(l, leafX1 * -1, leafHeight1);
-        spawnPlat(l, leafX2, leafHeight2);
-        spawnPlat(l, leafX2 * -1, leafHeight2);
+        spawnPlat(leftM1, length1 * -1, height3);
+        spawnPlat(leftM2, length2 * -1, height2);
+        spawnPlat(rightM1, length1, height3);
+        spawnPlat(rightM2, length2, height2);
+    }
+
+    //generate the obstacle platforms
+    void obsGen(GameObject leftO, GameObject rightO)
+    {
+        spawnPlat(leftO, length2 * -1, height1);
+        spawnPlat(rightO, length2, height1);
     }
 
     //spawns platform at givne coordinates

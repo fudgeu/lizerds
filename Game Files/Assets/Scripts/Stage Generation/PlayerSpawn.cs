@@ -6,10 +6,19 @@ public class PlayerSpawn : MonoBehaviour
 {
     [SerializeField] GameObject player;
 
-    // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
-        Instantiate(player, new Vector2(0, 8), Quaternion.identity);
+        PlayerListener.GameCon += respawn;
+    }
+
+    void OnDisable()
+    {
+        PlayerListener.GameCon -= respawn;
+    }
+
+    void respawn()
+    {
+        gameObject.transform.position = Vector2.zero;
     }
 
 }
