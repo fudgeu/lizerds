@@ -45,11 +45,6 @@ public class GameStartManager : MonoBehaviour
             DontDestroyOnLoad(gameStartInfoObj);
             gameStartInfoObj.tag = "GameStartInfo";
             
-            // Add all players to the object
-            foreach (var player in _registeredPlayers)
-            {
-            }
-
             // Prepare players
             foreach (var player in _registeredPlayers)
             {
