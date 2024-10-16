@@ -27,9 +27,13 @@ public class JoinMenuUiNav : MonoBehaviour
     private int _panelWidth = 250;
     private Page _curPage = Page.Main;
     private ProfileManager _profileManager;
+    private GameStartManager _gameStartManager;
     
     void Start()
     {
+        // Grab GameStartManager
+        _gameStartManager = GameObject.FindWithTag("GameStartManager").GetComponent<GameStartManager>();
+        
         // Grab profile manager and create buttons
         _profileManager = FindObjectOfType<ProfileManager>();
         foreach (var profile in _profileManager.profiles)
@@ -55,6 +59,17 @@ public class JoinMenuUiNav : MonoBehaviour
                     SwitchToPage(Page.Main);
                     break;
             }
+        };
+        
+        // Register start button handlers
+        playerInput.actions["Join"].started += ctx =>
+        {
+            _gameStartManager.onPlayerHoldStart(gameObject);
+        };
+
+        playerInput.actions["Join"].canceled += ctx =>
+        {
+            _gameStartManager.onPlayerLetGoStart(gameObject);
         };
     }
     

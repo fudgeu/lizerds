@@ -29,10 +29,6 @@ public class ScrollController : MonoBehaviour
         var targetTopBorder = Math.Abs(target.localPosition.y);
         var targetBottomBorder = targetTopBorder + target.rect.height;
         
-        
-        print("A " + targetBottomBorder);
-        print("B " + containerBottom);
-
         if (index == 0)
         {
             // Item is first in list, scroll all the way to the top
