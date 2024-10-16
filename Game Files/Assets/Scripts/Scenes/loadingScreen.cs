@@ -48,6 +48,7 @@ public class loadingScreen : MonoBehaviour
             // load a stage
             if (SceneInt == 0) 
             {
+                print("LOADING STAGE");
                StartCoroutine(LoadStageScene());
             }
 

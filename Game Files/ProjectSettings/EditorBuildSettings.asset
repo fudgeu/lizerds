@@ -26,4 +26,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Stages/Swamp.unity
     guid: 1b87695ee1b5fa446a70c006f626c79f
+  - enabled: 1
+    path: Assets/Scenes/MenuScenes/MainMenu.unity
+    guid: c5cff39c2877e71fc8bf50e1bc9afe4c
+  - enabled: 1
+    path: Assets/Scenes/MenuScenes/PlayerJoinScene.unity
+    guid: 8d1313b8d68e3b795b5ae185d98361ba
   m_configObjects: {}

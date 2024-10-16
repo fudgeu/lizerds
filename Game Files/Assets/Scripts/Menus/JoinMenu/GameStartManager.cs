@@ -42,16 +42,23 @@ public class GameStartManager : MonoBehaviour
             // Create game object that will contain all the player data
             var gameStartInfoObj = new GameObject("GameStartInfo");
             var gameStartInfo = gameStartInfoObj.AddComponent<GameStartInfo>();
+            DontDestroyOnLoad(gameStartInfoObj);
+            gameStartInfoObj.tag = "GameStartInfo";
             
             // Add all players to the object
             foreach (var player in _registeredPlayers)
             {
-                var playerInfo = new GameStartInfo.PlayerInfo(null);
-                gameStartInfo.players.Add(playerInfo);
             }
 
+            // Prepare players
+            foreach (var player in _registeredPlayers)
+            {
+                DontDestroyOnLoad(player.gameObject.transform.parent);
+                gameStartInfo.players.Add(player.transform.parent.gameObject);
+                Destroy(player);
+            }
+            
             // Load arena scene
-            DontDestroyOnLoad(gameStartInfoObj);
             SceneManager.LoadScene("Scenes/Stages/Garden");
         }
     }
