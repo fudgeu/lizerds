@@ -55,6 +55,9 @@ public class PlayerController : MonoBehaviour
 
     [Tooltip("Layers that can be hit by the player")]
     [SerializeField] private LayerMask enemyLayer;
+    [Header("Attack Configuration")]
+    [Tooltip("The total force applied on hit")]
+    [SerializeField] private float hitForce = 10f; // The total hit force
 
     //--Respawn Position---------------
     [Header("Respawn Position")]
@@ -116,7 +119,7 @@ public class PlayerController : MonoBehaviour
     private void LightAttack()
     {
         // Perform the attack with a short range and small damage
-        Attack(0);
+        Attack(0.5f);
         Debug.Log("LIGHT ATTACK!");
     }
 
@@ -124,28 +127,41 @@ public class PlayerController : MonoBehaviour
     private void HeavyAttack()
     {
         // Perform the attack with a longer range and more damage
-        Attack(0);
+        Attack(1.0f);
         Debug.Log("HEAVY ATTACK!");
     }
 
-    private void Attack(int force)
-    {
-        // Create a circle around the player to check for enemies (including players)
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, attackRange, enemyLayer);
-
-        // Get all the colliders for the player's child segments
-        List<Collider2D> playerColliders = new List<Collider2D>(GetComponentsInChildren<Collider2D>());
-
-        // Damage the enemies in range, but skip the player and its own child segments
-        foreach (Collider2D enemy in hitEnemies)
+    private void Attack(float forcePercentage)
         {
-            if (!playerColliders.Contains(enemy)) // Exclude player and child segments
+            // Create a circle around the player to check for enemies (including players)
+            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, attackRange, enemyLayer);
+
+            // Get all the colliders for the player's child segments
+            List<Collider2D> playerColliders = new List<Collider2D>(GetComponentsInChildren<Collider2D>());
+
+            // Damage the enemies in range, but skip the player and its own child segments
+            foreach (Collider2D enemy in hitEnemies)
             {
-                Debug.Log("Hit " + enemy.name);
-                // Apply damage to the enemy (implement actual damage logic here)
+                if (!playerColliders.Contains(enemy)) // Exclude player and child segments
+                {
+                    Debug.Log("Hit " + enemy.name);
+                    // Apply damage to the enemy (implement actual damage logic here)
+
+                    // Calculate the direction from the player to the enemy
+                    Vector2 hitDirection = (enemy.transform.position - transform.position).normalized;
+
+                    // Calculate the force to apply based on the attack type
+                    Vector2 forceToApply = hitDirection * hitForce * forcePercentage;
+
+                    // Get the Rigidbody2D component from the enemy (dummy)
+                    Rigidbody2D enemyRigidbody = enemy.GetComponent<Rigidbody2D>();
+                    if (enemyRigidbody != null)
+                    {
+                        enemyRigidbody.AddForce(forceToApply, ForceMode2D.Impulse);
+                    }
+                }
             }
         }
-    }
 
     private void FixedUpdate()
     {

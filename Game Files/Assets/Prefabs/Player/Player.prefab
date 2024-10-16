@@ -1092,6 +1092,7 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 192
+  hitForce: 1000
   respawnPosition: {x: 0, y: 0}
 --- !u!50 &6920365033799447328
 Rigidbody2D:
