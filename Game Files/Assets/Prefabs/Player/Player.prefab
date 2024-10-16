@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2108311903882237292}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TargetDir
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 5058229871893611143}
   - component: {fileID: 3012727795482692105}
   - component: {fileID: 8425449985101970807}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Segment (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -213,7 +213,7 @@ GameObject:
   - component: {fileID: 4414078516197620374}
   - component: {fileID: 6442364068676774360}
   - component: {fileID: 435839216113995642}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Segment (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -382,7 +382,7 @@ GameObject:
   - component: {fileID: 5641440733167961337}
   - component: {fileID: 6112493073733467166}
   - component: {fileID: 4080091161446690365}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Segment (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -551,7 +551,7 @@ GameObject:
   - component: {fileID: 7298335514506788984}
   - component: {fileID: 7540210856999561376}
   - component: {fileID: 1071680755716286742}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Segment (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -720,7 +720,7 @@ GameObject:
   - component: {fileID: 4617702366011867666}
   - component: {fileID: 913097935990993594}
   - component: {fileID: 6829770241422004338}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Segment (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -886,7 +886,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6337373336029882869}
   - component: {fileID: 4484288146329470258}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1039,7 +1039,7 @@ GameObject:
   - component: {fileID: 8616726658935127612}
   - component: {fileID: 8791612957416646304}
   - component: {fileID: -541780516007217350}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1088,6 +1088,10 @@ MonoBehaviour:
   groundCheckDistance: 1
   boundingBoxMin: {x: -20, y: -20}
   boundingBoxMax: {x: 20, y: 20}
+  attackRange: 0.5
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 192
   respawnPosition: {x: 0, y: 0}
 --- !u!50 &6920365033799447328
 Rigidbody2D:
@@ -1289,7 +1293,7 @@ GameObject:
   - component: {fileID: 7323405145301925923}
   - component: {fileID: 8299984689983341655}
   - component: {fileID: 5669679979016699715}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Body1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1448,7 +1452,7 @@ GameObject:
   - component: {fileID: 3722886685535854164}
   - component: {fileID: 6654268421050364852}
   - component: {fileID: 6746344951649065981}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Segment (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1617,7 +1621,7 @@ GameObject:
   - component: {fileID: 1431295627296221708}
   - component: {fileID: 8812519905055465515}
   - component: {fileID: 7273320876866055273}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Segment (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1783,7 +1787,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5311831136110740113}
   - component: {fileID: 518098462025389341}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Eye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1870,7 +1874,7 @@ GameObject:
   - component: {fileID: 1935321276274736069}
   - component: {fileID: 7115709351894293347}
   - component: {fileID: 3195502500765818081}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Segment (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2039,7 +2043,7 @@ GameObject:
   - component: {fileID: 8206435367677638940}
   - component: {fileID: 2728907093945588993}
   - component: {fileID: 4862892438030510152}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Segment (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2208,7 +2212,7 @@ GameObject:
   - component: {fileID: 5612525819894953731}
   - component: {fileID: 8664518691061991176}
   - component: {fileID: 3881173783745215432}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Segment (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

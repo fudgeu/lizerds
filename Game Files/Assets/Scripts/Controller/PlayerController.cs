@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
     //--Input Actions-----------------
     private InputAction move;
     private InputAction leap;
+    private InputAction lightAttack;
+    private InputAction heavyAttack;
 
     //--Movement Configuration--------
     [Header("Movement Configuration")]
@@ -47,6 +49,13 @@ public class PlayerController : MonoBehaviour
     [Tooltip("Max X and Y for the bounding box")]
     public Vector2 boundingBoxMax = new Vector2(10, 5);
 
+    //--Combat Config-----------------
+    [Tooltip("Attack range of the player")]
+    [SerializeField] private float attackRange = 5.0f;
+
+    [Tooltip("Layers that can be hit by the player")]
+    [SerializeField] private LayerMask enemyLayer;
+
     //--Respawn Position---------------
     [Header("Respawn Position")]
     [Tooltip("Where the player respawns when leaving the bounding box")]
@@ -61,16 +70,25 @@ public class PlayerController : MonoBehaviour
         playerInputActionMap = inputAsset.currentActionMap;
     }
 
-    // OnEnable: Runs when player prefab spawns
+    // OnEnable: Link attacks to input actions
     private void OnEnable()
     {
-        // Link and enable input actions
         move = playerInputActionMap.FindAction("Move");
         move.Enable();
 
         leap = playerInputActionMap.FindAction("Leap");
         leap.performed += DoLeap;
         leap.Enable();
+
+        // Light Attack
+        var lightAttack = playerInputActionMap.FindAction("LightAttack");
+        lightAttack.performed += _ => LightAttack();
+        lightAttack.Enable();
+
+        // Heavy Attack
+        var heavyAttack = playerInputActionMap.FindAction("HeavyAttack");
+        heavyAttack.performed += _ => HeavyAttack();
+        heavyAttack.Enable();
     }
 
     // OnDisable: Unlink inputs when object is disabled
@@ -78,6 +96,8 @@ public class PlayerController : MonoBehaviour
     {
         move.Disable();
         leap.Disable();
+        lightAttack.Disable();
+        heavyAttack.Disable();
     }
 
     // DoLeap: Send player in their look direction + small upward movement (unless they are trying to leap down)
@@ -89,6 +109,38 @@ public class PlayerController : MonoBehaviour
             rigidbody.velocity = new Vector2(rigidbody.velocity.x, 0); // Reset vertical velocity before jumping
             rigidbody.AddForce(leapForce, ForceMode2D.Impulse);
             Debug.Log("LEAPING!");
+        }
+    }
+
+    // Light Attack: Quick attack that deals small damage
+    private void LightAttack()
+    {
+        // Perform the attack with a short range and small damage
+        Attack(0);
+        Debug.Log("LIGHT ATTACK!");
+    }
+
+    // Heavy Attack: Slower but deals more damage
+    private void HeavyAttack()
+    {
+        // Perform the attack with a longer range and more damage
+        Attack(0);
+        Debug.Log("HEAVY ATTACK!");
+    }
+
+    private void Attack(int damage)
+    {
+        // Create a circle around the player to check for enemies and dummies
+        Collider2D[] hitTargets = Physics2D.OverlapCircleAll(transform.position, attackRange, enemyLayer);
+
+        // Damage the targets in range
+        foreach (Collider2D target in hitTargets)
+        {
+            if (target.gameObject != gameObject) // Make sure the player does not hit themselves
+            {
+                Debug.Log("Hit " + target.name);
+                // Apply damage or any effect to the target here
+            }
         }
     }
 
@@ -150,9 +202,15 @@ public class PlayerController : MonoBehaviour
     // Visualize the bounding box in the scene view
     private void OnDrawGizmos()
     {
+        // Visualize the bounding box
         Gizmos.color = Color.red;
         Vector3 bottomLeft = new Vector3(boundingBoxMin.x, boundingBoxMin.y, 0);
         Vector3 topRight = new Vector3(boundingBoxMax.x, boundingBoxMax.y, 0);
         Gizmos.DrawWireCube((bottomLeft + topRight) / 2, topRight - bottomLeft);
+
+        // Visualize the attack range
+        Gizmos.color = Color.red; // You can change the color if needed
+        Gizmos.DrawWireSphere(transform.position, attackRange);
     }
+
 }
