@@ -1088,7 +1088,7 @@ MonoBehaviour:
   groundCheckDistance: 1
   boundingBoxMin: {x: -20, y: -20}
   boundingBoxMax: {x: 20, y: 20}
-  attackRange: 0.5
+  attackRange: 1
   enemyLayer:
     serializedVersion: 2
     m_Bits: 192

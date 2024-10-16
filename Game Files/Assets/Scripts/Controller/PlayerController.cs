@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour
 
     //--Combat Config-----------------
     [Tooltip("Attack range of the player")]
-    [SerializeField] private float attackRange = 5.0f;
+    [SerializeField] private float attackRange = 1.0f;
 
     [Tooltip("Layers that can be hit by the player")]
     [SerializeField] private LayerMask enemyLayer;
@@ -128,18 +128,21 @@ public class PlayerController : MonoBehaviour
         Debug.Log("HEAVY ATTACK!");
     }
 
-    private void Attack(int damage)
+    private void Attack(int force)
     {
-        // Create a circle around the player to check for enemies and dummies
-        Collider2D[] hitTargets = Physics2D.OverlapCircleAll(transform.position, attackRange, enemyLayer);
+        // Create a circle around the player to check for enemies (including players)
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, attackRange, enemyLayer);
 
-        // Damage the targets in range
-        foreach (Collider2D target in hitTargets)
+        // Get all the colliders for the player's child segments
+        List<Collider2D> playerColliders = new List<Collider2D>(GetComponentsInChildren<Collider2D>());
+
+        // Damage the enemies in range, but skip the player and its own child segments
+        foreach (Collider2D enemy in hitEnemies)
         {
-            if (target.gameObject != gameObject) // Make sure the player does not hit themselves
+            if (!playerColliders.Contains(enemy)) // Exclude player and child segments
             {
-                Debug.Log("Hit " + target.name);
-                // Apply damage or any effect to the target here
+                Debug.Log("Hit " + enemy.name);
+                // Apply damage to the enemy (implement actual damage logic here)
             }
         }
     }
