@@ -194,18 +194,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc99856be312b1ca9b3685a6f954ffe0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  platformV: 8
+  platformV: 5
   leafHeight1: 6
-  leafHeight2: 4
-  leafX1: 2
-  leafX2: 0
-  drop: {fileID: 9173131176146868919, guid: 33bb849d754010247bbd76ade4ed115f, type: 3}
-  lever: {fileID: 9173131176146868919, guid: 33bb849d754010247bbd76ade4ed115f, type: 3}
-  slide: {fileID: 9173131176146868919, guid: 33bb849d754010247bbd76ade4ed115f, type: 3}
-  puff: {fileID: 9173131176146868919, guid: 33bb849d754010247bbd76ade4ed115f, type: 3}
-  seesaw: {fileID: 9173131176146868919, guid: 33bb849d754010247bbd76ade4ed115f, type: 3}
-  spring: {fileID: 9173131176146868919, guid: 33bb849d754010247bbd76ade4ed115f, type: 3}
-  sway: {fileID: 9173131176146868919, guid: 33bb849d754010247bbd76ade4ed115f, type: 3}
-  test1: {fileID: 9173131176146868919, guid: 33bb849d754010247bbd76ade4ed115f, type: 3}
-  test2: {fileID: 9173131176146868919, guid: 33bb849d754010247bbd76ade4ed115f, type: 3}
+  leafHeight2: 3
+  leafX1: 3
+  leafX2: 7
+  drop: {fileID: 1750076031384711124, guid: 2bbe7cd42d2bda940a677855e8dfc859, type: 3}
+  lever: {fileID: 1750076031384711124, guid: 2bbe7cd42d2bda940a677855e8dfc859, type: 3}
+  slide: {fileID: 7838908084349792170, guid: 1f4cfb06514c7e443b16cadf5da2eea9, type: 3}
+  puff: {fileID: 7838908084349792170, guid: 1f4cfb06514c7e443b16cadf5da2eea9, type: 3}
+  seesaw: {fileID: 5174603534484633565, guid: b709942006e6a134f8bcaa3c4a258cd5, type: 3}
+  spring: {fileID: 7838908084349792170, guid: 1f4cfb06514c7e443b16cadf5da2eea9, type: 3}
+  sway: {fileID: 1750076031384711124, guid: 2bbe7cd42d2bda940a677855e8dfc859, type: 3}
+  test1: {fileID: 5174603534484633565, guid: b709942006e6a134f8bcaa3c4a258cd5, type: 3}
+  test2: {fileID: 5174603534484633565, guid: b709942006e6a134f8bcaa3c4a258cd5, type: 3}
   test3: {fileID: 9173131176146868919, guid: 33bb849d754010247bbd76ade4ed115f, type: 3}
