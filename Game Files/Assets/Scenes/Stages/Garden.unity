@@ -203,7 +203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3bdff96fc322bafd82abb4ddaf0087c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gamePlayerPrefab: {fileID: 3995753368858124257, guid: 308e3cea316b36f468e14d1178e6d34e, type: 3}
+  gamePlayerPrefab: {fileID: 1706660658235508578, guid: d1fd47de25ff641de973be2415b270f6, type: 3}
 --- !u!1001 &1960486496496538773
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -269,6 +269,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 171974367154361594, guid: 6367a909b2bed474ea66882ea0ef1ac8, type: 3}
+      propertyPath: m_TagString
+      value: Respawn
+      objectReference: {fileID: 0}
     - target: {fileID: 1713762380565921490, guid: 6367a909b2bed474ea66882ea0ef1ac8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 532719439172672409}
   - component: {fileID: 4366480365720979991}
+  - component: {fileID: 5770378971778017094}
   m_Layer: 0
   m_Name: PlayerRoot
   m_TagString: Player
@@ -47,6 +48,80 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   joinMenuPlayerObject: {fileID: 0}
   gamePlayerObject: {fileID: 0}
+--- !u!114 &5770378971778017094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8878254596669983340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: a3e9054f9d8ff1349a60590954dc4309, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 6053187975089439511}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: cb09eb3e-72c4-47dc-b1dd-99124edbb2ff
+    m_ActionName: Player/Move[/Gamepad/leftStick]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d0f3f3f5-3c3f-4156-a864-e4db2185f2cf
+    m_ActionName: Player/Leap[/Keyboard/leftShift,/Gamepad/buttonWest,/Gamepad/leftShoulder]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e115423a-98c6-4f97-bd70-4da0ec9173f4
+    m_ActionName: Player/LightAttack[/Mouse/leftButton,/Gamepad/buttonSouth,/Gamepad/rightTrigger]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 438cbb3b-b6e2-4a60-9260-9d12f48734ef
+    m_ActionName: Player/HeavyAttack[/Mouse/rightButton,/Gamepad/buttonEast,/Gamepad/leftTrigger]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 14808d6d-c34e-4d03-ad92-9bd0878dc4eb
+    m_ActionName: Player/Grab[/Gamepad/buttonNorth,/Gamepad/rightShoulder]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 288e6c6d-56c3-4173-8e0c-c535d7085654
+    m_ActionName: Player/Join[/Keyboard/enter,/Gamepad/start]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: dc137be5-fa21-4464-b479-21cdbfb1e67d
+    m_ActionName: JoinScreen/Select[/Gamepad/buttonSouth,/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 28c6ae5b-2db5-476a-bfe6-48a163b9dcd0
+    m_ActionName: JoinScreen/Join[/Keyboard/enter,/Gamepad/start]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0c09647a-eacd-40ba-9fd4-1abba1b431d5
+    m_ActionName: JoinScreen/Leave[/Gamepad/buttonEast,/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 7273605f-bb98-4075-a3d0-00b34f7a6e05
+    m_ActionName: JoinScreen/Navigate[/Gamepad/dpad,/Gamepad/leftStick,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5c5e0627-a2a8-4a00-a299-9d4caff05ebd
+    m_ActionName: JoinScreen/Back[/Keyboard/escape,/Gamepad/buttonEast]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: JoinScreen
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1001 &3318997582550052156
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -237,3 +312,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4402983350449018956, guid: 7e73da25f0c2efcda9a2a9d03bd507a6, type: 3}
   m_PrefabInstance: {fileID: 3318997582550052156}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6053187975089439511 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8795051591617605163, guid: 7e73da25f0c2efcda9a2a9d03bd507a6, type: 3}
+  m_PrefabInstance: {fileID: 3318997582550052156}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -10,7 +10,6 @@ public class JoinMenuUiNav : MonoBehaviour
 {
     // Inputs
     public EventSystem eventSystem;
-    public PlayerInput playerInput;
     
     // Panels
     public RectTransform mainPanel;
@@ -24,6 +23,7 @@ public class JoinMenuUiNav : MonoBehaviour
     public List<Button> profileButtons;
 
     // Internal
+    private PlayerInput _playerInput;
     private int _panelWidth = 250;
     private Page _curPage = Page.Main;
     private ProfileManager _profileManager;
@@ -31,8 +31,9 @@ public class JoinMenuUiNav : MonoBehaviour
     
     void Start()
     {
-        // Grab GameStartManager
+        // Grab components
         _gameStartManager = GameObject.FindWithTag("GameStartManager").GetComponent<GameStartManager>();
+        _playerInput = GetComponentInParent<PlayerInput>();
         
         // Grab profile manager and create buttons
         _profileManager = FindObjectOfType<ProfileManager>();
@@ -48,7 +49,7 @@ public class JoinMenuUiNav : MonoBehaviour
         changeProfileButton.onClick.AddListener(() => SwitchToPage(Page.Profile));
         
         // Register player input handlers
-        playerInput.actions["Back"].performed += ctx =>
+        _playerInput.actions["Back"].performed += ctx =>
         {
             switch (_curPage)
             {
@@ -62,12 +63,12 @@ public class JoinMenuUiNav : MonoBehaviour
         };
         
         // Register start button handlers
-        playerInput.actions["Join"].started += ctx =>
+        _playerInput.actions["Join"].started += ctx =>
         {
             _gameStartManager.onPlayerHoldStart(gameObject);
         };
 
-        playerInput.actions["Join"].canceled += ctx =>
+        _playerInput.actions["Join"].canceled += ctx =>
         {
             _gameStartManager.onPlayerLetGoStart(gameObject);
         };

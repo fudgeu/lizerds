@@ -8,8 +8,8 @@ public class PlayerController : MonoBehaviour
 {
     //--Components--------------------
     [Header("Components")]
-    [Tooltip("The Player Input component attached to this object")]
-    [SerializeField] private PlayerInput inputAsset;
+    // [Tooltip("The Player Input component attached to this object")]
+    private PlayerInput _inputAsset;
 
     private InputActionMap playerInputActionMap;
 
@@ -70,12 +70,15 @@ public class PlayerController : MonoBehaviour
     // Awake: Runs before Start() and OnEnable()
     private void Awake()
     {
-        playerInputActionMap = inputAsset.currentActionMap;
     }
 
     // OnEnable: Link attacks to input actions
     private void OnEnable()
     {
+        // Get player input
+        _inputAsset = GetComponentInParent<PlayerInput>();
+        playerInputActionMap = _inputAsset.currentActionMap;
+        
         move = playerInputActionMap.FindAction("Move");
         move.Enable();
 
@@ -84,12 +87,12 @@ public class PlayerController : MonoBehaviour
         leap.Enable();
 
         // Light Attack
-        var lightAttack = playerInputActionMap.FindAction("LightAttack");
+        lightAttack = playerInputActionMap.FindAction("LightAttack");
         lightAttack.performed += _ => LightAttack();
         lightAttack.Enable();
 
         // Heavy Attack
-        var heavyAttack = playerInputActionMap.FindAction("HeavyAttack");
+        heavyAttack = playerInputActionMap.FindAction("HeavyAttack");
         heavyAttack.performed += _ => HeavyAttack();
         heavyAttack.Enable();
     }
@@ -97,6 +100,7 @@ public class PlayerController : MonoBehaviour
     // OnDisable: Unlink inputs when object is disabled
     private void OnDisable()
     {
+        _inputAsset = null;
         move.Disable();
         leap.Disable();
         lightAttack.Disable();

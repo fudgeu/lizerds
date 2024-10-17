@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using JoinMenu;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class GameStartManager : MonoBehaviour
@@ -13,6 +14,8 @@ public class GameStartManager : MonoBehaviour
     public RectTransform startBarBackground;
     public RectTransform startBar;
 
+    public PlayerInputManager playerInputManager;
+    
     private List<GameObject> _registeredPlayers = new();
     
     // Hold start mechanic
@@ -48,12 +51,15 @@ public class GameStartManager : MonoBehaviour
             // Prepare players
             foreach (var player in _registeredPlayers)
             {
-                DontDestroyOnLoad(player.gameObject.transform.parent);
-                gameStartInfo.players.Add(player.transform.parent.gameObject);
-                Destroy(player);
+                var playerRoot = player.transform.parent.gameObject;
+                DontDestroyOnLoad(playerRoot);
+                gameStartInfo.players.Add(playerRoot);
+                playerRoot.GetComponent<PlayerInput>().SwitchCurrentActionMap("Player");
             }
+            _registeredPlayers.ForEach(Destroy);
             
             // Load arena scene
+            DontDestroyOnLoad(playerInputManager.gameObject);
             SceneManager.LoadScene("Scenes/Stages/Garden");
         }
     }
@@ -91,7 +97,6 @@ public class GameStartManager : MonoBehaviour
 
     private void onPlayerChangeOccured()
     {
-        print(_registeredPlayers.Count);
         if (_registeredPlayers.Count > 1)
         {
             // Enable starting
