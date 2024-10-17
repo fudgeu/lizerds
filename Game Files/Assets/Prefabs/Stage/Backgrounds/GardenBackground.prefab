@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 8234962307960977058}
   - component: {fileID: 570046927348478211}
   - component: {fileID: 8368003588964268541}
-  - component: {fileID: 4121110391671568599}
   m_Layer: 0
   m_Name: GardenBackground
   m_TagString: Untagged
@@ -210,16 +209,3 @@ MonoBehaviour:
   test1: {fileID: 9173131176146868919, guid: 33bb849d754010247bbd76ade4ed115f, type: 3}
   test2: {fileID: 9173131176146868919, guid: 33bb849d754010247bbd76ade4ed115f, type: 3}
   test3: {fileID: 9173131176146868919, guid: 33bb849d754010247bbd76ade4ed115f, type: 3}
---- !u!114 &4121110391671568599
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7602319626670981639}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1a759c6d7eb2e44a89d61de84049379, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 3995753368858124257, guid: 308e3cea316b36f468e14d1178e6d34e, type: 3}
