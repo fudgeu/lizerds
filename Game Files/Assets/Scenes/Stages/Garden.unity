@@ -130,6 +130,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4711840593945813512, guid: fc862f559efb7584ead24763005fa03b, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7424592014384231993, guid: fc862f559efb7584ead24763005fa03b, type: 3}
       propertyPath: m_Name
       value: StageManager
@@ -377,26 +381,6 @@ PrefabInstance:
     - target: {fileID: 7602319626670981639, guid: 164c7a8b362c2c24cbf20e0b301d33a8, type: 3}
       propertyPath: m_Name
       value: GardenBackground
-      objectReference: {fileID: 0}
-    - target: {fileID: 8368003588964268541, guid: 164c7a8b362c2c24cbf20e0b301d33a8, type: 3}
-      propertyPath: leafX1
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8368003588964268541, guid: 164c7a8b362c2c24cbf20e0b301d33a8, type: 3}
-      propertyPath: leafX2
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 8368003588964268541, guid: 164c7a8b362c2c24cbf20e0b301d33a8, type: 3}
-      propertyPath: platformV
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8368003588964268541, guid: 164c7a8b362c2c24cbf20e0b301d33a8, type: 3}
-      propertyPath: leafHeight1
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 8368003588964268541, guid: 164c7a8b362c2c24cbf20e0b301d33a8, type: 3}
-      propertyPath: leafHeight2
-      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
