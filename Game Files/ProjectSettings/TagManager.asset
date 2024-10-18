@@ -6,6 +6,7 @@ TagManager:
   tags:
   - GameStartManager
   - GameStartInfo
+  - LoadingScreenDirector
   layers:
   - Default
   - TransparentFX

@@ -2,7 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using JoinMenu;
+using Scenes;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -58,9 +60,21 @@ public class GameStartManager : MonoBehaviour
             }
             _registeredPlayers.ForEach(Destroy);
             
+            // Set up loading screen director
+            var director = GameObject.FindWithTag("LoadingScreenDirector")?.GetComponent<LoadingScreenDirector>();
+            if (director is null)
+            {
+                var directorObj = new GameObject("LoadingScreenDirector");
+                directorObj.tag = "LoadingScreenDirector";
+                director = directorObj.AddComponent<LoadingScreenDirector>();
+            }
+            
+            DontDestroyOnLoad(director.gameObject);
+            director.goTo = LoadingScreenDirector.GameScene.Arena;
+            
             // Load arena scene
             DontDestroyOnLoad(playerInputManager.gameObject);
-            SceneManager.LoadScene("Scenes/Stages/Garden");
+            SceneManager.LoadScene("Loading");
         }
     }
 
