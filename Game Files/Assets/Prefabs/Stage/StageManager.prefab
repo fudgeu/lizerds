@@ -9,7 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8202727711445455656}
-  - component: {fileID: 4711840593945813512}
+  - component: {fileID: 7345305645064691508}
+  - component: {fileID: -3571408278412383014}
   m_Layer: 0
   m_Name: StageManager
   m_TagString: Untagged
@@ -32,7 +33,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4711840593945813512
+--- !u!114 &7345305645064691508
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,6 +42,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 7424592014384231993}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9792cd84f825d3459cdd2d1d55598a2, type: 3}
+  m_Script: {fileID: 11500000, guid: b3bdff96fc322bafd82abb4ddaf0087c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gamePlayerPrefab: {fileID: 1706660658235508578, guid: d1fd47de25ff641de973be2415b270f6, type: 3}
+--- !u!114 &-3571408278412383014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7424592014384231993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f331ce2447f9904d8ddcf4998262991, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useRoundTimer: 1
+  roundTimer: 90
+  timerRunning: 0
