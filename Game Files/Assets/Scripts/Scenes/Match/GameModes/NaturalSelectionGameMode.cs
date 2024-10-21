@@ -39,7 +39,8 @@ public class NaturalSelectionGameMode : MonoBehaviour {
     {
         if (_alivePlayers <= 1)
         {
-            _roundLifecycleManager.EndRound();
+            // TODO temp disabled for demo
+            // _roundLifecycleManager.EndRound();
         }
     }
     

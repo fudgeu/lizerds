@@ -11,6 +11,9 @@ using UnityEngine.SceneManagement;
 
 public class GameStartManager : MonoBehaviour
 {
+    // Settings
+    public int playersRequiredToStart = 2;
+    
     // UI objects
     public GameObject holdToStartText;
     public RectTransform startBarBackground;
@@ -42,7 +45,7 @@ public class GameStartManager : MonoBehaviour
         );
 
         // Start game if hold duration exceeds threshold
-        if (_holdDuration >= _holdThreshold && _registeredPlayers.Count >= 2)
+        if (_holdDuration >= _holdThreshold && _registeredPlayers.Count >= playersRequiredToStart)
         {
             // Create game object that will contain all the player data
             var gameStartInfoObj = new GameObject("GameStartInfo");
@@ -93,7 +96,7 @@ public class GameStartManager : MonoBehaviour
     public void onPlayerHoldStart(GameObject player)
     {
         if (_isHoldingStart) return;
-        if (_registeredPlayers.Count < 2) return;
+        if (_registeredPlayers.Count < playersRequiredToStart) return;
         _isHoldingStart = true;
         _playerHoldingStart = player;
         _holdDuration = 0;
@@ -111,7 +114,7 @@ public class GameStartManager : MonoBehaviour
 
     private void onPlayerChangeOccured()
     {
-        if (_registeredPlayers.Count > 1)
+        if (_registeredPlayers.Count >= playersRequiredToStart)
         {
             // Enable starting
             holdToStartText.SetActive(true);
