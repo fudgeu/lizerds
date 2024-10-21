@@ -64,6 +64,10 @@ public class PlayerController : MonoBehaviour
     [Tooltip("Where the player respawns when leaving the bounding box")]
     public Vector2 respawnPosition = Vector2.zero;
 
+    //--Events-------------------------
+    public delegate void PlayerEvent();
+    public event PlayerEvent OnDeath;
+    
     private Vector2 currentVelocity; // For smooth acceleration and deceleration
     private bool isGrounded; // To track if the player is on the ground
 
@@ -193,10 +197,10 @@ public class PlayerController : MonoBehaviour
         // Check if player is grounded
         CheckGrounded();
 
-        // Check if player is out of bounds and respawn if necessary
+        // Check if player is out of bounds
         if (IsOutOfBounds())
         {
-            Respawn();
+            OnDeath?.Invoke();
         }
     }
 

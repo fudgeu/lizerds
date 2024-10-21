@@ -23,13 +23,16 @@ public class StageStartManager : MonoBehaviour
             gamePlayer.transform.SetParent(player.transform);
             
             // Place at random spawn point
-            GameObject spawnPoint = null;
-            do
+            if (spawnPoints.Length != 0)
             {
-                spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
-            } while (usedSpawnPoints.Contains(spawnPoint));
-            usedSpawnPoints.Add(spawnPoint);
-            gamePlayer.transform.position = spawnPoint.transform.position;
+                GameObject spawnPoint = null;
+                do
+                {
+                    spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
+                } while (usedSpawnPoints.Contains(spawnPoint));
+                usedSpawnPoints.Add(spawnPoint);
+                gamePlayer.transform.position = spawnPoint.transform.position;   
+            }
             
             // Set up root properties
             player.GetComponent<PlayerRootController>().gamePlayerObject = gamePlayer;
