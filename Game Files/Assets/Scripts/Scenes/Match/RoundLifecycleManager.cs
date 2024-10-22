@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using JoinMenu;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -16,10 +17,13 @@ public class RoundLifecycleManager : MonoBehaviour {
     public bool timerRunning = false;
     private float _elapsedTime = 0;
     public float ElapsedTime => _elapsedTime;
+    
+    private GameStartInfo _gameStartInfo;
 
     void Start()
     {
         timerRunning = useRoundTimer;
+        _gameStartInfo = GameObject.Find("GameStartInfo").GetComponent<GameStartInfo>();
     }
 
     void FixedUpdate()
@@ -37,6 +41,14 @@ public class RoundLifecycleManager : MonoBehaviour {
 
     public void EndRound()
     {
+        // Destroy all game players
+        foreach (var player in _gameStartInfo.players)
+        {
+            var rootController = player.GetComponent<PlayerRootController>();
+            Destroy(rootController.gamePlayerObject);
+            rootController.gamePlayerObject = null;
+        }
+        
         // Go to mutation phase
         SceneManager.LoadScene("Mutation");
     }

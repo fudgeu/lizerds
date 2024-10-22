@@ -423,6 +423,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c3c2d4dc482bae4cadd8a908570cf51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playersRequiredToStart: 1
   holdToStartText: {fileID: 1339659787}
   startBarBackground: {fileID: 1770663156}
   startBar: {fileID: 282501168}
