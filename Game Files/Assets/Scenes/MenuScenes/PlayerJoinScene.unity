@@ -428,6 +428,7 @@ MonoBehaviour:
   startBarBackground: {fileID: 1770663156}
   startBar: {fileID: 282501168}
   playerInputManager: {fileID: 1241485451}
+  gameLifecycleManagerPrefab: {fileID: 6546953318087705695, guid: 9ed42cb6fe324818db260cab5708e2a7, type: 3}
 --- !u!1 &1160056094
 GameObject:
   m_ObjectHideFlags: 0

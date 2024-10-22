@@ -8,6 +8,9 @@ TagManager:
   - GameStartInfo
   - LoadingScreenDirector
   - StageManager
+  - GameLifecycleManager
+  - RoundLifecycleManager
+  - GameMode
   layers:
   - Default
   - TransparentFX

@@ -5,12 +5,15 @@ using JoinMenu;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// TODO merge with StageStartManager maybe?
+
 // Manage the lifecycle of a round.
 // For the most part, the game mode script will be
 // doing the actual tracking of progress, and make
 // calls here instead.
 
 public class RoundLifecycleManager : MonoBehaviour {
+    public GameLifecycleManager gameLifecycleManager;
     public bool useRoundTimer = true;
     public int roundTimer = 90;
 
@@ -18,12 +21,9 @@ public class RoundLifecycleManager : MonoBehaviour {
     private float _elapsedTime = 0;
     public float ElapsedTime => _elapsedTime;
     
-    private GameStartInfo _gameStartInfo;
-
     void Start()
     {
-        timerRunning = useRoundTimer;
-        _gameStartInfo = GameObject.Find("GameStartInfo").GetComponent<GameStartInfo>();
+        gameLifecycleManager.OnRoundStart += HandleOnRoundStart;
     }
 
     void FixedUpdate()
@@ -38,18 +38,13 @@ public class RoundLifecycleManager : MonoBehaviour {
         }
     }
 
-
-    public void EndRound()
+    private void HandleOnRoundStart(int roundNumber, RoundLifecycleManager _)
     {
-        // Destroy all game players
-        foreach (var player in _gameStartInfo.players)
-        {
-            var rootController = player.GetComponent<PlayerRootController>();
-            Destroy(rootController.gamePlayerObject);
-            rootController.gamePlayerObject = null;
-        }
-        
-        // Go to mutation phase
-        SceneManager.LoadScene("Mutation");
+        timerRunning = useRoundTimer;
+    }
+    
+    private void EndRound()
+    {
+        gameLifecycleManager.EndRound();
     }
 }

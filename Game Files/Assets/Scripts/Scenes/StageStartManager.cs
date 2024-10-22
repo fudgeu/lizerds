@@ -9,6 +9,9 @@ public class StageStartManager : MonoBehaviour
     
     void Start()
     {
+        // Get lifecycle manager
+        var gameLifecycleManager = GameObject.FindWithTag("GameLifecycleManager").GetComponent<GameLifecycleManager>();
+        
         // Get players
         var players = GameObject.FindGameObjectWithTag("GameStartInfo").GetComponent<GameStartInfo>().players;
         
@@ -37,5 +40,8 @@ public class StageStartManager : MonoBehaviour
             // Set up root properties
             player.GetComponent<PlayerRootController>().gamePlayerObject = gamePlayer;
         }
+        
+        // Mark round as started
+        gameLifecycleManager.OnRoundStarted();
     }
 }

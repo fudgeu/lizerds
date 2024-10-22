@@ -20,6 +20,7 @@ public class GameStartManager : MonoBehaviour
     public RectTransform startBar;
 
     public PlayerInputManager playerInputManager;
+    public GameObject gameLifecycleManagerPrefab;
     
     private List<GameObject> _registeredPlayers = new();
     
@@ -62,22 +63,15 @@ public class GameStartManager : MonoBehaviour
                 playerRoot.GetComponent<PlayerInput>().SwitchCurrentActionMap("Player");
             }
             _registeredPlayers.ForEach(Destroy);
-            
-            // Set up loading screen director
-            var director = GameObject.FindWithTag("LoadingScreenDirector")?.GetComponent<LoadingScreenDirector>();
-            if (director is null)
-            {
-                var directorObj = new GameObject("LoadingScreenDirector");
-                directorObj.tag = "LoadingScreenDirector";
-                director = directorObj.AddComponent<LoadingScreenDirector>();
-            }
-            
-            DontDestroyOnLoad(director.gameObject);
-            director.goTo = LoadingScreenDirector.GameScene.Arena;
-            
-            // Load arena scene
+
             DontDestroyOnLoad(playerInputManager.gameObject);
-            SceneManager.LoadScene("Loading");
+            
+            // Set up game lifecycle manager and start round
+            var gameManagerObj = Instantiate(gameLifecycleManagerPrefab);
+            DontDestroyOnLoad(gameManagerObj);
+            
+            var gameLifecycleManager = gameManagerObj.GetComponent<GameLifecycleManager>();
+            gameLifecycleManager.StartRound();
         }
     }
 

@@ -6,8 +6,8 @@ using UnityEngine;
 using Object = UnityEngine.Object;
 
 public class NaturalSelectionGameMode : MonoBehaviour {
-    private RoundLifecycleManager _roundLifecycleManager;
     private List<GameObject> _players = new();
+    private GameLifecycleManager _gameLifecycleManager;
     
     // Round state
     private int _alivePlayers;
@@ -16,36 +16,54 @@ public class NaturalSelectionGameMode : MonoBehaviour {
     {
         // TODO subscribe to the scene load/unload events instead
         
-        // Setup round lifecycle manager
-        _roundLifecycleManager = GameObject.FindWithTag("StageManager").GetComponent<RoundLifecycleManager>();
-        _roundLifecycleManager.useRoundTimer = true;
-        _roundLifecycleManager.roundTimer = 90;
+        // Grab and process game lifecycle manager
+        _gameLifecycleManager = GameObject.FindWithTag("GameLifecycleManager").GetComponent<GameLifecycleManager>();
+        _gameLifecycleManager.OnRoundSetup += HandleOnRoundSetup;
+        _gameLifecycleManager.OnRoundStart += HandleOnRoundStart;
+        _gameLifecycleManager.OnRoundEnd += HandleOnRoundEnd;
 
         // Setup each player
-        foreach (var player in GameObject.FindGameObjectWithTag("GameStartInfo").GetComponent<GameStartInfo>().players)
-        {
-            // Get player and add to list
-            var gamePlayer = player.GetComponent<PlayerRootController>().gamePlayerObject;
-            _players.Add(gamePlayer);
-            
-            // Register events
-            player.GetComponentInChildren<PlayerController>().OnDeath += HandleOnDeath;
-        }
-        
+        _players = GameObject.FindGameObjectWithTag("GameStartInfo").GetComponent<GameStartInfo>().players;
         _alivePlayers = _players.Count;
+    }
+
+    void OnDestroy()
+    {
+        _gameLifecycleManager.OnRoundSetup -= HandleOnRoundSetup;
     }
 
     void Update()
     {
-        if (_alivePlayers <= 1)
+        if (_gameLifecycleManager.RoundInSession && _alivePlayers <= 1)
         {
             // TODO temp disabled for demo
-            _roundLifecycleManager.EndRound();
+            _gameLifecycleManager.EndRound();
         }
     }
     
     private void HandleOnDeath()
     {
         _alivePlayers--;
+    }
+
+    private void HandleOnRoundSetup(int roundNumber, RoundLifecycleManager roundLifecycleManager)
+    {
+        roundLifecycleManager.useRoundTimer = true;
+        roundLifecycleManager.roundTimer = 90;
+        _alivePlayers = _players.Count;
+    }
+
+    private void HandleOnRoundStart(int roundNumber, RoundLifecycleManager roundLifecycleManager)
+    {
+        foreach (var player in _players)
+        {
+            // Register events
+            player.GetComponentInChildren<PlayerController>().OnDeath += HandleOnDeath;
+        }
+    }
+
+    private void HandleOnRoundEnd()
+    {
+
     }
 }
