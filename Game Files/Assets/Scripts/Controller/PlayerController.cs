@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour
     public Vector2 respawnPosition = Vector2.zero;
 
     //--Events-------------------------
-    public delegate void PlayerEvent();
+    public delegate void PlayerEvent(GameObject playerRoot, GameObject gamePlayer);
     public event PlayerEvent OnDeath;
     
     private Vector2 currentVelocity; // For smooth acceleration and deceleration
@@ -200,7 +200,7 @@ public class PlayerController : MonoBehaviour
         // Check if player is out of bounds
         if (IsOutOfBounds())
         {
-            OnDeath?.Invoke();
+            OnDeath?.Invoke(transform.parent.gameObject, gameObject);
         }
     }
 

@@ -8,8 +8,10 @@ using Object = UnityEngine.Object;
 public class NaturalSelectionGameMode : MonoBehaviour {
     private List<GameObject> _players = new();
     private GameLifecycleManager _gameLifecycleManager;
+    private RoundLifecycleManager _roundLifecycleManager;
     
     // Round state
+    private int _initialPlayers;
     private int _alivePlayers;
     
     void Start()
@@ -25,6 +27,7 @@ public class NaturalSelectionGameMode : MonoBehaviour {
         // Setup each player
         _players = GameObject.FindGameObjectWithTag("GameStartInfo").GetComponent<GameStartInfo>().players;
         _alivePlayers = _players.Count;
+        _initialPlayers = _players.Count;
     }
 
     void OnDestroy()
@@ -36,29 +39,34 @@ public class NaturalSelectionGameMode : MonoBehaviour {
     {
         if (_gameLifecycleManager.RoundInSession && _alivePlayers <= 1)
         {
-            // TODO temp disabled for demo
             _gameLifecycleManager.EndRound();
         }
     }
     
-    private void HandleOnDeath()
+    private void HandleOnDeath(GameObject playerRoot, GameObject _)
     {
+        _roundLifecycleManager.AdjustPlayerScore(playerRoot, _initialPlayers - _alivePlayers);
         _alivePlayers--;
     }
 
     private void HandleOnRoundSetup(int roundNumber, RoundLifecycleManager roundLifecycleManager)
     {
-        roundLifecycleManager.useRoundTimer = true;
-        roundLifecycleManager.roundTimer = 90;
+        _roundLifecycleManager = roundLifecycleManager;
+        _roundLifecycleManager.useRoundTimer = true;
+        _roundLifecycleManager.roundTimer = 90;
         _alivePlayers = _players.Count;
     }
 
     private void HandleOnRoundStart(int roundNumber, RoundLifecycleManager roundLifecycleManager)
     {
+        _roundLifecycleManager = roundLifecycleManager;
         foreach (var player in _players)
         {
             // Register events
             player.GetComponentInChildren<PlayerController>().OnDeath += HandleOnDeath;
+            
+            // Set up initial scores
+            _roundLifecycleManager.AdjustPlayerScore(player, _alivePlayers - 1);
         }
     }
 

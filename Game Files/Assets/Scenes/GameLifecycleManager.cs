@@ -1,7 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using JoinMenu;
 using Scenes;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -22,13 +22,20 @@ public class GameLifecycleManager : MonoBehaviour
     // Internal
     private GameStartInfo _gameStartInfo;
     private RoundLifecycleManager _roundLifecycleManager;
+    private LoadingScreenDirector _loadingScreenDirector;
+
+    private List<Dictionary<GameObject, int>> _roundScoreboards = new();
     
     void Awake()
     {
-        print("Awaked");
         _gameStartInfo = GameObject.FindWithTag("GameStartInfo").GetComponent<GameStartInfo>();
         CurRound = 0;
         RoundInSession = false;
+    }
+
+    void Start()
+    {
+        _loadingScreenDirector = GameObject.FindWithTag("LoadingScreenDirector").GetComponent<LoadingScreenDirector>();
     }
 
     public void EndRound()
@@ -45,6 +52,16 @@ public class GameLifecycleManager : MonoBehaviour
             Destroy(rootController.gamePlayerObject);
             rootController.gamePlayerObject = null;
         }
+        
+        // Grab scoreboard from round lifecycle manager and add it to tally
+        var roundScoreboard = _roundLifecycleManager.GetPlayerScoreboard();
+        _roundScoreboards.Add(roundScoreboard);
+        
+        // TODO remove
+        // Find first place and print their name
+        var sortedScores = roundScoreboard.OrderBy(entry => entry.Value);
+        var firstPlace = sortedScores.Last();
+        print("Player '" + firstPlace.Key.name + "' wins round " + CurRound + " with " + firstPlace.Value + " points!");
         
         // Destroy round lifecycle manager
         Destroy(_roundLifecycleManager.gameObject);
@@ -115,8 +132,26 @@ public class GameLifecycleManager : MonoBehaviour
 
     public void EndGame()
     {
+        // Print winner to console
+        Dictionary<GameObject, int> totalScores = new();
+        foreach (var roundScores in _roundScoreboards)
+        {
+            foreach (var scoreEntry in roundScores)
+            {
+                totalScores.TryAdd(scoreEntry.Key, 0);
+                totalScores[scoreEntry.Key] += scoreEntry.Value;
+            }
+        }
+
+        var sortedScores = totalScores.OrderBy(entry => entry.Value);
+        var firstPlace = sortedScores.Last();
+        print("Player '" + firstPlace.Key.name + "' wins the game with " + firstPlace.Value + " points!");
+
+        
         // TODO
         RoundInSession = false;
-        SceneManager.LoadScene("MainMenu");
+
+        _loadingScreenDirector.goTo = LoadingScreenDirector.GameScene.MainMenu;
+        SceneManager.LoadScene("Loading");
     }
 }

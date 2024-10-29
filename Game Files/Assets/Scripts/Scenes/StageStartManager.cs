@@ -23,7 +23,6 @@ public class StageStartManager : MonoBehaviour
         {
             // Create game player obj and set parent
             var gamePlayer = Instantiate(gamePlayerPrefab, player.transform);
-            gamePlayer.transform.SetParent(player.transform);
             
             // Place at random spawn point
             if (spawnPoints.Length != 0)

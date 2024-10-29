@@ -1,7 +1,9 @@
+using JoinMenu;
 using System.Collections;
 using System.Collections.Generic;
 using Scenes;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class LoadingManager : MonoBehaviour
@@ -34,6 +36,14 @@ public class LoadingManager : MonoBehaviour
 
     private IEnumerator LoadMainMenu()
     {
+        Destroy(FindObjectOfType<PlayerInputManager>());
+        Destroy(FindObjectOfType<GameStartInfo>());
+        Destroy(FindObjectOfType<GameLifecycleManager>());
+        foreach (var player in GameObject.FindGameObjectsWithTag("Player"))
+        {
+            Destroy(player);
+        }
+        
         var sceneLoad = SceneManager.LoadSceneAsync("MainMenu");
         yield return null;
     }

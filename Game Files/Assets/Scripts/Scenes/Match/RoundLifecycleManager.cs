@@ -20,6 +20,8 @@ public class RoundLifecycleManager : MonoBehaviour {
     public bool timerRunning = false;
     private float _elapsedTime = 0;
     public float ElapsedTime => _elapsedTime;
+
+    private Dictionary<GameObject, int> _scoreboard = new();
     
     void Start()
     {
@@ -34,17 +36,22 @@ public class RoundLifecycleManager : MonoBehaviour {
             if (_elapsedTime < roundTimer || !useRoundTimer) return;
             timerRunning = false;
             _elapsedTime = roundTimer;
-            EndRound();
+            gameLifecycleManager.EndRound();
         }
+    }
+
+    public void AdjustPlayerScore(GameObject player, int score)
+    {
+        _scoreboard[player] = score;
+    }
+
+    public Dictionary<GameObject, int> GetPlayerScoreboard()
+    {
+        return new Dictionary<GameObject, int>(_scoreboard); // Make copy so scores cannot be adjusted
     }
 
     private void HandleOnRoundStart(int roundNumber, RoundLifecycleManager _)
     {
         timerRunning = useRoundTimer;
-    }
-    
-    private void EndRound()
-    {
-        gameLifecycleManager.EndRound();
     }
 }
