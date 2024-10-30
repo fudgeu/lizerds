@@ -8,7 +8,8 @@ using Random = System.Random;
 
 public class PlayerJoinSetup : MonoBehaviour
 {
-    public int playerNumber = 0;
+    private ProfileManager _profileManager;
+    
     public TMP_Text playerLabel;
     
     private Random _random = new Random();
@@ -17,12 +18,17 @@ public class PlayerJoinSetup : MonoBehaviour
 
     void Start()
     {
+        var profileInfo = GetComponentInParent<PlayerProfileInfo>();
+        _profileManager = FindObjectOfType<ProfileManager>();
+        
         // Set player number based on number of existing players
         int numPlayersInScene = GameObject.FindGameObjectsWithTag("Player").Length; // Number includes self
-        playerNumber = numPlayersInScene;
+        profileInfo.playerNumber = numPlayersInScene;
         
-        // Update label
-        playerLabel.text = "Player " + playerNumber;
+        // Set default profile
+        profileInfo.Profile = _profileManager.defaultProfile;
+        profileInfo.CustomName = "Player " + profileInfo.playerNumber;
+        profileInfo.UseCustomName = true;
         
         // Get internal components
         _rigidbody = GetComponent<Rigidbody2D>();

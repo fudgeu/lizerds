@@ -158,6 +158,7 @@ MonoBehaviour:
   - {fileID: 194669981}
   - {fileID: 194669980}
   - {fileID: 194669979}
+  defaultProfile: {fileID: 194669981}
 --- !u!4 &194669978
 Transform:
   m_ObjectHideFlags: 0

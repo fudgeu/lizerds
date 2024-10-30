@@ -16,6 +16,9 @@ public class JoinMenuUiNav : MonoBehaviour
     public RectTransform profilePanel;
     public GameObject profilePanelContent;
 
+    // Texts
+    public TMP_Text profileText;
+    
     // Buttons
     public Button baseUiButton;
     public Button changeProfileButton;
@@ -28,22 +31,42 @@ public class JoinMenuUiNav : MonoBehaviour
     private Page _curPage = Page.Main;
     private ProfileManager _profileManager;
     private GameStartManager _gameStartManager;
+    private PlayerProfileInfo _profileInfo; 
     
     void Start()
     {
         // Grab components
         _gameStartManager = GameObject.FindWithTag("GameStartManager").GetComponent<GameStartManager>();
         _playerInput = GetComponentInParent<PlayerInput>();
+        _profileInfo = GetComponentInParent<PlayerProfileInfo>();
         
         // Grab profile manager and create buttons
         _profileManager = FindObjectOfType<ProfileManager>();
         foreach (var profile in _profileManager.profiles)
         {
             Button profileButton = Instantiate(baseUiButton, mainPanel);
-            profileButton.GetComponentInChildren<TMP_Text>().text = profile.name;
             profileButton.transform.SetParent(profilePanelContent.transform, false);
+
+            // Set button name
+            profileButton.GetComponentInChildren<TMP_Text>().text = profile.name;
+            
+            // Register profile button click
+            profileButton.GetComponentInChildren<Button>().onClick.AddListener(() =>
+            {
+                _profileInfo.Profile = profile;
+                _profileInfo.UseCustomName = false;
+            });
+            
             profileButtons.Add(profileButton);
         }
+        
+        // Register default profile button handler
+        defaultProfileButton.onClick.AddListener(() =>
+        {
+            _profileInfo.CustomName = $"Player {_profileInfo.playerNumber}";
+            _profileInfo.Profile = _profileManager.defaultProfile;
+            _profileInfo.UseCustomName = true;
+        });
         
         // Register on click handlers
         changeProfileButton.onClick.AddListener(() => SwitchToPage(Page.Profile));
@@ -72,6 +95,12 @@ public class JoinMenuUiNav : MonoBehaviour
         {
             _gameStartManager.onPlayerLetGoStart(gameObject);
         };
+        
+        // Register profile text changer
+        _profileInfo.OnProfileChanged += handleProfileChange;
+        
+        // Run one time for initial set up
+        handleProfileChange();
     }
     
     private void SwitchToPage(Page page)
@@ -95,6 +124,18 @@ public class JoinMenuUiNav : MonoBehaviour
         }
         
         _curPage = page;
+    }
+
+    private void handleProfileChange()
+    {
+        if (_profileInfo.UseCustomName)
+        {
+            profileText.text = _profileInfo.CustomName ?? "Unknown";
+        }
+        else
+        {
+            profileText.text = _profileInfo.Profile.name;
+        }
     }
     
     enum Page { Main, Profile }

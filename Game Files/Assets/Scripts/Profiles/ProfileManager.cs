@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class ProfileManager : MonoBehaviour
 {
-    public List<Profile> profiles = new List<Profile>();
+    public List<Profile> profiles = new();
+    public Profile defaultProfile;
     
     void Start()
     {
