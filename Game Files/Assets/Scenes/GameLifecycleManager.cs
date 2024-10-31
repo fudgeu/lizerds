@@ -10,6 +10,9 @@ public class GameLifecycleManager : MonoBehaviour
     public int numRounds = 6;
     public int CurRound { get; private set; }
     public bool RoundInSession { get; private set; }
+
+    [Header("Prefabs")]
+    public GameObject scoreboardCanvasPrefab;
     
     // Events
     public delegate void RoundDelegate(int roundNumber,RoundLifecycleManager roundLifecycleManager);
@@ -73,8 +76,21 @@ public class GameLifecycleManager : MonoBehaviour
             return;
         }
         
-        // Else, go to mutation phase
-        SceneManager.LoadScene("Mutation");
+        // Initiate scoreboard
+        var scoreboardCanvas = Instantiate(scoreboardCanvasPrefab);
+        var scoreboardSetup = scoreboardCanvas.GetComponent<EndRoundScoreboardSetup>();
+        
+        Dictionary<PlayerProfileInfo, int> scoreboardScores = new();
+        foreach (var entry in roundScoreboard)
+        {
+            scoreboardScores.Add(entry.Key.GetComponent<PlayerProfileInfo>(), entry.Value);
+        }
+        scoreboardSetup.roundScoreboard = scoreboardScores;
+
+        scoreboardSetup.ScoreboardFinished += () =>
+        {
+            SceneManager.LoadScene("Mutation");
+        };
     }
     
     public void StartRound()
