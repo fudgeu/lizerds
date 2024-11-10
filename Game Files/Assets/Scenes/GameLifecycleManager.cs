@@ -13,6 +13,7 @@ public class GameLifecycleManager : MonoBehaviour
 
     [Header("Prefabs")]
     public GameObject scoreboardCanvasPrefab;
+    public GameObject roundTimerPrefab;
     
     // Events
     public delegate void RoundDelegate(int roundNumber,RoundLifecycleManager roundLifecycleManager);
@@ -112,6 +113,7 @@ public class GameLifecycleManager : MonoBehaviour
         DontDestroyOnLoad(roundManagerObj);
         _roundLifecycleManager = roundManagerObj.AddComponent<RoundLifecycleManager>();
         _roundLifecycleManager.gameLifecycleManager = this;
+        _roundLifecycleManager.timerTextPrefab = roundTimerPrefab;
         
         // Set up game mode, if it doesn't exist
         // TODO check game settings object for gamemode, set up
@@ -162,12 +164,23 @@ public class GameLifecycleManager : MonoBehaviour
         var sortedScores = totalScores.OrderBy(entry => entry.Value);
         var firstPlace = sortedScores.Last();
         print("Player '" + firstPlace.Key.name + "' wins the game with " + firstPlace.Value + " points!");
+        
+        // Go to results scoreboard screen
+        Dictionary<PlayerProfileInfo, int> scoreboardScores = new();
+        foreach (var entry in totalScores)
+        {
+            scoreboardScores.Add(entry.Key.GetComponent<PlayerProfileInfo>(), entry.Value);
+        }
 
+        var resultsInfoObj = new GameObject("ResultsInfo");
+        DontDestroyOnLoad(resultsInfoObj);
+        var resultsInfo = resultsInfoObj.AddComponent<ResultsInfo>();
+        resultsInfo.gameScoreboard = scoreboardScores;
         
         // TODO
         RoundInSession = false;
 
-        _loadingScreenDirector.goTo = LoadingScreenDirector.GameScene.MainMenu;
+        _loadingScreenDirector.goTo = LoadingScreenDirector.GameScene.Results;
         SceneManager.LoadScene("Loading");
     }
 }

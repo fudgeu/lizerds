@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
-public class MutationPlayerButtonListener : MonoBehaviour
+public class PlayerButtonListener : MonoBehaviour
 {
-    public MutationSceneManager mutationSceneManager;
+    public ButtonManager manager;
     private PlayerInput _playerInput;
 
     void Start()
@@ -24,6 +26,6 @@ public class MutationPlayerButtonListener : MonoBehaviour
 
     private void OnStartPressed(InputAction.CallbackContext ctx)
     {
-        mutationSceneManager.OnPlayerPressStart();
+        manager.OnPlayerPressStart();
     }
 }

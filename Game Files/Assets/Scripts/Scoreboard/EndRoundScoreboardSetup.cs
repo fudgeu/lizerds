@@ -37,22 +37,6 @@ public class EndRoundScoreboardSetup : MonoBehaviour
             scoreItemSetup.ranking = i;
             i++;
         }
-        
-        // Do animation
-        // TODO this could be better
-        
-        var t = new FloatTween
-        {
-            from = Screen.height,
-            to = 0,
-            duration = 1,
-            onUpdate = (_, newVal) =>
-            {
-                //print(newVal);
-                //scoresPanel.transform.position = new Vector3(scoresPanel.transform.position.x, newVal, scoresPanel.transform.position.z);
-            },
-        };
-        gameObject.AddTween(t);
 
         StartCoroutine(StartTimeout());
     }

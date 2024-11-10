@@ -34,4 +34,10 @@ public class UiUtil
         var width = rectTransform.offsetMax.x - rectTransform.offsetMin.x;
         var height = rectTransform.offsetMax.y - rectTransform.offsetMin.y;
     }
+
+    public static void MoveRectBy(RectTransform rect, Vector2 delta)
+    {
+        rect.offsetMin += delta;
+        rect.offsetMax += delta;
+    }
 }

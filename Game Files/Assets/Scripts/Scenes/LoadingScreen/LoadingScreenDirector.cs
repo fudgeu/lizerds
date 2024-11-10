@@ -11,6 +11,7 @@ namespace Scenes
             MainMenu,
             MatchSetup,
             Arena,
+            Results,
         }
     }
 }

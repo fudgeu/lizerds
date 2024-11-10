@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using JoinMenu;
 using Scenes;
+using UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MutationSceneManager : MonoBehaviour
+public class MutationSceneManager : MonoBehaviour, ButtonManager
 {
     private GameStartInfo _gameStartInfo;
     private GameLifecycleManager _gameLifecycleManager;
@@ -18,8 +19,8 @@ public class MutationSceneManager : MonoBehaviour
         // Get all players and automatically add button listener script
         foreach (var player in _gameStartInfo.players)
         {
-            var buttonListenerScript = player.AddComponent<MutationPlayerButtonListener>();
-            buttonListenerScript.mutationSceneManager = this;
+            var buttonListenerScript = player.AddComponent<PlayerButtonListener>();
+            buttonListenerScript.manager = this;
         }
     }
 
@@ -28,7 +29,7 @@ public class MutationSceneManager : MonoBehaviour
         // Remove button listener scripts
         foreach (var player in _gameStartInfo.players)
         {
-            Destroy(player.GetComponent<MutationPlayerButtonListener>());
+            Destroy(player.GetComponent<PlayerButtonListener>());
         }
         
         _gameLifecycleManager.StartRound();

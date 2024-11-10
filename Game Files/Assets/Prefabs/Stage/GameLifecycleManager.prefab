@@ -46,3 +46,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numRounds: 6
   scoreboardCanvasPrefab: {fileID: 6290501418601392191, guid: 1d5bb29616c485f4a9e485e17b767a64, type: 3}
+  roundTimerPrefab: {fileID: 2390137274269553461, guid: ae958c16959befd49879b98d12bcd19e, type: 3}

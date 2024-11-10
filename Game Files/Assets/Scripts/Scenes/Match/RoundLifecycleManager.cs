@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using JoinMenu;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -14,6 +15,7 @@ using UnityEngine.SceneManagement;
 
 public class RoundLifecycleManager : MonoBehaviour {
     public GameLifecycleManager gameLifecycleManager;
+    public GameObject timerTextPrefab;
     public bool useRoundTimer = true;
     public int roundTimer = 90;
 
@@ -22,18 +24,26 @@ public class RoundLifecycleManager : MonoBehaviour {
     public float ElapsedTime => _elapsedTime;
 
     private Dictionary<GameObject, int> _scoreboard = new();
+    private TMP_Text timerText;
     
     void Start()
     {
         gameLifecycleManager.OnRoundStart += HandleOnRoundStart;
     }
 
+    private void OnDestroy()
+    {
+        gameLifecycleManager.OnRoundStart -= HandleOnRoundStart;
+    }
+
     void FixedUpdate()
     {
         if (timerRunning) {
             _elapsedTime += Time.fixedDeltaTime;
+            timerText.text = $"{Math.Round(roundTimer - _elapsedTime)}s";
             
             if (_elapsedTime < roundTimer || !useRoundTimer) return;
+            
             timerRunning = false;
             _elapsedTime = roundTimer;
             gameLifecycleManager.EndRound();
@@ -53,5 +63,11 @@ public class RoundLifecycleManager : MonoBehaviour {
     private void HandleOnRoundStart(int roundNumber, RoundLifecycleManager _)
     {
         timerRunning = useRoundTimer;
+
+        if (useRoundTimer)
+        {
+            var timerTextInst = Instantiate(timerTextPrefab);
+            timerText = timerTextInst.GetComponentInChildren<TMP_Text>();
+        }
     }
 }

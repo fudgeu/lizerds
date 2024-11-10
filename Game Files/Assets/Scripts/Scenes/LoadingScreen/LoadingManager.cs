@@ -31,6 +31,9 @@ public class LoadingManager : MonoBehaviour
             case LoadingScreenDirector.GameScene.Arena:
                 StartCoroutine(LoadArena());
                 break;
+            case LoadingScreenDirector.GameScene.Results:
+                StartCoroutine(LoadResults());
+                break;
         }
     }
 
@@ -60,6 +63,12 @@ public class LoadingManager : MonoBehaviour
         // TODO
         
         var sceneLoad = SceneManager.LoadSceneAsync(stageNames[Random.Range(0, stageNames.Length)]);
+        yield return null;
+    }
+
+    private IEnumerator LoadResults()
+    {
+        var sceneLoad = SceneManager.LoadSceneAsync("Results");
         yield return null;
     }
 }
