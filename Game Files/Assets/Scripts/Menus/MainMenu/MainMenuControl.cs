@@ -14,7 +14,7 @@ public class MainMenuControl : MonoBehaviour
         // Add event listeners to buttons
         startButton.onClick.AddListener(() =>
         {
-            SceneManager.LoadScene("Scenes/MenuScenes/PlayerJoinScene");
+            SceneManager.LoadScene("GameSetup");
         });
         
         quitButton.onClick.AddListener(() =>

@@ -6,5 +6,6 @@ namespace JoinMenu
     public class GameStartInfo : MonoBehaviour
     {
         public List<GameObject> players = new();
+        public List<string> arenas = new();
     }
 }

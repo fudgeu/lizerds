@@ -1,6 +1,7 @@
 using JoinMenu;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Scenes;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -60,9 +61,12 @@ public class LoadingManager : MonoBehaviour
     private IEnumerator LoadArena()
     {
         // See if there is a match settings object in scene, pick scene based off of that
-        // TODO
+        var gameInfoObj = GameObject.FindGameObjectWithTag("GameStartInfo");
+        var gameInfo = gameInfoObj?.GetComponent<GameStartInfo>();
         
-        var sceneLoad = SceneManager.LoadSceneAsync(stageNames[Random.Range(0, stageNames.Length)]);
+        var arenas = gameInfo?.arenas ?? stageNames.ToList();
+        
+        var sceneLoad = SceneManager.LoadSceneAsync(arenas[Random.Range(0, arenas.Count)]);
         yield return null;
     }
 

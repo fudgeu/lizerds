@@ -49,10 +49,15 @@ public class GameStartManager : MonoBehaviour
         if (_holdDuration >= _holdThreshold && _registeredPlayers.Count >= playersRequiredToStart)
         {
             // Create game object that will contain all the player data
-            var gameStartInfoObj = new GameObject("GameStartInfo");
-            var gameStartInfo = gameStartInfoObj.AddComponent<GameStartInfo>();
-            DontDestroyOnLoad(gameStartInfoObj);
-            gameStartInfoObj.tag = "GameStartInfo";
+            GameObject gameStartInfoObj = GameObject.FindWithTag("GameStartInfo");
+            if (gameStartInfoObj is null)
+            {
+                gameStartInfoObj = new GameObject("GameStartInfo");
+                gameStartInfoObj.AddComponent<GameStartInfo>();
+                DontDestroyOnLoad(gameStartInfoObj);
+                gameStartInfoObj.tag = "GameStartInfo";
+            }
+            var gameStartInfo = gameStartInfoObj.GetComponent<GameStartInfo>();
             
             // Prepare players
             foreach (var player in _registeredPlayers)
