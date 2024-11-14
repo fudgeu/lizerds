@@ -11,6 +11,9 @@ TagManager:
   - GameLifecycleManager
   - RoundLifecycleManager
   - GameMode
+  - Color1
+  - Color2
+  - Color3
   layers:
   - Default
   - TransparentFX
@@ -20,7 +23,7 @@ TagManager:
   - UI
   - Player
   - Dummy
-  - 
+  - Pixelize
   - 
   - 
   - 
