@@ -114,9 +114,9 @@ public class FootPositioner : MonoBehaviour
 
         // find where the foot should land without considering overshoot
         RaycastHit2D ray;
-        if (isOnLeft) ray = Physics2D.Raycast(playerObj.transform.position + new Vector3(-footDisplacementOnX, 0, 0), Vector2.down, 10, ~layerMask);
-        else ray = Physics2D.Raycast(playerObj.transform.position + new Vector3(footDisplacementOnX, 0, 0), Vector2.down, 10, ~layerMask);
-        Debug.Log(ray.collider.name);
+        if (isOnLeft) ray = Physics2D.Raycast(playerObj.transform.position + new Vector3(-footDisplacementOnX, 0, 0), Vector2.down, 2, ~layerMask);
+        else ray = Physics2D.Raycast(playerObj.transform.position + new Vector3(footDisplacementOnX, 0, 0), Vector2.down, 2, ~layerMask);
+        // Debug.Log(ray.collider.name);
 
         // consider the overshoot factor
         Vector3 posDiff = ((Vector3)ray.point - target.position) * (1 + overShootFactor);

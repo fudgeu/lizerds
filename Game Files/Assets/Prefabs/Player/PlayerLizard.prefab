@@ -425,7 +425,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.24981049, y: -0.000000067055225}
+  m_ConnectedAnchor: {x: 0.24981046, y: -0.000000059604645}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -434,6 +434,37 @@ HingeJoint2D:
   m_AngleLimits:
     m_LowerAngle: -25.14
     m_UpperAngle: 15
+--- !u!1 &1009855513720122828
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 112353280415620335}
+  m_Layer: 8
+  m_Name: GroundCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &112353280415620335
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1009855513720122828}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.6, y: -1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9092874872802292773}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1472529125636725963
 GameObject:
   m_ObjectHideFlags: 0
@@ -1007,7 +1038,7 @@ FixedJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.121999875, y: 0.035999957}
+  m_ConnectedAnchor: {x: 0.12199983, y: 0.035999913}
   m_DampingRatio: 0
   m_Frequency: 0
 --- !u!1 &2079279427814137945
@@ -1194,6 +1225,7 @@ GameObject:
   - component: {fileID: 9092874872802292773}
   - component: {fileID: 5800332672838256063}
   - component: {fileID: 7087719686063842930}
+  - component: {fileID: 8274883834641584031}
   m_Layer: 8
   m_Name: MovementTarget
   m_TagString: Untagged
@@ -1213,7 +1245,8 @@ Transform:
   m_LocalPosition: {x: -0.333, y: 0.939, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 112353280415620335}
   m_Father: {fileID: 2048583934588039147}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &5800332672838256063
@@ -1224,7 +1257,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2420597108092395629}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -1262,6 +1295,26 @@ FixedJoint2D:
   m_ConnectedAnchor: {x: -0.09032917, y: -0.2106046}
   m_DampingRatio: 0.2
   m_Frequency: 0.6
+--- !u!114 &8274883834641584031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2420597108092395629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6adddcda258a80e4595e00fd936e224f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 10
+  leapForce: 100
+  isGrounded: 0
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  groundCheck: {fileID: 112353280415620335}
+  groundCheckRadius: 0.2
 --- !u!1 &2770587357521195487
 GameObject:
   m_ObjectHideFlags: 0
@@ -1457,7 +1510,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.28525117, y: 0.000000050291423}
+  m_ConnectedAnchor: {x: 0.2852512, y: 0.000000048428777}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -2352,7 +2405,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.4070824, y: -0.0000004991888}
+  m_ConnectedAnchor: {x: 0.40708238, y: -0.0000005029141}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -2889,7 +2942,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.1357095, y: -0.00000058172714}
+  m_ConnectedAnchor: {x: 0.13570955, y: -0.0000005815234}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -2974,7 +3027,7 @@ FixedJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: -0.24154429, y: -0.06586241}
+  m_ConnectedAnchor: {x: -0.24154426, y: -0.0658624}
   m_DampingRatio: 0.8
   m_Frequency: 3
 --- !u!1 &5456013586113657183
@@ -3644,7 +3697,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.43653685, y: -0.0000004810279}
+  m_ConnectedAnchor: {x: 0.4365368, y: -0.0000004805622}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -3730,7 +3783,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.32122868, y: 0.0000009853393}
+  m_ConnectedAnchor: {x: 0.32122865, y: 0.0000009834766}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -3895,7 +3948,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.43886203, y: -0.00000048289047}
+  m_ConnectedAnchor: {x: 0.43886197, y: -0.00000048195915}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -4215,7 +4268,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.27312043, y: -0.000000093132236}
+  m_ConnectedAnchor: {x: 0.27312037, y: -0.000000096857526}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -4730,7 +4783,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.13123876, y: -0.0000015413386}
+  m_ConnectedAnchor: {x: 0.1312387, y: -0.0000015357507}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -5112,7 +5165,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.5154503, y: -0.000000007450579}
+  m_ConnectedAnchor: {x: 0.51545036, y: 0}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
