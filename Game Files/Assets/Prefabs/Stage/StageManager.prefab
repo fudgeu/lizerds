@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8202727711445455656}
   - component: {fileID: 7345305645064691508}
+  - component: {fileID: 4326842159847508949}
   m_Layer: 0
   m_Name: StageManager
   m_TagString: StageManager
@@ -45,3 +46,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gamePlayerPrefab: {fileID: 1706660658235508578, guid: d1fd47de25ff641de973be2415b270f6, type: 3}
+--- !u!114 &4326842159847508949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7424592014384231993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7004c065f4b5a3945a8d0415f7d711b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseMenuPrefab: {fileID: 2101692158321412162, guid: d3f488780de01214abb28cbcaee04416, type: 3}
