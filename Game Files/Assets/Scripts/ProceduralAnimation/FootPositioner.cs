@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class FootPositioner : MonoBehaviour
 {
-    [HideInInspector] public bool EnablePositioning = true;
+    [HideInInspector] public bool EnablePositioning = true;         //Used privately, for searching for proper grounding
+    [HideInInspector] public bool LegPositioning = true;            //Used in BodyAnimator, when disabling the leg for leaping
 
     [Header("Detecting Balance")]
     // reference to player character object
@@ -60,7 +61,7 @@ public class FootPositioner : MonoBehaviour
         }
 
         // if we are disabled, keep calculating steps but don't take them.
-        if (EnablePositioning)
+        if (EnablePositioning && LegPositioning)
         {
             // using ease in/ease out value will make the animation look more natural
             float easedLerp = EaseInOutCubic(lerp);
@@ -123,6 +124,12 @@ public class FootPositioner : MonoBehaviour
         if (isOnLeft) ray = Physics2D.Raycast(playerObj.transform.position + new Vector3(-footDisplacementOnX, 0, 0), Vector2.down, 2, ~layerMask);
         else ray = Physics2D.Raycast(playerObj.transform.position + new Vector3(footDisplacementOnX, 0, 0), Vector2.down, 2, ~layerMask);
 
+        if(LegPositioning)
+        {
+            if (ray.collider == null) ReleaseFoot();
+            else if (EnablePositioning == false) EnableFoot();
+        }
+
         //if (ray.collider == null)
         //{
         //    target.GetComponent<Rigidbody2D>().isKinematic = false;
@@ -147,6 +154,25 @@ public class FootPositioner : MonoBehaviour
         midPos = startPos + posDiff / 2f + new Vector3(0, stepSize * 0.8f);
 
     }
+
+    /// <summary>
+    /// Switches this foot to Dynamic physics and prevents it from taking new steps.
+    /// </summary>
+    public void ReleaseFoot()
+    {
+        EnablePositioning = false;
+        GetComponent<Rigidbody2D>().isKinematic = false;
+    }
+
+    /// <summary>
+    /// Switches this foot to Kinematic physics and reenables taking new steps.
+    /// </summary>
+    public void EnableFoot()
+    {
+        EnablePositioning = true;
+        GetComponent<Rigidbody2D>().isKinematic = true;
+    }
+
 
     /// <summary>
     /// This helps visualize the target position in run time

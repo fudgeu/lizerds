@@ -6,6 +6,7 @@ using static UnityEngine.GraphicsBuffer;
 public class BodyAnimation : MonoBehaviour
 {
     [Header("Components")]
+    [SerializeField] private MovementTargetController movementTargetController;     //As I mentioned in NewPlayerContorller, this here is bad software architecture, but i think 'spaghetti code' is a LIBERAL LIE.
     [SerializeField] private DistanceJoint2D jawJoint;
     [SerializeField] private Transform rootBone;
     [SerializeField] private Transform movementTarget;
@@ -17,10 +18,12 @@ public class BodyAnimation : MonoBehaviour
     [SerializeField] private float openJawDistance = 1;
     [SerializeField] private float rotateSpeed = 1;
     [SerializeField] private float distanceTillTurn = 0;
+    [SerializeField] private float waitAfterLeapToSearchForGround = 1f;
 
     public bool flippedX = false;
     public bool currentlyTurning = false;
 
+    private bool legsReleased = false;
     private float closeJawDistance;
 
     private void Start()
@@ -42,21 +45,40 @@ public class BodyAnimation : MonoBehaviour
     //-----------Releases foot placement system on the legs--------------
     public void ReleaseLegs()
     {
+
+        if (legsReleased) return;
+
+        Debug.Log("Releasing Legs.");
+        legsReleased = true;
         foreach (FootPositioner footPositioner in limbTargets)
         {
-            footPositioner.EnablePositioning = false;
-            footPositioner.GetComponent<Rigidbody2D>().isKinematic = false;
-        }  
+            footPositioner.LegPositioning = false;
+            footPositioner.ReleaseFoot();
+        }
+        StartCoroutine(waitForLanding());
+    }
+
+    private IEnumerator waitForLanding()
+    {
+        yield return new WaitForSeconds(waitAfterLeapToSearchForGround);
+        Debug.Log("Checking for ground...");
+        while (!movementTargetController.isGrounded)
+        {
+            yield return new WaitForEndOfFrame();
+        }
+        EnableLegs();
     }
 
     //------------Reenabled foot placement system------------------------
     public void EnableLegs()
     {
+        Debug.Log("Enabling Legs.");
         foreach (FootPositioner footPositioner in limbTargets)
         {
-            footPositioner.EnablePositioning = true;
-            footPositioner.GetComponent<Rigidbody2D>().isKinematic = true;
+            footPositioner.LegPositioning = true;
+            footPositioner.EnableFoot();
         }
+        legsReleased = false;
     }
 
     //------------Opens Mouth---------------
