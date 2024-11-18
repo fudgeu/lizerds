@@ -8,7 +8,7 @@ public class PlayerMutations : MonoBehaviour
 
     private void Start()
     {
-        movementController = GetComponent<MovementTargetController>();
+        movementController = GetComponentInChildren<MovementTargetController>();
     }
 
     public void AddMutation(Mutation newMutation)
@@ -16,7 +16,6 @@ public class PlayerMutations : MonoBehaviour
         if (!activeMutations.Contains(newMutation))
         {
             activeMutations.Add(newMutation);
-            newMutation.Apply(movementController);
         }
     }
 
@@ -24,7 +23,7 @@ public class PlayerMutations : MonoBehaviour
     {
         if (activeMutations.Contains(mutationToRemove))
         {
-            mutationToRemove.Remove(movementController);
+            if (movementController) mutationToRemove.Remove(movementController);
             activeMutations.Remove(mutationToRemove);
         }
     }
@@ -36,5 +35,25 @@ public class PlayerMutations : MonoBehaviour
             mutation.Remove(movementController);
         }
         activeMutations.Clear();
+    }
+
+    public void EnableAllMutations()
+    {
+        movementController = GetComponentInChildren<MovementTargetController>();
+        if (!movementController) return;
+        foreach (var mutation in activeMutations)
+        {
+            mutation.Apply(movementController);
+        }
+    }
+    
+    public void DisableAllMutations()
+    {
+        movementController = GetComponentInChildren<MovementTargetController>();
+        if (!movementController) return;
+        foreach (var mutation in activeMutations)
+        {
+            mutation.Remove(movementController);
+        }
     }
 }

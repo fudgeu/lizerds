@@ -28,7 +28,7 @@ public class GameLifecycleManager : MonoBehaviour
     private RoundLifecycleManager _roundLifecycleManager;
     private LoadingScreenDirector _loadingScreenDirector;
 
-    private List<Dictionary<GameObject, int>> _roundScoreboards = new();
+    public List<Dictionary<GameObject, int>> roundScoreboards = new();
     
     void Awake()
     {
@@ -59,7 +59,7 @@ public class GameLifecycleManager : MonoBehaviour
         
         // Grab scoreboard from round lifecycle manager and add it to tally
         var roundScoreboard = _roundLifecycleManager.GetPlayerScoreboard();
-        _roundScoreboards.Add(roundScoreboard);
+        roundScoreboards.Add(roundScoreboard);
         
         // TODO remove
         // Find first place and print their name
@@ -152,7 +152,7 @@ public class GameLifecycleManager : MonoBehaviour
     {
         // Print winner to console
         Dictionary<GameObject, int> totalScores = new();
-        foreach (var roundScores in _roundScoreboards)
+        foreach (var roundScores in roundScoreboards)
         {
             foreach (var scoreEntry in roundScores)
             {

@@ -21,6 +21,8 @@ public class GameStartManager : MonoBehaviour
 
     public PlayerInputManager playerInputManager;
     public GameObject gameLifecycleManagerPrefab;
+
+    public List<Mutation> mutations;
     
     private List<GameObject> _registeredPlayers = new();
     
@@ -70,6 +72,12 @@ public class GameStartManager : MonoBehaviour
             _registeredPlayers.ForEach(Destroy);
 
             DontDestroyOnLoad(playerInputManager.gameObject);
+            
+            // Set up mutation manager and register all mutations
+            var mutationsManagerObj = new GameObject("MutationsManager");
+            DontDestroyOnLoad(mutationsManagerObj);
+            var mutationsManager = mutationsManagerObj.AddComponent<MutationsManager>();
+            mutationsManager.availableMutations = mutations.ToArray();
             
             // Set up game lifecycle manager and start round
             var gameManagerObj = Instantiate(gameLifecycleManagerPrefab);

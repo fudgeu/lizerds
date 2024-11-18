@@ -13,6 +13,7 @@ public class NaturalSelectionGameMode : MonoBehaviour {
     // Round state
     private int _initialPlayers;
     private int _alivePlayers;
+    private List<GameObject> deadPlayers = new();
     
     void Start()
     {
@@ -28,6 +29,7 @@ public class NaturalSelectionGameMode : MonoBehaviour {
         _players = GameObject.FindGameObjectWithTag("GameStartInfo").GetComponent<GameStartInfo>().players;
         _alivePlayers = _players.Count;
         _initialPlayers = _players.Count;
+        print($"Initial players: {_initialPlayers}");
     }
 
     void OnDestroy()
@@ -45,8 +47,11 @@ public class NaturalSelectionGameMode : MonoBehaviour {
     
     private void HandleOnDeath(GameObject playerRoot, GameObject _)
     {
+        if (deadPlayers.Contains(playerRoot)) return;
+        print("Player died!");
         _roundLifecycleManager.AdjustPlayerScore(playerRoot, _initialPlayers - _alivePlayers);
         _alivePlayers--;
+        deadPlayers.Add(playerRoot);
     }
 
     private void HandleOnRoundSetup(int roundNumber, RoundLifecycleManager roundLifecycleManager)

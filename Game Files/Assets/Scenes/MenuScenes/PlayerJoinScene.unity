@@ -383,6 +383,12 @@ MonoBehaviour:
   startBar: {fileID: 282501168}
   playerInputManager: {fileID: 1241485451}
   gameLifecycleManagerPrefab: {fileID: 6546953318087705695, guid: 9ed42cb6fe324818db260cab5708e2a7, type: 3}
+  mutations:
+  - {fileID: 11400000, guid: 6a3a3ac943c73164bb4cbe0e8ec056e2, type: 2}
+  - {fileID: 11400000, guid: 1d8eee65320fa0042aa31492bcd7239c, type: 2}
+  - {fileID: 11400000, guid: 2767be90f2b879a42899f8bc7a5c9a77, type: 2}
+  - {fileID: 11400000, guid: 5a5d6c3f990f1284e85fb43e2a5f45e5, type: 2}
+  mutation: {fileID: 11400000, guid: 69a525efa7e6472eab268f6ea605f06e, type: 2}
 --- !u!1 &1160056094
 GameObject:
   m_ObjectHideFlags: 0

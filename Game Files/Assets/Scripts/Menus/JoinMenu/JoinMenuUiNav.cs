@@ -52,6 +52,7 @@ public class JoinMenuUiNav : MonoBehaviour
         foreach (var profile in _profileManager.profiles)
         {
             Button profileButton = Instantiate(baseUiButton, mainPanel);
+            profileButton.gameObject.AddComponent<ScrollChildController>();
             profileButton.transform.SetParent(profilePanelContent.transform, false);
 
             // Set button name

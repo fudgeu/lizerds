@@ -38,6 +38,9 @@ public class StageStartManager : MonoBehaviour
             
             // Set up root properties
             player.GetComponent<PlayerRootController>().gamePlayerObject = gamePlayer;
+            
+            // Enable all mutations
+            player.GetComponent<PlayerMutations>().EnableAllMutations();
         }
         
         // Mark round as started
