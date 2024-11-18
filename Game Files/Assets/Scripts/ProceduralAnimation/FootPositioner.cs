@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class FootPositioner : MonoBehaviour
 {
+    [HideInInspector] public bool EnablePositioning = true;
+
     [Header("Detecting Balance")]
     // reference to player character object
     public GameObject playerObj;
@@ -57,15 +59,19 @@ public class FootPositioner : MonoBehaviour
             CalculateNewStep();
         }
 
-        // using ease in/ease out value will make the animation look more natural
-        float easedLerp = EaseInOutCubic(lerp);
+        // if we are disabled, keep calculating steps but don't take them.
+        if (EnablePositioning)
+        {
+            // using ease in/ease out value will make the animation look more natural
+            float easedLerp = EaseInOutCubic(lerp);
 
-        // a lerping method that draws an arc using startPos, midPos, and endPos
-        target.position = Vector3.Lerp(
-            Vector3.Lerp(startPos, midPos, easedLerp),
-            Vector3.Lerp(midPos, endPos, easedLerp),
-            easedLerp
-            );
+            // a lerping method that draws an arc using startPos, midPos, and endPos
+            target.position = Vector3.Lerp(
+                Vector3.Lerp(startPos, midPos, easedLerp),
+                Vector3.Lerp(midPos, endPos, easedLerp),
+                easedLerp
+                );
+        }
         lerp += Time.deltaTime * stepSpeed;
     }
 

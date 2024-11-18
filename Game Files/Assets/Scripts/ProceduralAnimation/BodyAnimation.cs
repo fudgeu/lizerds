@@ -21,7 +21,6 @@ public class BodyAnimation : MonoBehaviour
     public bool flippedX = false;
     public bool currentlyTurning = false;
 
-
     private float closeJawDistance;
 
     private void Start()
@@ -38,26 +37,41 @@ public class BodyAnimation : MonoBehaviour
         }
         else if (!currentlyTurning && flippedX && movementTarget.position.x < rootBone.position.x - distanceTillTurn)
             FlipX();
-        //if (FlipThatShit)
-        //{
-        //    FlipThatShit = false;
-        //    FlipX();
-        //}
     }
 
-    //Opens Mouth
+    //-----------Releases foot placement system on the legs--------------
+    public void ReleaseLegs()
+    {
+        foreach (FootPositioner footPositioner in limbTargets)
+        {
+            footPositioner.EnablePositioning = false;
+            footPositioner.GetComponent<Rigidbody2D>().isKinematic = false;
+        }  
+    }
+
+    //------------Reenabled foot placement system------------------------
+    public void EnableLegs()
+    {
+        foreach (FootPositioner footPositioner in limbTargets)
+        {
+            footPositioner.EnablePositioning = true;
+            footPositioner.GetComponent<Rigidbody2D>().isKinematic = true;
+        }
+    }
+
+    //------------Opens Mouth---------------
     public void OpenMouth()
     {
         jawJoint.distance = openJawDistance;
     }
 
-    //Closes Mouth
+    //-----------Closes Mouth------------
     public void CloseMouth()
     {
         jawJoint.distance = closeJawDistance;
     }
 
-    //Flips the Lizerd on the X
+    //--------Flips the Lizerd on the X---------
     public void FlipX()
     {
         flippedX = !flippedX;
@@ -69,7 +83,8 @@ public class BodyAnimation : MonoBehaviour
     {
         foreach (FootPositioner limb in limbTargets)
         {
-            limb.isOnLeft = !limb.isOnLeft;
+            if (limb.gameObject.activeSelf)
+                limb.isOnLeft = !limb.isOnLeft;
         }
     }
 
