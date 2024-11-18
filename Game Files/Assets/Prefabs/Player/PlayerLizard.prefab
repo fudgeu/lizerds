@@ -859,7 +859,7 @@ MonoBehaviour:
   isBalanced: 0
   lerp: 1
   overShootFactor: 0.25
-  stepSpeed: 2.5
+  stepSpeed: 9
   footDisplacementOnX: 0.25
   isOnLeft: 0
   currentLayer: 0
@@ -2516,7 +2516,7 @@ MonoBehaviour:
   isBalanced: 0
   lerp: 0
   overShootFactor: 0.3
-  stepSpeed: 3
+  stepSpeed: 9
   footDisplacementOnX: 0.5
   isOnLeft: 1
   currentLayer: 0
@@ -2774,7 +2774,7 @@ MonoBehaviour:
   isBalanced: 0
   lerp: 0
   overShootFactor: 0.25
-  stepSpeed: 2.5
+  stepSpeed: 9
   footDisplacementOnX: 0.25
   isOnLeft: 0
   currentLayer: 0
@@ -5018,7 +5018,7 @@ MonoBehaviour:
   isBalanced: 0
   lerp: 1
   overShootFactor: 0.3
-  stepSpeed: 3
+  stepSpeed: 9
   footDisplacementOnX: 0.5
   isOnLeft: 1
   currentLayer: 0
