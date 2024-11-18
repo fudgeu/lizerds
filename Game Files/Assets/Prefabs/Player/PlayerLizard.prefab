@@ -852,6 +852,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4d12e11854440d41b51259b9f1e1835, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EnablePositioning: 1
   playerObj: {fileID: 4677043915587883031}
   target: {fileID: 7584988357516801328}
   otherFoot: {fileID: 6962850297252962577}
@@ -2508,6 +2509,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4d12e11854440d41b51259b9f1e1835, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EnablePositioning: 1
   playerObj: {fileID: 4677043915587883031}
   target: {fileID: 6301796275468199610}
   otherFoot: {fileID: 2834193443140209401}
@@ -2765,6 +2767,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4d12e11854440d41b51259b9f1e1835, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EnablePositioning: 1
   playerObj: {fileID: 4677043915587883031}
   target: {fileID: 2388568887288665689}
   otherFoot: {fileID: 4825040155637012483}
@@ -5008,6 +5011,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4d12e11854440d41b51259b9f1e1835, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EnablePositioning: 1
   playerObj: {fileID: 4677043915587883031}
   target: {fileID: 4008494521004939126}
   otherFoot: {fileID: 3640923696749024220}
