@@ -575,8 +575,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Player
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: eed6c0ed8ff670042845d7026f77c98d, type: 2}
+  m_sharedMaterial: {fileID: -3445940337679228797, guid: eed6c0ed8ff670042845d7026f77c98d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1017,20 +1017,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e01bf803bba17224183b8ec6deb3ce74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lineRenderer: {fileID: 1863058658167280879}
-  bodySegment:
-  - {fileID: 385124472510394286}
-  - {fileID: 7493524992980846843}
-  - {fileID: 1854771095629257499}
-  - {fileID: 4241542013507617174}
-  - {fileID: 2307756485544406962}
-  - {fileID: 635838606648035799}
-  - {fileID: 7161948193476834514}
-  - {fileID: 4140597529373190133}
-  - {fileID: 8578549738003223325}
-  - {fileID: 8376338589158619144}
-  - {fileID: 7704010213679669174}
-  endCapPointCount: 0
+  jawJoint: {fileID: 0}
+  rootBone: {fileID: 0}
+  movementTarget: {fileID: 0}
+  limbTargets: []
+  transformsToBeRotated: []
+  targetToBeRotatedAround: {fileID: 0}
+  openJawDistance: 1
+  rotateSpeed: 1
+  distanceTillTurn: 0
+  flippedX: 0
+  currentlyTurning: 0
 --- !u!1 &2857755857692278942
 GameObject:
   m_ObjectHideFlags: 0
