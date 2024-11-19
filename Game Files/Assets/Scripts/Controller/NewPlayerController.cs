@@ -1,3 +1,6 @@
+using System;
+using System.Collections;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -12,6 +15,8 @@ public class MovementTargetController : MonoBehaviour
     public Transform backCheck;
     private bool isFlipped = false;
     public float groundCheckRadius = 0.2f;
+    [SerializeField] private float flipOverTorque = 50f;
+    private Coroutine flipChecker;
 
     [Tooltip("A second rigidbody to apply leap force to, to prevent backflipping")][SerializeField] private Rigidbody2D secondImportantJoint;
 
@@ -52,7 +57,25 @@ public class MovementTargetController : MonoBehaviour
         if (!isGrounded)
         {
             isFlipped = Physics2D.OverlapCircle(backCheck.position, groundCheckRadius, groundLayer);
+            if (flipChecker == null)
+            {
+                flipChecker = StartCoroutine(FlipBackOver());
+            }
         }
+    }
+
+    private IEnumerator FlipBackOver()
+    {
+        Debug.Log("Attempting to flip over...");
+        yield return new WaitForSeconds(1.5f);
+
+        if (!isGrounded && isFlipped)
+        {
+            GetComponent<FixedJoint2D>().connectedBody.AddTorque(flipOverTorque, ForceMode2D.Impulse);
+            Debug.Log("FLIP");
+        }
+        isFlipped = false;
+        flipChecker = null;
     }
 
     private void OnDrawGizmos()

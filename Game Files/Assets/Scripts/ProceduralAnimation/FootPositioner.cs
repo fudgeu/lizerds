@@ -63,6 +63,9 @@ public class FootPositioner : MonoBehaviour
         // if we are disabled, keep calculating steps but don't take them.
         if (EnablePositioning && LegPositioning)
         {
+            //Failsafe- if the endPos is too far away, reset its position to the foot location
+            //if (Vector3.Distance(target.position, endPos) < 2.5) endPos = target.position;
+            //if (Vector3.Distance(target.position, midPos) < 2.5) midPos = target.position;
             // using ease in/ease out value will make the animation look more natural
             float easedLerp = EaseInOutCubic(lerp);
 
@@ -142,16 +145,23 @@ public class FootPositioner : MonoBehaviour
         //    Debug.Log(gameObject.name + " is now Kinematic");
         //}
         // Debug.Log("Ray collided with: " + ray.collider.name);
+        if (ray.collider != null)
+        {
+            // consider the overshoot factor
+            Vector3 posDiff = ((Vector3)ray.point - target.position) * (1 + overShootFactor);
 
-        // consider the overshoot factor
-        Vector3 posDiff = ((Vector3)ray.point - target.position) * (1 + overShootFactor);
+            // find end target position
+            endPos = target.position + posDiff;
 
-        // find end target position
-        endPos = target.position + posDiff;
-
-        // midPos is the mid point between startPos and endPos, but lifted up a bit depending on stepSize
-        float stepSize = Vector3.Distance(startPos, endPos);
-        midPos = startPos + posDiff / 2f + new Vector3(0, stepSize * 0.8f);
+            // midPos is the mid point between startPos and endPos, but lifted up a bit depending on stepSize
+            float stepSize = Vector3.Distance(startPos, endPos);
+            midPos = startPos + posDiff / 2f + new Vector3(0, stepSize * 0.8f);
+        }
+        else
+        {
+            endPos = target.position;
+            midPos = startPos;
+        }
 
     }
 
@@ -162,6 +172,7 @@ public class FootPositioner : MonoBehaviour
     {
         EnablePositioning = false;
         GetComponent<Rigidbody2D>().isKinematic = false;
+        Debug.Log("Foot [" + gameObject.name + "] Released. Position: " + gameObject.transform.position);
     }
 
     /// <summary>
@@ -171,6 +182,7 @@ public class FootPositioner : MonoBehaviour
     {
         EnablePositioning = true;
         GetComponent<Rigidbody2D>().isKinematic = true;
+        Debug.Log("Foot [" + gameObject.name + "] Enabled. Position: " + gameObject.transform.position);
     }
 
 

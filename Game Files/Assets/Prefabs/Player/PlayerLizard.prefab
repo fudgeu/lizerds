@@ -77,7 +77,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: -0.000000023949392, y: -0.000000054581502}
+  m_ConnectedAnchor: {x: -0.000000047898784, y: -0.000000109163004}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -425,7 +425,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.24981046, y: -0.000000059604645}
+  m_ConnectedAnchor: {x: 0.24981052, y: -0.00000008195639}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -458,12 +458,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1009855513720122828}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.6, y: -1, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: 0.9787047, w: 0.20527337}
+  m_LocalPosition: {x: -0.23796049, y: 0.9462036, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 9092874872802292773}
+  m_Father: {fileID: 8201716856438115667}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1472529125636725963
 GameObject:
@@ -611,7 +611,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.049019933, y: 0.00000006739509}
+  m_ConnectedAnchor: {x: 0.049019992, y: 0.00000006739488}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -853,6 +853,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnablePositioning: 1
+  LegPositioning: 1
   playerObj: {fileID: 4677043915587883031}
   target: {fileID: 7584988357516801328}
   otherFoot: {fileID: 6962850297252962577}
@@ -899,6 +900,8 @@ Transform:
   - {fileID: 2213615967361735914}
   - {fileID: 250271130266894297}
   - {fileID: 2147818108189928609}
+  - {fileID: 112353280415620335}
+  - {fileID: 8672142164692871515}
   m_Father: {fileID: 8866553792021853519}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -156.309}
 --- !u!70 &7594773560114202707
@@ -1039,7 +1042,7 @@ FixedJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.12199983, y: 0.035999913}
+  m_ConnectedAnchor: {x: 0.12199985, y: 0.03599989}
   m_DampingRatio: 0
   m_Frequency: 0
 --- !u!1 &2079279427814137945
@@ -1246,8 +1249,7 @@ Transform:
   m_LocalPosition: {x: -0.333, y: 0.939, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 112353280415620335}
+  m_Children: []
   m_Father: {fileID: 2048583934588039147}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &5800332672838256063
@@ -1308,6 +1310,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6adddcda258a80e4595e00fd936e224f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bodyAnimation: {fileID: 2808594918183138541}
   moveSpeed: 10
   leapForce: 100
   isGrounded: 0
@@ -1315,7 +1318,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   groundCheck: {fileID: 112353280415620335}
+  backCheck: {fileID: 8672142164692871515}
   groundCheckRadius: 0.2
+  flipOverTorque: 300
+  secondImportantJoint: {fileID: 2696115000646136291}
 --- !u!1 &2770587357521195487
 GameObject:
   m_ObjectHideFlags: 0
@@ -1780,7 +1786,7 @@ FixedJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: -0.22758386, y: 0.16103667}
+  m_ConnectedAnchor: {x: -0.2275838, y: 0.1610367}
   m_DampingRatio: 0.8
   m_Frequency: 3
 --- !u!1 &3318191221805502760
@@ -1954,6 +1960,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e01bf803bba17224183b8ec6deb3ce74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementTargetController: {fileID: 8274883834641584031}
   jawJoint: {fileID: 1004260781279828611}
   rootBone: {fileID: 8201716856438115667}
   movementTarget: {fileID: 9092874872802292773}
@@ -1972,6 +1979,7 @@ MonoBehaviour:
   openJawDistance: 1
   rotateSpeed: 0.5
   distanceTillTurn: 0.25
+  waitAfterLeapToSearchForGround: 1
   flippedX: 0
   currentlyTurning: 0
 --- !u!114 &5609311794784339469
@@ -2211,9 +2219,40 @@ FixedJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.24378599, y: -0.20439972}
+  m_ConnectedAnchor: {x: 0.24378587, y: -0.20439973}
   m_DampingRatio: 0.1
   m_Frequency: 1
+--- !u!1 &3785508902308497235
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8672142164692871515}
+  m_Layer: 8
+  m_Name: FlippedCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8672142164692871515
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3785508902308497235}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: 0.9787047, w: 0.20527337}
+  m_LocalPosition: {x: -0.83664846, y: -0.4182278, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8201716856438115667}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4325361695769655887
 GameObject:
   m_ObjectHideFlags: 0
@@ -2290,7 +2329,7 @@ FixedJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.121999845, y: 0.035999894}
+  m_ConnectedAnchor: {x: 0.12199986, y: 0.03599987}
   m_DampingRatio: 0
   m_Frequency: 0
 --- !u!1 &4361587107978524095
@@ -2406,7 +2445,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.40708238, y: -0.0000005029141}
+  m_ConnectedAnchor: {x: 0.40708235, y: -0.00000050663937}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -2510,6 +2549,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnablePositioning: 1
+  LegPositioning: 1
   playerObj: {fileID: 4677043915587883031}
   target: {fileID: 6301796275468199610}
   otherFoot: {fileID: 2834193443140209401}
@@ -2768,6 +2808,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnablePositioning: 1
+  LegPositioning: 1
   playerObj: {fileID: 4677043915587883031}
   target: {fileID: 2388568887288665689}
   otherFoot: {fileID: 4825040155637012483}
@@ -2855,7 +2896,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.0058910847, y: 0.0076160775}
+  m_ConnectedAnchor: {x: 0.0058910605, y: 0.0076160235}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -3030,7 +3071,7 @@ FixedJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: -0.24154426, y: -0.0658624}
+  m_ConnectedAnchor: {x: -0.24154423, y: -0.0658624}
   m_DampingRatio: 0.8
   m_Frequency: 3
 --- !u!1 &5456013586113657183
@@ -4073,7 +4114,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.2629321, y: -0.0000003874301}
+  m_ConnectedAnchor: {x: 0.26293203, y: -0.0000003948807}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -4665,7 +4706,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.07936503, y: 0.07236215}
+  m_ConnectedAnchor: {x: 0.07936497, y: 0.07236215}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -4908,7 +4949,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.21556482, y: -0.000000199303}
+  m_ConnectedAnchor: {x: 0.21556494, y: -0.00000018812713}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -5012,6 +5053,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnablePositioning: 1
+  LegPositioning: 1
   playerObj: {fileID: 4677043915587883031}
   target: {fileID: 4008494521004939126}
   otherFoot: {fileID: 3640923696749024220}
