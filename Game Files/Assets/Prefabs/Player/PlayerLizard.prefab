@@ -1594,7 +1594,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.09012107, y: -0.02264432}
-  m_Size: {x: 0.42115152, y: 0.42115152}
+  m_Size: {x: 0.42115152, y: 0.3}
   m_Direction: 1
 --- !u!50 &3350290382756721863
 Rigidbody2D:
@@ -1962,7 +1962,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementTargetController: {fileID: 8274883834641584031}
   jawJoint: {fileID: 1004260781279828611}
-  rootBone: {fileID: 8201716856438115667}
+  root: {fileID: 0}
   movementTarget: {fileID: 9092874872802292773}
   limbTargets:
   - {fileID: 4825040155637012483}
@@ -1981,7 +1981,6 @@ MonoBehaviour:
   distanceTillTurn: 0.25
   waitAfterLeapToSearchForGround: 1
   flippedX: 0
-  currentlyTurning: 0
 --- !u!114 &5609311794784339469
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2400,7 +2399,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.036170706, y: -0.068047754}
-  m_Size: {x: 0.62180406, y: 0.53390807}
+  m_Size: {x: 0.62180406, y: 0.41}
   m_Direction: 1
 --- !u!50 &2696115000646136291
 Rigidbody2D:
@@ -2526,7 +2525,7 @@ SpringJoint2D:
   serializedVersion: 4
   m_EnableCollision: 0
   m_ConnectedRigidBody: {fileID: 1515655427791916152}
-  m_BreakForce: 2.04
+  m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_BreakAction: 0
   m_AutoConfigureConnectedAnchor: 0
@@ -2628,7 +2627,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -5.229983e-12, y: -0.116729476}
-  m_Size: {x: 1.0000002, y: 0.86002666}
+  m_Size: {x: 1.0000002, y: 0.8}
   m_Direction: 1
 --- !u!50 &7215969379864393291
 Rigidbody2D:
@@ -3431,7 +3430,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.1662135, y: -0.0205307}
-  m_Size: {x: 0.37769204, y: 0.17424391}
+  m_Size: {x: 0.37769204, y: 0.11}
   m_Direction: 1
 --- !u!50 &597731365787741999
 Rigidbody2D:
@@ -4069,7 +4068,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.09330605, y: -0.013663735}
-  m_Size: {x: 0.30537757, y: 0.30537757}
+  m_Size: {x: 0.30537757, y: 0.19}
   m_Direction: 1
 --- !u!50 &7154404377779988103
 Rigidbody2D:
@@ -4904,7 +4903,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.037624896, y: -0.0011427775}
-  m_Size: {x: 0.23824678, y: 0.23824681}
+  m_Size: {x: 0.3, y: 0.15}
   m_Direction: 1
 --- !u!50 &2789523041468044569
 Rigidbody2D:
@@ -5166,7 +5165,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.078386955, y: -0.12506643}
-  m_Size: {x: 0.84322613, y: 0.7642333}
+  m_Size: {x: 0.84322613, y: 0.61}
   m_Direction: 1
 --- !u!50 &4945146694720123355
 Rigidbody2D:

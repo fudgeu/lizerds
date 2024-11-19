@@ -38,10 +38,12 @@ public class MovementTargetController : MonoBehaviour
         if (moveInput > 0.01f)
         {
             transform.localScale = new Vector3(1, 1, 1);
+            if (isGrounded && !bodyAnimation.flippedX) bodyAnimation.FlipX();
         }
         else if (moveInput < -0.01f)
         {
             transform.localScale = new Vector3(-1, 1, 1);
+            if (isGrounded && bodyAnimation.flippedX) bodyAnimation.FlipX();
         }
 
         // Leap
@@ -71,6 +73,7 @@ public class MovementTargetController : MonoBehaviour
 
         if (!isGrounded && isFlipped)
         {
+            bodyAnimation.ReleaseLegs();
             GetComponent<FixedJoint2D>().connectedBody.AddTorque(flipOverTorque, ForceMode2D.Impulse);
             Debug.Log("FLIP");
         }
