@@ -123,7 +123,7 @@ public class GameLifecycleManager : MonoBehaviour
             gameModeObj = new GameObject("GameMode");
             gameModeObj.tag = "GameMode";
             DontDestroyOnLoad(gameModeObj);
-            gameModeObj.AddComponent<NaturalSelectionGameMode>();
+            _gameStartInfo.AttachRandomGameMode(gameModeObj);
         }
         
         OnRoundSetup?.Invoke(CurRound, _roundLifecycleManager);

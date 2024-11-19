@@ -59,6 +59,11 @@ public class RoundLifecycleManager : MonoBehaviour {
     {
         return new Dictionary<GameObject, int>(_scoreboard); // Make copy so scores cannot be adjusted
     }
+    
+    public int GetPlayerScore(GameObject player)
+    {
+        return _scoreboard[player];
+    }
 
     private void HandleOnRoundStart(int roundNumber, RoundLifecycleManager _)
     {

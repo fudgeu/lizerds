@@ -32,7 +32,7 @@ public class JoinMenuUiNav : MonoBehaviour
 
     // Internal
     private PlayerInput _playerInput;
-    private int _panelWidth = 250;
+    private int _panelWidth = 370;
     private Page _curPage = Page.Main;
     private ProfileManager _profileManager;
     private GameStartManager _gameStartManager;

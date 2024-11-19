@@ -70,6 +70,9 @@ public class PlayerController : MonoBehaviour
     
     private Vector2 currentVelocity; // For smooth acceleration and deceleration
     private bool isGrounded; // To track if the player is on the ground
+    
+    //--Attack Info--------------------
+    public GameObject lastAttacker;
 
     // Awake: Runs before Start() and OnEnable()
     private void Awake()
@@ -167,6 +170,10 @@ public class PlayerController : MonoBehaviour
                     {
                         enemyRigidbody.AddForce(forceToApply, ForceMode2D.Impulse);
                     }
+                    
+                    // Set enemy's last attacker
+                    PlayerController enemyPlayerController = enemy.GetComponent<PlayerController>();
+                    enemyPlayerController.lastAttacker = gameObject.transform.parent.gameObject;
                 }
             }
         }
@@ -219,9 +226,8 @@ public class PlayerController : MonoBehaviour
     }
 
     // Respawn the player at the center
-    private void Respawn()
+    public void Respawn()
     {
-        Debug.Log("Player out of bounds, respawning...");
         transform.position = respawnPosition;
         rigidbody.velocity = Vector2.zero;
     }
