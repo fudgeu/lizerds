@@ -105,16 +105,15 @@ public class BodyAnimation : MonoBehaviour
         }
 
         FlipLimbs();
-        //FlipHingeLimits(root.gameObject);
+
         foreach (Transform t in transformsToBeRotated)                                                 //<--Can take multiple transforms, if we need to experiment.
             t.localScale = new Vector3(-t.localScale.x, t.localScale.y, t.localScale.z);
 
-
-        //FlipHingeAnchors(root.gameObject);
-
+        //FlipHingeLimits(root.gameObject);
+        //FlipHingeAnchors(root.gameObject);                                                            //<-- Legacy system, kinda overcomplicates the turning. Feel free to play with enabling these, Physics is finniky.
         //FlipRigidbodyVelocities(root.gameObject);
 
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForEndOfFrame();
 
         //Reenable the legs
         foreach (FootPositioner footPositioner in limbTargets)
