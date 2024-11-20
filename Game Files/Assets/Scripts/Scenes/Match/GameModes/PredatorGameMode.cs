@@ -2,10 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using JoinMenu;
+using Scenes.Match.GameModes;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-public class PredatorGameMode : MonoBehaviour {
+public class PredatorGameMode : GameMode
+{
     private List<GameObject> _players = new();
     private GameLifecycleManager _gameLifecycleManager;
     private RoundLifecycleManager _roundLifecycleManager;
@@ -15,7 +17,7 @@ public class PredatorGameMode : MonoBehaviour {
     
     void Start()
     {
-        // TODO subscribe to the scene load/unload events instead
+        gameModeName = "Predator";
         
         // Grab and process game lifecycle manager
         _gameLifecycleManager = GameObject.FindWithTag("GameLifecycleManager").GetComponent<GameLifecycleManager>();

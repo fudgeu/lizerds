@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using Tweens;
@@ -111,15 +112,9 @@ public class JoinMenuUiNav : MonoBehaviour
         };
         
         // Register start button handlers
-        _playerInput.actions["Join"].started += ctx =>
-        {
-            _gameStartManager.onPlayerHoldStart(gameObject);
-        };
+        _playerInput.actions["Join"].started += HandleOnPressStart;
 
-        _playerInput.actions["Join"].canceled += ctx =>
-        {
-            _gameStartManager.onPlayerLetGoStart(gameObject);
-        };
+        _playerInput.actions["Join"].canceled += HandleOnCancelStart;
         
         // Register profile text changer
         _profileInfo.OnProfileChanged += handleProfileChange;
@@ -127,7 +122,13 @@ public class JoinMenuUiNav : MonoBehaviour
         // Run one time for initial set up
         handleProfileChange();
     }
-    
+
+    private void OnDestroy()
+    {
+        _playerInput.actions["Join"].started -= HandleOnPressStart;
+        _playerInput.actions["Join"].canceled -= HandleOnCancelStart;
+    }
+
     private void SwitchToPage(Page page)
     {
         // Animation settings
@@ -181,6 +182,16 @@ public class JoinMenuUiNav : MonoBehaviour
         {
             profileText.text = _profileInfo.Profile.name;
         }
+    }
+
+    private void HandleOnPressStart(InputAction.CallbackContext ctx)
+    {
+        _gameStartManager.onPlayerHoldStart(gameObject);
+    }
+
+    private void HandleOnCancelStart(InputAction.CallbackContext ctx)
+    {
+        _gameStartManager.onPlayerLetGoStart(gameObject);
     }
     
     enum Page { Main, Profile, CreateProfile }

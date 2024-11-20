@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using JoinMenu;
+using Tweens;
 using UnityEngine;
 
 public class StageStartManager : MonoBehaviour
 {
     public GameObject gamePlayerPrefab;
+    public GameObject stageStartScreenPrefab;
+    
+    private Camera _camera;
     
     void Start()
     {
@@ -43,7 +47,23 @@ public class StageStartManager : MonoBehaviour
             player.GetComponent<PlayerMutations>().EnableAllMutations();
         }
         
-        // Mark round as started
-        gameLifecycleManager.OnRoundStarted();
+        // Create the stage start screen
+        Instantiate(stageStartScreenPrefab);
+        
+        // Get and animation camera
+        _camera = FindObjectOfType<Camera>();
+        _camera.orthographicSize = 10f;
+        var cameraTween = new FloatTween
+        {
+            from = 10f,
+            to = 5f,
+            duration = 2,
+            onUpdate = (_, newVal) => _camera.orthographicSize = newVal,
+            easeType = EaseType.QuintInOut,
+            delay = 2,
+            onEnd = (_) => gameLifecycleManager.OnRoundStarted(),
+
+        };
+        gameObject.AddTween(cameraTween);
     }
 }

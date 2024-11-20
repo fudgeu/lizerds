@@ -256,7 +256,7 @@ MonoBehaviour:
   mutation: {fileID: 0}
   card: {fileID: 963777401083871580}
   list: {fileID: 8813594098454593790}
-  uiButtonPrefab: {fileID: 6473046978120112194, guid: 52e294f1a48aa94418a67a6c35aad3ac, type: 3}
+  uiButtonPrefab: {fileID: 8003415391207145057, guid: 305d471b99da5e94792b385a84031d28, type: 3}
 --- !u!1 &8813594098454593790
 GameObject:
   m_ObjectHideFlags: 0
@@ -352,7 +352,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 4
-  m_Spacing: 10
+  m_Spacing: 15
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
@@ -456,7 +456,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3899114301982117126, guid: aa8751f2a58ee2d469b864acb9aea504, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

@@ -48,7 +48,7 @@ public class PauseMenuController : MonoBehaviour
             _pauseMenuInstance = Instantiate(pauseMenuPrefab);
             var pauseMenuComponent = _pauseMenuInstance.GetComponentInChildren<PauseMenu>();
             pauseMenuComponent.ContinueButton.onClick.AddListener(OnClickContinue);
-            pauseMenuComponent.ExitToMenuButton.onClick.AddListener(OnClickExit);
+            pauseMenuComponent.ExitButton.onClick.AddListener(OnClickExit);
             Time.timeScale = 0;
             FindObjectOfType<EventSystem>().SetSelectedGameObject(pauseMenuComponent.ContinueButton.gameObject);
         }
@@ -71,8 +71,6 @@ public class PauseMenuController : MonoBehaviour
     
     private void OnClickExit()
     {
-        var director = GameObject.FindWithTag("LoadingScreenDirector").GetComponent<LoadingScreenDirector>();
-        director.goTo = LoadingScreenDirector.GameScene.MainMenu;
-        SceneManager.LoadScene("Loading");
+        Application.Quit();
     }
 }

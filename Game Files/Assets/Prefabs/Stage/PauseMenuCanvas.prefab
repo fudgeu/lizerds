@@ -568,7 +568,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4654620835246460252, guid: 52e294f1a48aa94418a67a6c35aad3ac, type: 3}
       propertyPath: m_text
-      value: Exit to Menu
+      value: Exit
       objectReference: {fileID: 0}
     - target: {fileID: 5023978124700642335, guid: 52e294f1a48aa94418a67a6c35aad3ac, type: 3}
       propertyPath: m_Navigation.m_Mode

@@ -40,9 +40,9 @@ public class LoadingManager : MonoBehaviour
 
     private IEnumerator LoadMainMenu()
     {
-        Destroy(FindObjectOfType<PlayerInputManager>());
-        Destroy(FindObjectOfType<GameStartInfo>());
-        Destroy(FindObjectOfType<GameLifecycleManager>());
+        Destroy(FindObjectOfType<PlayerInputManager>().gameObject);
+        Destroy(FindObjectOfType<GameStartInfo>().gameObject);
+        Destroy(FindObjectOfType<GameLifecycleManager>().gameObject);
         foreach (var player in GameObject.FindGameObjectsWithTag("Player"))
         {
             Destroy(player);

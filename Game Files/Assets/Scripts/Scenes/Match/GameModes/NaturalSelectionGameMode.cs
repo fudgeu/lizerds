@@ -2,10 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using JoinMenu;
+using Scenes.Match.GameModes;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-public class NaturalSelectionGameMode : MonoBehaviour {
+public class NaturalSelectionGameMode : GameMode
+{
     private List<GameObject> _players = new();
     private GameLifecycleManager _gameLifecycleManager;
     private RoundLifecycleManager _roundLifecycleManager;
@@ -17,7 +19,7 @@ public class NaturalSelectionGameMode : MonoBehaviour {
     
     void Start()
     {
-        // TODO subscribe to the scene load/unload events instead
+        gameModeName = "Natural Selection";
         
         // Grab and process game lifecycle manager
         _gameLifecycleManager = GameObject.FindWithTag("GameLifecycleManager").GetComponent<GameLifecycleManager>();
