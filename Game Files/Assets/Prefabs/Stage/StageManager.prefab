@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3bdff96fc322bafd82abb4ddaf0087c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gamePlayerPrefab: {fileID: 1706660658235508578, guid: d1fd47de25ff641de973be2415b270f6, type: 3}
+  gamePlayerPrefab: {fileID: 3547536614347781426, guid: 5526e905aeba34040a1755fe223ec685, type: 3}
   stageStartScreenPrefab: {fileID: 5989383159038587587, guid: 0f502cb4432e1f0408bf1b8a95e51df8, type: 3}
 --- !u!114 &4326842159847508949
 MonoBehaviour:

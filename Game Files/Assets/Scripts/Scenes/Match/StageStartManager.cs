@@ -65,5 +65,20 @@ public class StageStartManager : MonoBehaviour
 
         };
         gameObject.AddTween(cameraTween);
+
+        var bkg = GameObject.FindGameObjectWithTag("Background");
+        float initialScale = bkg.transform.localScale.x;
+        float start = (initialScale + 0.5f) * 1.5f;
+        bkg.transform.localScale = new Vector3(start, start, start);
+        var bkgTween = new FloatTween
+        {
+            from = start,
+            to = initialScale + 0.5f,
+            duration = 2,
+            onUpdate = (_, newVal) => bkg.transform.localScale = new Vector3(newVal, newVal, newVal),
+            easeType = EaseType.QuintInOut,
+            delay = 2,
+        };
+        gameObject.AddTween(bkgTween);
     }
 }

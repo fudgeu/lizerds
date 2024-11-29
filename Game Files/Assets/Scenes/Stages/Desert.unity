@@ -500,6 +500,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DesertBackground
       objectReference: {fileID: 0}
+    - target: {fileID: 4685392418284046878, guid: e89c3498d4456e94a9cac2ea7f440c95, type: 3}
+      propertyPath: m_TagString
+      value: Background
+      objectReference: {fileID: 0}
     - target: {fileID: 5565989705152353806, guid: e89c3498d4456e94a9cac2ea7f440c95, type: 3}
       propertyPath: drop
       value: 
