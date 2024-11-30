@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using JoinMenu;
 using Tweens;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class StageStartManager : MonoBehaviour
 {
@@ -22,11 +24,13 @@ public class StageStartManager : MonoBehaviour
         // Spawn players
         var spawnPoints = GameObject.FindGameObjectsWithTag("Respawn");
         var usedSpawnPoints = new HashSet<GameObject>();
-        
+
+        int i = 1;
         foreach (var player in players)
         {
             // Create game player obj and set parent
             var gamePlayer = Instantiate(gamePlayerPrefab, player.transform);
+            gamePlayer.layer = LayerMask.NameToLayer($"P{i}");
             
             // Place at random spawn point
             if (spawnPoints.Length != 0)
@@ -45,6 +49,8 @@ public class StageStartManager : MonoBehaviour
             
             // Enable all mutations
             player.GetComponent<PlayerMutations>().EnableAllMutations();
+
+            i = Math.Min(4, i + 1);
         }
         
         // Create the stage start screen

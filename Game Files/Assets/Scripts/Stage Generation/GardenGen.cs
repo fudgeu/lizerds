@@ -43,6 +43,5 @@ public class GardenGen : MonoBehaviour
     void spawnPlat(GameObject obj, int x, int y)
     {
         obj = Instantiate(obj, new Vector2(x, y), Quaternion.identity);
-        obj.transform.parent = this.transform;
     }
 }
