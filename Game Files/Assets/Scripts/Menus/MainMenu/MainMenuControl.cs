@@ -7,7 +7,10 @@ using UnityEngine.UI;
 public class MainMenuControl : MonoBehaviour
 {
     public Button startButton;
+    public Button settingsButton;
     public Button quitButton;
+
+    public GameObject settingsPanelPrefab;
     
     void Start()
     {
@@ -15,6 +18,11 @@ public class MainMenuControl : MonoBehaviour
         startButton.onClick.AddListener(() =>
         {
             SceneManager.LoadScene("GameSetup");
+        });
+
+        settingsButton.onClick.AddListener(() =>
+        {
+            Instantiate(settingsPanelPrefab, transform);
         });
         
         quitButton.onClick.AddListener(() =>

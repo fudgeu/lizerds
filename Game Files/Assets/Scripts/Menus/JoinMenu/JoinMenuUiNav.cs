@@ -79,7 +79,7 @@ public class JoinMenuUiNav : MonoBehaviour
         });
         
         // Register on click handlers
-        changeProfileButton.onClick.AddListener(() => SwitchToPage(Page.Profile));
+        changeProfileButton.onClick.AddListener(() => SwitchToPage(Page.CreateProfile));
         newProfileButton.onClick.AddListener(() =>
         {
             _newProfileController.profileName = "";
@@ -138,15 +138,20 @@ public class JoinMenuUiNav : MonoBehaviour
         switch (page)
         {
             case Page.Main:
-                if (_curPage == Page.Profile)
+                // if (_curPage == Page.Profile)
+                // {
+                //     UiUtil.DoRectTranslateAnim(mainPanel, new Vector2(_panelWidth, 0), duration, ease);
+                //     UiUtil.DoRectTranslateAnim(profilePanel, new Vector2(_panelWidth, 0), duration, ease);
+                // } else if (_curPage == Page.CreateProfile)
+                // {
+                //     UiUtil.DoRectTranslateAnim(mainPanel, new Vector2(_panelWidth, 0), duration, ease);
+                //     UiUtil.DoRectTranslateAnim(profilePanel, new Vector2(_panelWidth * 2, 0), duration, ease);
+                //     UiUtil.DoRectTranslateAnim(createProfilePanel, new Vector2(_panelWidth * 2, 0), duration, ease);
+                // }
+                if (_curPage == Page.CreateProfile)
                 {
                     UiUtil.DoRectTranslateAnim(mainPanel, new Vector2(_panelWidth, 0), duration, ease);
-                    UiUtil.DoRectTranslateAnim(profilePanel, new Vector2(_panelWidth, 0), duration, ease);
-                } else if (_curPage == Page.CreateProfile)
-                {
-                    UiUtil.DoRectTranslateAnim(mainPanel, new Vector2(_panelWidth, 0), duration, ease);
-                    UiUtil.DoRectTranslateAnim(profilePanel, new Vector2(_panelWidth * 2, 0), duration, ease);
-                    UiUtil.DoRectTranslateAnim(createProfilePanel, new Vector2(_panelWidth * 2, 0), duration, ease);
+                    UiUtil.DoRectTranslateAnim(createProfilePanel, new Vector2(_panelWidth, 0), duration, ease);
                 }
                 eventSystem.SetSelectedGameObject(changeProfileButton.gameObject);
                 break;
@@ -163,8 +168,9 @@ public class JoinMenuUiNav : MonoBehaviour
                 eventSystem.SetSelectedGameObject(defaultProfileButton.gameObject);
                 break;
             case Page.CreateProfile:
-                UiUtil.DoRectTranslateAnim(profilePanel, new Vector2(-_panelWidth, 0), duration, ease);
-                UiUtil.DoRectTranslateAnim(createProfilePanel, new Vector2(-_panelWidth * 2, 0), duration, ease);
+                // UiUtil.DoRectTranslateAnim(profilePanel, new Vector2(-_panelWidth, 0), duration, ease);
+                UiUtil.DoRectTranslateAnim(mainPanel, new Vector2(-_panelWidth, 0), duration, ease);
+                UiUtil.DoRectTranslateAnim(createProfilePanel, new Vector2(-_panelWidth, 0), duration, ease);
                 eventSystem.SetSelectedGameObject(firstKeyOnCreatePanel.gameObject);
                 break;
         }

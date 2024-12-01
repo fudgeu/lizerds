@@ -12,7 +12,7 @@ using UnityEngine.UI;
 public class GameSetupSceneManager : MonoBehaviour
 {
     [Header("Arenas")]
-    public string[] arenas = new string[4]{ "Garden", "Jungle", "Desert", "Swamp" };
+    public string[] arenas = new string[3]{ "Garden", "Jungle", "Swamp" };
     public string[] gameModes = new string[2]{ "Natural Selection", "Predator" };
     
     [Header("References")]
@@ -24,7 +24,7 @@ public class GameSetupSceneManager : MonoBehaviour
     public Button startGameButton;
     
     // Internal
-    private bool[] arenasChecked = new bool[4]{ true, true, true, true };
+    private bool[] arenasChecked = new bool[3]{ true, true, true };
     private bool[] gameModesChecked = new bool[2]{ true, true };
     
     void Start()
