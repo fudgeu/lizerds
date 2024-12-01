@@ -382,6 +382,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1401440504109632465, guid: 164c7a8b362c2c24cbf20e0b301d33a8, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1401440504109632465, guid: 164c7a8b362c2c24cbf20e0b301d33a8, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1401440504109632465, guid: 164c7a8b362c2c24cbf20e0b301d33a8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -429,6 +437,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GardenBackground
       objectReference: {fileID: 0}
+    - target: {fileID: 8234962307960977058, guid: 164c7a8b362c2c24cbf20e0b301d33a8, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e9b9af83deadd7699bc0b46a5557a4a9, type: 3}
     m_RemovedComponents:
     - {fileID: 0}
     m_RemovedGameObjects: []
