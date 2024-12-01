@@ -11,6 +11,7 @@ public class BodyAnimation : MonoBehaviour
     [SerializeField] private MovementTargetController movementTargetController;     //As I mentioned in NewPlayerContorller, this here is bad software architecture, but i think 'spaghetti code' is a LIBERAL LIE.
     [SerializeField] private DistanceJoint2D jawJoint;
     [SerializeField] private Transform root;
+    //[SerializeField] private Transform head;
     [SerializeField] private Transform movementTarget;
     [SerializeField] private List<FootPositioner> limbTargets;
     [SerializeField] private List<Transform> transformsToBeRotated;
@@ -18,17 +19,29 @@ public class BodyAnimation : MonoBehaviour
 
     [Header("Configuration")]
     [SerializeField] private float openJawDistance = 1;
-    [SerializeField] private float rotateSpeed = 1;
-    [SerializeField] private float distanceTillTurn = 0;
     [SerializeField] private float waitAfterLeapToSearchForGround = 1f;
 
     public bool flippedX = false;
     private bool legsReleased = false;
     private float closeJawDistance;
 
+    [Header("Hard-Coded Head Rigidbodies")]
+    [SerializeField] private Transform headJoint;
+    [SerializeField] private Transform topJawJoint;
+    [SerializeField] private Transform bottomJawJoint;
+    private float savedHeadRotation;
+    private float savedTopJawRotation;
+    private float savedBottomJawRotation;
+
+
     private void Start()
     {
         closeJawDistance = jawJoint.distance;
+        
+        //Hard coding the head transforms so they don't break on flip
+        savedHeadRotation = headJoint.rotation.z;
+        savedBottomJawRotation = bottomJawJoint.rotation.z;
+        savedTopJawRotation = topJawJoint.rotation.z;
     }
 
     #region Leg Control Systems
@@ -52,7 +65,7 @@ public class BodyAnimation : MonoBehaviour
     {
         yield return new WaitForSeconds(waitAfterLeapToSearchForGround);
         Debug.Log("Checking for ground...");
-        while (!movementTargetController.isGrounded)
+        while (!movementTargetController.isGrounded || movementTargetController.backCheck.position.y < movementTargetController.groundCheck.position.y)
         {
             yield return new WaitForEndOfFrame();
         }
@@ -107,7 +120,10 @@ public class BodyAnimation : MonoBehaviour
         FlipLimbs();
 
         foreach (Transform t in transformsToBeRotated)                                                 //<--Can take multiple transforms, if we need to experiment.
+        {
+            t.position += new Vector3(0, 1f, 0);
             t.localScale = new Vector3(-t.localScale.x, t.localScale.y, t.localScale.z);
+        }
 
         //FlipHingeLimits(root.gameObject);
         //FlipHingeAnchors(root.gameObject);                                                            //<-- Legacy system, kinda overcomplicates the turning. Feel free to play with enabling these, Physics is finniky.
@@ -115,11 +131,26 @@ public class BodyAnimation : MonoBehaviour
 
         yield return new WaitForEndOfFrame();
 
+        ReleaseLegs();
         //Reenable the legs
-        foreach (FootPositioner footPositioner in limbTargets)
-        {
-            footPositioner.EnableFoot();
-        }
+        //foreach (FootPositioner footPositioner in limbTargets)
+        //{
+        //    footPositioner.EnableFoot();
+        //}
+
+        //JointAngleLimits2D limits = topJawJoint.gameObject.GetComponent<HingeJoint2D>().limits;
+        //limits.max = -limits.max;
+        //limits.min = -limits.min;
+        //topJawJoint.gameObject.GetComponent<HingeJoint2D>().limits = limits;                                                                          //<---------The solution to head breaking is somewhere in here...
+
+        //limits = bottomJawJoint.gameObject.GetComponent<HingeJoint2D>().limits;
+        //limits.max = -limits.max;
+        //limits.min = -limits.min;
+        //bottomJawJoint.gameObject.GetComponent<HingeJoint2D>().limits = limits;
+
+        //headJoint.rotation = new Quaternion(headJoint.rotation.x, headJoint.rotation.y, savedHeadRotation, headJoint.rotation.w);
+        topJawJoint.rotation = new Quaternion(topJawJoint.rotation.x, topJawJoint.rotation.y, savedTopJawRotation, topJawJoint.rotation.w);
+        bottomJawJoint.rotation = new Quaternion(bottomJawJoint.rotation.x, bottomJawJoint.rotation.y, savedBottomJawRotation, bottomJawJoint.rotation.w);
     }
 
     //--------------All of the following functions are used for the FlipX() function--------------------
@@ -146,19 +177,18 @@ public class BodyAnimation : MonoBehaviour
             if (hinge.useLimits)
             {
                 JointAngleLimits2D limits = hinge.limits;
-                //float temp = limits.max;
-                //limits.max = limits.min;
-                //limits.min = temp;
-                if (flippedX)
-                {
-                    limits.max = limits.max - 180;
-                    limits.min = limits.min - 180;
-                }
-                else
-                {
-                    limits.max = limits.max + 180;
-                    limits.min = limits.min + 180;
-                }
+                limits.max = -limits.max;
+                limits.min = -limits.min;
+                //if (flippedX)
+                //{
+                //    limits.max = limits.max - 180;
+                //    limits.min = limits.min - 180;
+                //}
+                //else
+                //{
+                //    limits.max = limits.max + 180;
+                //    limits.min = limits.min + 180;
+                //}
 
 
                 hinge.limits = limits;
@@ -171,11 +201,10 @@ public class BodyAnimation : MonoBehaviour
         }
     }
 
-                                                                                                                                                                //Full disclosure, Chat GPT wrote the following two functions. Sue me.
+    //Full disclosure, Chat GPT wrote the following two functions. Sue me.
     /// <summary>
     /// Flips all velocities effecting the system on the X axis
     /// </summary>
-    /// <param name="bone"></param>
     private void FlipRigidbodyVelocities(GameObject bone)
     {
         // Get the Rigidbody2D component of the current bone and flip its velocity if it exists
@@ -196,7 +225,6 @@ public class BodyAnimation : MonoBehaviour
     /// <summary>
     /// Flips the offset of HingeAnchors, preventing squeezing
     /// </summary>
-    /// <param name="bone"></param>
     private void FlipHingeAnchors(GameObject bone)
     {
         if (bone.TryGetComponent<HingeJoint2D>(out HingeJoint2D hinge))

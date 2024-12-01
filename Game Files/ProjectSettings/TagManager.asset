@@ -14,6 +14,7 @@ TagManager:
   - Color1
   - Color2
   - Color3
+  - Background
   layers:
   - Default
   - TransparentFX
@@ -24,10 +25,10 @@ TagManager:
   - Player
   - Dummy
   - Pixelize
-  - 
-  - 
-  - 
-  - 
+  - P1
+  - P2
+  - P3
+  - P4
   - 
   - 
   - 

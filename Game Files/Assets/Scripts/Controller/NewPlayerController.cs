@@ -74,6 +74,9 @@ public class MovementTargetController : MonoBehaviour
         if (!isGrounded && isFlipped)
         {
             bodyAnimation.ReleaseLegs();
+            //if(bodyAnimation.flippedX)
+            //    GetComponent<FixedJoint2D>().connectedBody.AddTorque(-flipOverTorque, ForceMode2D.Impulse);
+            //else
             GetComponent<FixedJoint2D>().connectedBody.AddTorque(flipOverTorque, ForceMode2D.Impulse);
             Debug.Log("FLIP");
         }

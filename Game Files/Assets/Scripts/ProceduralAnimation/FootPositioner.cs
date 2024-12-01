@@ -172,7 +172,7 @@ public class FootPositioner : MonoBehaviour
     {
         EnablePositioning = false;
         GetComponent<Rigidbody2D>().isKinematic = false;
-        Debug.Log("Foot [" + gameObject.name + "] Released. Position: " + gameObject.transform.position);
+        //Debug.Log("Foot [" + gameObject.name + "] Released. Position: " + gameObject.transform.position);
     }
 
     /// <summary>
@@ -182,7 +182,7 @@ public class FootPositioner : MonoBehaviour
     {
         EnablePositioning = true;
         GetComponent<Rigidbody2D>().isKinematic = true;
-        Debug.Log("Foot [" + gameObject.name + "] Enabled. Position: " + gameObject.transform.position);
+        //Debug.Log("Foot [" + gameObject.name + "] Enabled. Position: " + gameObject.transform.position);
     }
 
 
