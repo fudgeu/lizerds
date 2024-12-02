@@ -29,32 +29,57 @@ public class MovementTargetController : MonoBehaviour
 
     private void Update()
     {
-        // Horizontal movement
+        HandleMovement();
+        HandleFlipping();
+        HandleLeap();
+        CheckGroundStatus();
+    }
+
+    private void HandleMovement()
+    {
         float moveInput = Input.GetAxis("Horizontal");
         Vector2 move = new Vector2(moveInput * moveSpeed, rb.velocity.y);
         rb.velocity = move;
+    }
 
-        // Flip the movement target when changing directions
+    private void HandleFlipping()
+    {
+        float moveInput = Input.GetAxis("Horizontal");
+
         if (moveInput > 0.01f)
         {
-            transform.localScale = new Vector3(1, 1, 1);
-            if (isGrounded && !bodyAnimation.flippedX) bodyAnimation.FlipX();
+            SetFlipDirection(-1);
         }
         else if (moveInput < -0.01f)
         {
-            transform.localScale = new Vector3(-1, 1, 1);
-            if (isGrounded && bodyAnimation.flippedX) bodyAnimation.FlipX();
+            SetFlipDirection(1);
         }
+    }
 
-        // Leap
+    private void SetFlipDirection(int direction)
+    {
+        transform.localScale = new Vector3(direction, 1, 1);
+        if (isGrounded && bodyAnimation.flippedX != (direction == -1))
+        {
+            bodyAnimation.FlipX();
+        }
+    }
+
+    private void HandleLeap()
+    {
         if (Input.GetButtonDown("Leap") && isGrounded)
         {
             bodyAnimation.ReleaseLegs();
             rb.velocity = new Vector2(rb.velocity.x, leapForce);
-            secondImportantJoint.velocity = new Vector2(secondImportantJoint.velocity.x, leapForce * 0.8f);                                    //<- applied leap force to a second joint, preventing backflips
+            if (secondImportantJoint != null)
+            {
+                secondImportantJoint.velocity = new Vector2(secondImportantJoint.velocity.x, leapForce * 0.8f);
+            }
         }
+    }
 
-        // Ground check
+    private void CheckGroundStatus()
+    {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
         if (!isGrounded)
         {
@@ -65,6 +90,7 @@ public class MovementTargetController : MonoBehaviour
             }
         }
     }
+
 
     private IEnumerator FlipBackOver()
     {
