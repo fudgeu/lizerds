@@ -30,7 +30,9 @@ public class MutationPlayerPickerController : MonoBehaviour
     void Start()
     {
         // Setup card
-        card.GetComponent<MutationCardController>().mutationLabel = mutation.name;
+        var mutCard = card.GetComponent<MutationCardController>();
+        mutCard.mutationLabel = mutation.name;
+        mutCard.mutationDescription = mutation.description;
         
         // Create button for each player
         var curPlayer = GetComponentInParent<PlayerProfileInfo>();

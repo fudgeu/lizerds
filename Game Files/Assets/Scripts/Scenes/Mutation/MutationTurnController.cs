@@ -49,6 +49,7 @@ public class MutationTurnController : MonoBehaviour
             var mutationCard = Instantiate(mutationCardPrefab, _mutationCardsContainer.transform);
             var mutationCardController = mutationCard.GetComponent<MutationCardController>();
             mutationCardController.mutationLabel = mutation.mutationName;
+            mutationCardController.mutationDescription = mutation.description;
             mutationCardController.button.onClick.AddListener(() => OnPressMutation(mutation));
 
             if (i == 0)
