@@ -33,17 +33,17 @@ public class PredatorGameMode : GameMode
         _gameLifecycleManager.OnRoundSetup -= HandleOnRoundSetup;
     }
     
-    private void HandleOnDeath(GameObject playerRoot, GameObject _)
+    private void HandleOnDeath(GameObject player)
     {
-        if (_deadPlayers.Contains(playerRoot)) return;
+        if (_deadPlayers.Contains(player)) return;
         print("Player died!");
-        var killer = playerRoot.GetComponentInChildren<PlayerController>().lastAttacker;
+        GameObject killer = null; // playerRoot.GetComponentInChildren<PlayerController>().lastAttacker;
         if (killer)
         {
-            _roundLifecycleManager.AdjustPlayerScore(playerRoot, _roundLifecycleManager.GetPlayerScore(killer) + 1);
+            _roundLifecycleManager.AdjustPlayerScore(player.transform.parent.gameObject, _roundLifecycleManager.GetPlayerScore(killer) + 1);
         }
-        _deadPlayers.Add(playerRoot);
-        StartCoroutine(RespawnPlayer(playerRoot));
+        _deadPlayers.Add(player);
+        StartCoroutine(RespawnPlayer(player));
     }
 
     private void HandleOnRoundSetup(int roundNumber, RoundLifecycleManager roundLifecycleManager)
@@ -59,7 +59,9 @@ public class PredatorGameMode : GameMode
         foreach (var player in _players)
         {
             // Register events
-            player.GetComponentInChildren<PlayerController>().OnDeath += HandleOnDeath;
+            var oobChecker = player.GetComponentInChildren<OutOfBoundsChecker>();
+            oobChecker.onOOB += HandleOnDeath;
+            oobChecker.respawnOnOOB = false;
             
             // Set up initial scores
             _roundLifecycleManager.AdjustPlayerScore(player, 0);
@@ -75,6 +77,11 @@ public class PredatorGameMode : GameMode
     {
         yield return new WaitForSeconds(3);
         _deadPlayers.Remove(player);
-        player.GetComponentInChildren<PlayerController>()?.Respawn();
+        foreach (var rb in player.GetComponentsInChildren<Rigidbody2D>())
+        {
+            rb.velocity = Vector2.zero;
+            rb.angularVelocity = 0;
+        }
+        player.GetComponentInChildren<RespawnController>()?.RespawnPlayer();
     }
 }

@@ -41,7 +41,8 @@ public class StageStartManager : MonoBehaviour
                     spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
                 } while (usedSpawnPoints.Contains(spawnPoint));
                 usedSpawnPoints.Add(spawnPoint);
-                gamePlayer.transform.position = spawnPoint.transform.position;   
+                gamePlayer.transform.position = spawnPoint.transform.position;
+                gamePlayer.GetComponentInChildren<RespawnController>().spawnPoint = spawnPoint.transform;
             }
             
             // Set up root properties

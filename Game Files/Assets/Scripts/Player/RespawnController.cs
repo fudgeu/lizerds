@@ -3,7 +3,7 @@ using UnityEngine;
 public class RespawnController : MonoBehaviour
 {
     [SerializeField] private Transform player;        // Reference to the player
-    [SerializeField] private Transform spawnPoint;    // Spawn point where the player will respawn
+    public Transform spawnPoint;    // Spawn point where the player will respawn
     [SerializeField] private ParticleSystem respawnEffect; // Optional: Respawn particle effect
 
     public void RespawnPlayer()
