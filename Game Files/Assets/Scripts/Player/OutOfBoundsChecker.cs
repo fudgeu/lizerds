@@ -6,17 +6,22 @@ public class OutOfBoundsChecker : MonoBehaviour
     [SerializeField] private Vector2 boundsMin;       // Minimum bounds (e.g., bottom-left corner)
     [SerializeField] private Vector2 boundsMax;       // Maximum bounds (e.g., top-right corner)
     [SerializeField] private RespawnController respawnController; // Reference to the RespawnController script
+    public bool respawnOnOOB = true;
 
+    public delegate void OnOOBDelegate(GameObject player);
+    public event OnOOBDelegate onOOB;
+    
     private void Update()
     {
-        if (player == null || respawnController == null) return;
+        if (player is null) return;
 
         // Check if player is out of bounds
         if (player.position.x < boundsMin.x || player.position.x > boundsMax.x ||
             player.position.y < boundsMin.y || player.position.y > boundsMax.y)
         {
             Debug.Log("Player is out of bounds!");
-            respawnController.RespawnPlayer();
+            onOOB?.Invoke(gameObject);
+            if (respawnOnOOB && respawnController) respawnController.RespawnPlayer();
         }
     }
 

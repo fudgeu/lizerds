@@ -47,13 +47,13 @@ public class NaturalSelectionGameMode : GameMode
         }
     }
     
-    private void HandleOnDeath(GameObject playerRoot, GameObject _)
+    private void HandleOnDeath(GameObject player)
     {
-        if (deadPlayers.Contains(playerRoot)) return;
+        if (deadPlayers.Contains(player)) return;
         print("Player died!");
-        _roundLifecycleManager.AdjustPlayerScore(playerRoot, _initialPlayers - _alivePlayers);
+        _roundLifecycleManager.AdjustPlayerScore(player.transform.parent.gameObject, _initialPlayers - _alivePlayers);
         _alivePlayers--;
-        deadPlayers.Add(playerRoot);
+        deadPlayers.Add(player);
     }
 
     private void HandleOnRoundSetup(int roundNumber, RoundLifecycleManager roundLifecycleManager)
@@ -70,7 +70,9 @@ public class NaturalSelectionGameMode : GameMode
         foreach (var player in _players)
         {
             // Register events
-            player.GetComponentInChildren<PlayerController>().OnDeath += HandleOnDeath;
+            var oobChecker = player.GetComponentInChildren<OutOfBoundsChecker>();
+            oobChecker.onOOB += HandleOnDeath;
+            oobChecker.respawnOnOOB = false;
             
             // Set up initial scores
             _roundLifecycleManager.AdjustPlayerScore(player, _alivePlayers - 1);

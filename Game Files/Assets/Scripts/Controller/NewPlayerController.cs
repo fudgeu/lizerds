@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class MovementTargetController : MonoBehaviour
@@ -13,10 +14,15 @@ public class MovementTargetController : MonoBehaviour
     public LayerMask groundLayer;
     public Transform groundCheck;
     public Transform backCheck;
-    private bool isFlipped = false;
+    public bool isFlipped = false;
     public float groundCheckRadius = 0.2f;
     [SerializeField] private float flipOverTorque = 50f;
     private Coroutine flipChecker;
+    
+    private PlayerInput _inputAsset;
+    private InputActionMap playerInputActionMap;
+    private InputAction move;
+    private InputAction leap;
 
     [Tooltip("A second rigidbody to apply leap force to, to prevent backflipping")][SerializeField] private Rigidbody2D secondImportantJoint;
 
@@ -27,24 +33,44 @@ public class MovementTargetController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
+    private void OnEnable()
+    {
+        // Get player input
+        _inputAsset = GetComponentInParent<PlayerInput>();
+        playerInputActionMap = _inputAsset.currentActionMap;
+        
+        move = playerInputActionMap.FindAction("Move");
+        move.Enable();
+
+        leap = playerInputActionMap.FindAction("Leap");
+        leap.performed += DoLeap;
+        leap.Enable();
+    }
+
+    private void OnDisable()
+    {
+        _inputAsset = null;
+        move.Disable();
+        leap.Disable();
+    }
+
     private void Update()
     {
         HandleMovement();
         HandleFlipping();
-        HandleLeap();
         CheckGroundStatus();
     }
 
     private void HandleMovement()
     {
-        float moveInput = Input.GetAxis("Horizontal");
-        Vector2 move = new Vector2(moveInput * moveSpeed, rb.velocity.y);
-        rb.velocity = move;
+        float moveInput = move.ReadValue<Vector2>().normalized.x;
+        Vector2 calculatedMove = new Vector2(moveInput * moveSpeed, rb.velocity.y);
+        rb.velocity = calculatedMove;
     }
 
     private void HandleFlipping()
     {
-        float moveInput = Input.GetAxis("Horizontal");
+        float moveInput = move.ReadValue<Vector2>().normalized.x;
 
         if (moveInput > 0.01f)
         {
@@ -65,9 +91,9 @@ public class MovementTargetController : MonoBehaviour
         }
     }
 
-    private void HandleLeap()
+    private void DoLeap(InputAction.CallbackContext context)
     {
-        if (Input.GetButtonDown("Leap") && isGrounded)
+        if (isGrounded)
         {
             bodyAnimation.ReleaseLegs();
             rb.velocity = new Vector2(rb.velocity.x, leapForce);
