@@ -5,7 +5,7 @@ public class SpeedBoostMutation : Mutation
 {
     private void OnEnable()
     {
-        mutationName = "Speed Boost";
+        mutationName = "Speedy";
         description = "Increases the player's movement speed.";
 
         applyEffect = (player) => player.moveSpeed += 2f;
