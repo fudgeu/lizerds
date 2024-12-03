@@ -271,6 +271,22 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2189984188143311760, guid: fa9216f174249dd42b52a1581c7ca16d, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6154927015520878091, guid: fa9216f174249dd42b52a1581c7ca16d, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 2025517070}
+    - target: {fileID: 6154927015520878091, guid: fa9216f174249dd42b52a1581c7ca16d, type: 3}
+      propertyPath: m_RenderMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6154927015520878091, guid: fa9216f174249dd42b52a1581c7ca16d, type: 3}
+      propertyPath: m_VertexColorAlwaysGammaSpace
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -418,5 +434,5 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 2025517071}
-  - {fileID: 1664422426}
   - {fileID: 1866576963}
+  - {fileID: 1664422426}

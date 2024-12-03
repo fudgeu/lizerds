@@ -250,6 +250,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: ScoreboardCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 6391042165305000837, guid: 1d5bb29616c485f4a9e485e17b767a64, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1832653234}
+    - target: {fileID: 6391042165305000837, guid: 1d5bb29616c485f4a9e485e17b767a64, type: 3}
+      propertyPath: m_RenderMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391042165305000837, guid: 1d5bb29616c485f4a9e485e17b767a64, type: 3}
+      propertyPath: m_VertexColorAlwaysGammaSpace
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

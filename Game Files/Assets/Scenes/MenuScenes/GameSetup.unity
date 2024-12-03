@@ -333,6 +333,22 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6154927015520878091, guid: fa9216f174249dd42b52a1581c7ca16d, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 553497067}
+    - target: {fileID: 6154927015520878091, guid: fa9216f174249dd42b52a1581c7ca16d, type: 3}
+      propertyPath: m_RenderMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6154927015520878091, guid: fa9216f174249dd42b52a1581c7ca16d, type: 3}
+      propertyPath: m_VertexColorAlwaysGammaSpace
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6154927015520878091, guid: fa9216f174249dd42b52a1581c7ca16d, type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1201,15 +1217,15 @@ Canvas:
   m_GameObject: {fileID: 1636107161}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
-  m_Camera: {fileID: 0}
+  m_RenderMode: 0
+  m_Camera: {fileID: 553497067}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
+  m_VertexColorAlwaysGammaSpace: 1
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -1383,6 +1399,6 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 553497068}
-  - {fileID: 1636107165}
   - {fileID: 1575481773}
   - {fileID: 94892279}
+  - {fileID: 1636107165}
