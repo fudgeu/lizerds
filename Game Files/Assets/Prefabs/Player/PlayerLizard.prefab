@@ -237,6 +237,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3505199861145236087}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &658555762728757697
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6820202223423452664}
+  m_Layer: 9
+  m_Name: attackCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6820202223423452664
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 658555762728757697}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0.9787047, w: 0.20527337}
+  m_LocalPosition: {x: -0.5368229, y: -1.6608226, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8866553792021853519}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &717856868361607054
 GameObject:
   m_ObjectHideFlags: 0
@@ -2190,6 +2221,8 @@ GameObject:
   - component: {fileID: 5609311794784339469}
   - component: {fileID: 4449504426202300449}
   - component: {fileID: 9089104113824013214}
+  - component: {fileID: 4516113364494930412}
+  - component: {fileID: 4343537819099160772}
   m_Layer: 9
   m_Name: PlayerLizard
   m_TagString: Untagged
@@ -2302,6 +2335,39 @@ MonoBehaviour:
   boundsMax: {x: 15, y: 20}
   respawnController: {fileID: 4449504426202300449}
   respawnOnOOB: 1
+--- !u!114 &4516113364494930412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3547536614347781426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e8af248c9067724e8a9cd647d5d07fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseKnockback: 5
+  knockbackMultiplier: 0.1
+  collisionCheckDuration: 0.5
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  attackCheck: {fileID: 6820202223423452664}
+  attackCheckRadius: 0.5
+--- !u!114 &4343537819099160772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3547536614347781426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52a883ed731f9074f96898a804954d9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lastAttacker: {fileID: 0}
 --- !u!1 &3582941439673236744
 GameObject:
   m_ObjectHideFlags: 0
@@ -6025,6 +6091,7 @@ Transform:
   - {fileID: 6294462662105691020}
   - {fileID: 8549683935956673223}
   - {fileID: 8201716856438115667}
+  - {fileID: 6820202223423452664}
   m_Father: {fileID: 2048583934588039147}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9156819214457949030

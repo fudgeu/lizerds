@@ -27,11 +27,23 @@ public class StageStartManager : MonoBehaviour
         var usedSpawnPoints = new HashSet<GameObject>();
 
         int i = 1;
+        int countP = players.Count;
         foreach (var player in players)
         {
             // Create game player obj and set parent
             var gamePlayer = Instantiate(gamePlayerPrefab, player.transform);
             gamePlayer.layer = LayerMask.NameToLayer($"P{i}");
+            
+            // Set up attack controller layers
+            var attackController = gamePlayer.GetComponentInChildren<AttackController>();
+            
+            List<string> layers = new List<string>();
+            for (int j = 1; j <= countP; j++)
+            {
+                if (j == i) continue;
+                layers.Add($"P{j}");
+            }
+            attackController.playerLayer = LayerMask.GetMask(layers.ToArray());
             
             // Set colors
             var designController = gamePlayer.GetComponent<PlayerDesignController>();

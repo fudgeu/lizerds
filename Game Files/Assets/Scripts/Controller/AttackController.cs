@@ -8,7 +8,7 @@ public class AttackController : MonoBehaviour
     [SerializeField] private float baseKnockback = 5f;      // Base knockback force
     [SerializeField] private float knockbackMultiplier = 0.1f; // Multiplier for HP knockback scaling
     [SerializeField] private float collisionCheckDuration = 0.5f; // Time for collision detection
-    [SerializeField] private LayerMask playerLayer;         // Ensure we only detect players
+    public LayerMask playerLayer;         // Ensure we only detect players
     [SerializeField] private Transform attackCheck; // Position of the attack check
     [SerializeField] private float attackCheckRadius = 0.5f; // Radius for the attack check
 
@@ -32,6 +32,11 @@ public class AttackController : MonoBehaviour
 
         // Enable the action
         attack.Enable();
+    }
+
+    private void OnDestroy()
+    {
+        attack.performed -= DoAttack;
     }
 
     private void DoAttack(InputAction.CallbackContext context)
@@ -59,7 +64,6 @@ public class AttackController : MonoBehaviour
 
         // Enable hit detection temporarily
         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(attackCheck.position, attackCheckRadius, playerLayer);
-
         foreach (Collider2D hit in hitColliders)
         {
             Transform root = hit.transform.root; // Find the root object of the hit player
