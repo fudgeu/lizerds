@@ -32,6 +32,17 @@ public class StageStartManager : MonoBehaviour
             var gamePlayer = Instantiate(gamePlayerPrefab, player.transform);
             gamePlayer.layer = LayerMask.NameToLayer($"P{i}");
             
+            // Set colors
+            var designController = gamePlayer.GetComponent<PlayerDesignController>();
+            var profile = player.GetComponent<PlayerProfileInfo>();
+            designController.bodyColor = profile.bodyColor;
+            designController.bodyColor.a = 1f;
+            designController.jawColor = profile.jawColor;
+            designController.jawColor.a = 1f;
+            designController.eyeColor = profile.eyeColor;
+            designController.eyeColor.a = 1f;
+            designController.UpdateColors();
+            
             // Place at random spawn point
             if (spawnPoints.Length != 0)
             {

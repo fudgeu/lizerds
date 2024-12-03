@@ -12,7 +12,7 @@ public class PlayerDesignController : MonoBehaviour
     public Color jawColor = Color.white;
     public Color eyeColor = Color.white;
 
-    private void OnValidate()
+    public void UpdateColors()
     {
         foreach (GameObject obj in sprites)
         {
@@ -31,5 +31,10 @@ public class PlayerDesignController : MonoBehaviour
                 }
             }
         }
+    }
+    
+    private void OnValidate()
+    {
+        UpdateColors();
     }
 }

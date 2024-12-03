@@ -14,22 +14,21 @@ public class JoinMenuUiNav : MonoBehaviour
     
     // Panels
     public RectTransform mainPanel;
-    public RectTransform profilePanel;
     public RectTransform createProfilePanel;
-    public GameObject profilePanelContent;
-
+    public RectTransform appearancePanel;
+    
     // Texts
     public TMP_Text profileText;
     
     // Buttons
-    public Button baseUiButton;
     public Button changeProfileButton;
-    public Button defaultProfileButton;
-    public Button newProfileButton;
     public Button firstKeyOnCreatePanel;
     public Button createProfileButton;
     public Button cancelCreateProfileButton;
-    public List<Button> profileButtons;
+    public Button appearanceButton;
+    public Button bodyColorButton;
+    public Button jawColorButton;
+    public Button eyeColorButton;
 
     // Internal
     private PlayerInput _playerInput;
@@ -40,6 +39,17 @@ public class JoinMenuUiNav : MonoBehaviour
     private PlayerProfileInfo _profileInfo;
     private NewProfileController _newProfileController;
     
+    // Colors
+    public List<String> colorNames = new();
+    public List<Color> bodyColors = new();
+    public List<Color> jawColors = new();
+    private int _bodyColorIndex;
+    private int _jawColorIndex;
+    
+    public List<String> eyeColorNames = new();
+    public List<Color> eyeColors = new();
+    private int _eyeColorIndex = 1;
+    
     void Start()
     {
         // Grab components
@@ -47,46 +57,19 @@ public class JoinMenuUiNav : MonoBehaviour
         _playerInput = GetComponentInParent<PlayerInput>();
         _profileInfo = GetComponentInParent<PlayerProfileInfo>();
         _newProfileController = GetComponentInChildren<NewProfileController>();
-        
-        // Grab profile manager and create buttons
         _profileManager = FindObjectOfType<ProfileManager>();
-        foreach (var profile in _profileManager.profiles)
-        {
-            Button profileButton = Instantiate(baseUiButton, mainPanel);
-            profileButton.gameObject.AddComponent<ScrollChildController>();
-            profileButton.transform.SetParent(profilePanelContent.transform, false);
+        
+        // Set default colors
+        _bodyColorIndex = _profileInfo.playerNumber - 1;
+        _jawColorIndex = _profileInfo.playerNumber - 1;
+        _profileInfo.bodyColor = bodyColors[_bodyColorIndex];
+        _profileInfo.jawColor = jawColors[_jawColorIndex];
+        _profileInfo.eyeColor = eyeColors[_eyeColorIndex];
+        UpdateAppearanceTexts();
 
-            // Set button name
-            profileButton.GetComponentInChildren<TMP_Text>().text = profile.name;
-            
-            // Register profile button click
-            profileButton.GetComponentInChildren<Button>().onClick.AddListener(() =>
-            {
-                _profileInfo.Profile = profile;
-                _profileInfo.UseCustomName = false;
-            });
-            
-            profileButtons.Add(profileButton);
-        }
-        
-        // Register default profile button handler
-        defaultProfileButton.onClick.AddListener(() =>
-        {
-            _profileInfo.CustomName = $"Player {_profileInfo.playerNumber}";
-            _profileInfo.Profile = _profileManager.defaultProfile;
-            _profileInfo.UseCustomName = true;
-            SwitchToPage(Page.Main);
-        });
-        
         // Register on click handlers
         changeProfileButton.onClick.AddListener(() => SwitchToPage(Page.CreateProfile));
-        newProfileButton.onClick.AddListener(() =>
-        {
-            _newProfileController.profileName = "";
-            _newProfileController.profileNameText.text = "";
-            SwitchToPage(Page.CreateProfile);
-        });
-        cancelCreateProfileButton.onClick.AddListener(() => SwitchToPage(Page.Profile));
+        cancelCreateProfileButton.onClick.AddListener(() => SwitchToPage(Page.Main));
         createProfileButton.onClick.AddListener(() =>
         {
             Profile newProfile = new();
@@ -97,6 +80,27 @@ public class JoinMenuUiNav : MonoBehaviour
             SwitchToPage(Page.Main);
         });
         
+        appearanceButton.onClick.AddListener(() => SwitchToPage(Page.Appearance));
+
+        bodyColorButton.onClick.AddListener(() =>
+        {
+            _bodyColorIndex = (_bodyColorIndex + 1) % bodyColors.Count;
+            _profileInfo.bodyColor = bodyColors[_bodyColorIndex];
+            UpdateAppearanceTexts();
+        });
+        jawColorButton.onClick.AddListener(() =>
+        {
+            _jawColorIndex = (_jawColorIndex + 1) % jawColors.Count;
+            _profileInfo.jawColor = jawColors[_jawColorIndex];
+            UpdateAppearanceTexts();
+        });
+        eyeColorButton.onClick.AddListener(() =>
+        {
+            _eyeColorIndex = (_eyeColorIndex + 1) % eyeColors.Count;
+            _profileInfo.eyeColor = eyeColors[_eyeColorIndex];
+            UpdateAppearanceTexts();
+        });
+        
         // Register player input handlers
         _playerInput.actions["Back"].performed += ctx =>
         {
@@ -105,7 +109,8 @@ public class JoinMenuUiNav : MonoBehaviour
                 case Page.Main:
                     // TODO: maybe play a 'bonk' sound effect that indicates they cant go further back?
                     break;
-                case Page.Profile:
+                case Page.CreateProfile:
+                case Page.Appearance:
                     SwitchToPage(Page.Main);
                     break;
             }
@@ -153,25 +158,22 @@ public class JoinMenuUiNav : MonoBehaviour
                     UiUtil.DoRectTranslateAnim(mainPanel, new Vector2(_panelWidth, 0), duration, ease);
                     UiUtil.DoRectTranslateAnim(createProfilePanel, new Vector2(_panelWidth, 0), duration, ease);
                 }
+                else if (_curPage == Page.Appearance)
+                {
+                    UiUtil.DoRectTranslateAnim(mainPanel, new Vector2(_panelWidth, 0), duration, ease);
+                    UiUtil.DoRectTranslateAnim(appearancePanel, new Vector2(_panelWidth, 0), duration, ease);
+                }
                 eventSystem.SetSelectedGameObject(changeProfileButton.gameObject);
                 break;
-            case Page.Profile:
-                if (_curPage == Page.Main)
-                {
-                    UiUtil.DoRectTranslateAnim(mainPanel, new Vector2(-_panelWidth, 0), duration, ease);
-                    UiUtil.DoRectTranslateAnim(profilePanel, new Vector2(-_panelWidth, 0), duration, ease);
-                } else if (_curPage == Page.CreateProfile)
-                {
-                    UiUtil.DoRectTranslateAnim(profilePanel, new Vector2(_panelWidth, 0), duration, ease);
-                    UiUtil.DoRectTranslateAnim(createProfilePanel, new Vector2(_panelWidth * 2, 0), duration, ease);
-                }
-                eventSystem.SetSelectedGameObject(defaultProfileButton.gameObject);
-                break;
             case Page.CreateProfile:
-                // UiUtil.DoRectTranslateAnim(profilePanel, new Vector2(-_panelWidth, 0), duration, ease);
                 UiUtil.DoRectTranslateAnim(mainPanel, new Vector2(-_panelWidth, 0), duration, ease);
                 UiUtil.DoRectTranslateAnim(createProfilePanel, new Vector2(-_panelWidth, 0), duration, ease);
                 eventSystem.SetSelectedGameObject(firstKeyOnCreatePanel.gameObject);
+                break;
+            case Page.Appearance:
+                UiUtil.DoRectTranslateAnim(mainPanel, new Vector2(-_panelWidth, 0), duration, ease);
+                UiUtil.DoRectTranslateAnim(appearancePanel, new Vector2(-_panelWidth, 0), duration, ease);
+                eventSystem.SetSelectedGameObject(bodyColorButton.gameObject);
                 break;
         }
         
@@ -199,6 +201,13 @@ public class JoinMenuUiNav : MonoBehaviour
     {
         _gameStartManager.onPlayerLetGoStart(gameObject);
     }
+
+    private void UpdateAppearanceTexts()
+    {
+        bodyColorButton.GetComponentInChildren<TMP_Text>().text = $"Body: {colorNames[_bodyColorIndex]}";
+        jawColorButton.GetComponentInChildren<TMP_Text>().text = $"Jaw: {colorNames[_jawColorIndex]}";
+        eyeColorButton.GetComponentInChildren<TMP_Text>().text = $"Eyes: {eyeColorNames[_eyeColorIndex]}";
+    }
     
-    enum Page { Main, Profile, CreateProfile }
+    enum Page { Main, CreateProfile, Appearance }
 }
