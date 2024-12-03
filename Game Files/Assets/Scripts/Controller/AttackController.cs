@@ -72,7 +72,7 @@ public class AttackController : MonoBehaviour
             hitPlayers.Add(root); // Add this player to the set
 
             // Find the "MovementTarget" child object
-            Transform movementTarget = root.Find("MovementTarget");
+            Transform movementTarget = root.GetChild(0)?.Find("MovementTarget");
             if (movementTarget == null)
             {
                 Debug.LogWarning($"No MovementTarget found for {root.name}!");
