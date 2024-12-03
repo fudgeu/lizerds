@@ -7,8 +7,8 @@ public class SuperMutation : Mutation
 {
     private void OnEnable()
     {
-        mutationName = "Super Mutation";
-        description = "Boosts leap force and speed.";
+        mutationName = "Lizerd Supreme";
+        description = "Boosts leap force and speed (WARNING, OVERPOWERED).";
 
         applyEffect = (player) =>
         {

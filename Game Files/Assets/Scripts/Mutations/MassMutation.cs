@@ -5,8 +5,8 @@ public class MassMutation : Mutation
 {
     private void OnEnable()
     {
-        mutationName = "Mass Mutation";
-        description = "Alters the player's mass.";
+        mutationName = "Dense";
+        description = "Increases the player's mass.";
 
         applyEffect = (player) =>
         {

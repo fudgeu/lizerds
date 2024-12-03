@@ -5,7 +5,7 @@ public class LeapBoostMutation : Mutation
 {
     private void OnEnable()
     {
-        mutationName = "Leap Boost";
+        mutationName = "Strong Legs";
         description = "Increases the player's leap force.";
 
         applyEffect = (player) => player.leapForce *= 1.5f;
