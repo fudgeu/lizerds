@@ -1,18 +1,18 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Mass Mutation", menuName = "Mutations/Change Mass")]
-public class MassMutation : Mutation
+[CreateAssetMenu(fileName = "Decrease Mass Mutation", menuName = "Mutations/Decrease Mass")]
+public class DecMassMutation : Mutation
 {
     private void OnEnable()
     {
-        mutationName = "Dense";
-        description = "Increases the player's mass.";
+        mutationName = "Light";
+        description = "Decreases the player's mass.";
 
         applyEffect = (player) =>
         {
             if (player.TryGetComponent<Rigidbody2D>(out Rigidbody2D rb))
             {
-                rb.mass *= 2f; // Example: double the mass
+                rb.mass /= 2f; // Example: double the mass
             }
         };
 
@@ -20,7 +20,7 @@ public class MassMutation : Mutation
         {
             if (player.TryGetComponent<Rigidbody2D>(out Rigidbody2D rb))
             {
-                rb.mass /= 2f; // Revert mass back to original
+                rb.mass *= 2f; // Revert mass back to original
             }
         };
     }
