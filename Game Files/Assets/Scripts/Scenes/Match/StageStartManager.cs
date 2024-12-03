@@ -10,6 +10,7 @@ public class StageStartManager : MonoBehaviour
 {
     public GameObject gamePlayerPrefab;
     public GameObject stageStartScreenPrefab;
+    public GameObject HUDPrefab;
     
     private Camera _camera;
     
@@ -64,6 +65,10 @@ public class StageStartManager : MonoBehaviour
 
             i = Math.Min(4, i + 1);
         }
+        
+        // Setup HUD
+        var hud = Instantiate(HUDPrefab);
+        hud.GetComponent<HUDSetup>().players = players;
         
         // Create the stage start screen
         Instantiate(stageStartScreenPrefab);

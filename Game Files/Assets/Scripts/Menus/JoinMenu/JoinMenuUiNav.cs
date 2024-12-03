@@ -48,7 +48,7 @@ public class JoinMenuUiNav : MonoBehaviour
     
     public List<String> eyeColorNames = new();
     public List<Color> eyeColors = new();
-    private int _eyeColorIndex = 1;
+    private int _eyeColorIndex = 0;
     
     void Start()
     {
