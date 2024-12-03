@@ -237,37 +237,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3505199861145236087}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &658555762728757697
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6820202223423452664}
-  m_Layer: 9
-  m_Name: attackCheck
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6820202223423452664
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 658555762728757697}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0.9787047, w: 0.20527337}
-  m_LocalPosition: {x: -0.5368229, y: -1.6608226, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8866553792021853519}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &717856868361607054
 GameObject:
   m_ObjectHideFlags: 0
@@ -501,7 +470,7 @@ FixedJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.2498104, y: -0.00000016391277}
+  m_ConnectedAnchor: {x: 0.24981049, y: -0.000000074505806}
   m_DampingRatio: 0
   m_Frequency: 0
 --- !u!1 &1009855513720122828
@@ -1003,6 +972,7 @@ Transform:
   - {fileID: 112353280415620335}
   - {fileID: 8672142164692871515}
   - {fileID: 3270451041083202346}
+  - {fileID: 7254926048180104675}
   m_Father: {fileID: 8866553792021853519}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -156.309}
 --- !u!70 &7594773560114202707
@@ -1144,7 +1114,7 @@ FixedJoint2D:
   m_BreakAction: 1
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.121999845, y: 0.03599998}
+  m_ConnectedAnchor: {x: 0.12199992, y: 0.035999995}
   m_DampingRatio: 0
   m_Frequency: 0
 --- !u!114 &3071042673014336726
@@ -2353,8 +2323,8 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 0
-  attackCheck: {fileID: 6820202223423452664}
-  attackCheckRadius: 0.5
+  attackCheck: {fileID: 7254926048180104675}
+  attackCheckRadius: 1
 --- !u!114 &4343537819099160772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2580,7 +2550,7 @@ FixedJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.24378602, y: -0.20439963}
+  m_ConnectedAnchor: {x: 0.24378604, y: -0.20439975}
   m_DampingRatio: 0.1
   m_Frequency: 1
 --- !u!1 &3785508902308497235
@@ -2691,7 +2661,7 @@ FixedJoint2D:
   m_BreakAction: 1
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.12199986, y: 0.035999864}
+  m_ConnectedAnchor: {x: 0.121999845, y: 0.035999894}
   m_DampingRatio: 0
   m_Frequency: 0
 --- !u!114 &7151255073679943227
@@ -2822,7 +2792,7 @@ HingeJoint2D:
   m_BreakAction: 1
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.40708235, y: -0.0000003911554}
+  m_ConnectedAnchor: {x: 0.40708235, y: -0.00000050663937}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -3065,7 +3035,7 @@ HingeJoint2D:
   m_BreakAction: 1
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: -0.48256335, y: 0.20154138}
+  m_ConnectedAnchor: {x: -0.4825633, y: 0.20154148}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -3507,7 +3477,7 @@ FixedJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: -0.24154422, y: -0.06586252}
+  m_ConnectedAnchor: {x: -0.24154423, y: -0.0658624}
   m_DampingRatio: 0.8
   m_Frequency: 3
 --- !u!1 &5456013586113657183
@@ -3798,7 +3768,7 @@ FixedJoint2D:
   m_BreakAction: 1
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.15910044, y: 0.04408129}
+  m_ConnectedAnchor: {x: 0.15910053, y: 0.044081364}
   m_DampingRatio: 0
   m_Frequency: 0
 --- !u!114 &7557080255475691975
@@ -4424,7 +4394,7 @@ FixedJoint2D:
   m_BreakAction: 1
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.15500002, y: 0.034000024}
+  m_ConnectedAnchor: {x: 0.15500003, y: 0.03399999}
   m_DampingRatio: 0
   m_Frequency: 0
 --- !u!114 &5533304244748748052
@@ -4892,6 +4862,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bodyAnimation: {fileID: 2808594918183138541}
   isHand: 1
+--- !u!1 &7391275218048757436
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7254926048180104675}
+  m_Layer: 9
+  m_Name: attackCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7254926048180104675
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7391275218048757436}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8201716856438115667}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7410918623744750149
 GameObject:
   m_ObjectHideFlags: 0
@@ -5690,7 +5691,7 @@ HingeJoint2D:
   m_BreakAction: 1
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.21556482, y: -0.0000003185123}
+  m_ConnectedAnchor: {x: 0.21556482, y: -0.000000199303}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -5967,7 +5968,7 @@ HingeJoint2D:
   m_BreakAction: 1
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.51545036, y: -0.00000012293455}
+  m_ConnectedAnchor: {x: 0.5154503, y: -0.000000007450579}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -6091,7 +6092,6 @@ Transform:
   - {fileID: 6294462662105691020}
   - {fileID: 8549683935956673223}
   - {fileID: 8201716856438115667}
-  - {fileID: 6820202223423452664}
   m_Father: {fileID: 2048583934588039147}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9156819214457949030
