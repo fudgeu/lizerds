@@ -85,7 +85,7 @@ public class AttackController : MonoBehaviour
                 rb.AddForce(-attackDirection * knockbackForce, ForceMode2D.Impulse);
 
                 // Apply damage
-                health.AddDamage(attackForce);
+                health.AddDamage(attackForce, transform); // Pass the attacker reference here
                 Debug.Log($"Hit {root.name} for {attackForce} damage! {root.name} HP: {health.CurrentHP}%");
             }
         }
