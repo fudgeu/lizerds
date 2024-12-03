@@ -41,13 +41,18 @@ public class AttackController : MonoBehaviour
 
     private void DoAttack(InputAction.CallbackContext context)
     {
-        if (isAttacking) return;
+    if (isAttacking) return;
 
-        // Determine the attack direction based on the lizard's facing direction
-        Vector2 attackDirection = (transform.localScale.x > 0) ? Vector2.right : Vector2.left;
-        float attackForce = 10f; // Example: Attack force value
-        PerformAttack(attackDirection, attackForce);
+    // Determine the attack direction based on the lizard's facing direction
+    Vector2 attackDirection = (transform.localScale.x > 0) ? Vector2.right : Vector2.left;
+
+    // Log the attack direction
+    Debug.Log($"Attack Direction: {attackDirection}");
+
+    float attackForce = 10f; // Example: Attack force value
+    PerformAttack(attackDirection, attackForce);
     }
+
 
     public void PerformAttack(Vector2 attackDirection, float attackForce)
     {
@@ -86,7 +91,7 @@ public class AttackController : MonoBehaviour
             {
                 // Calculate knockback
                 float knockbackForce = attackForce + baseKnockback + (health.CurrentHP * knockbackMultiplier);
-                rb.AddForce((-attackDirection).normalized * knockbackForce, ForceMode2D.Impulse);
+                rb.AddForce(-attackDirection * knockbackForce, ForceMode2D.Impulse);
 
                 // Apply damage
                 health.AddDamage(attackForce, transform); // Pass the attacker reference here
