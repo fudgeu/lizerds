@@ -54,11 +54,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 468083202614542501, guid: 5526e905aeba34040a1755fe223ec685, type: 3}
       propertyPath: m_ConnectedAnchor.x
-      value: 0.121999845
+      value: 0.12199986
       objectReference: {fileID: 0}
     - target: {fileID: 468083202614542501, guid: 5526e905aeba34040a1755fe223ec685, type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: 0.035999894
+      value: 0.035999864
       objectReference: {fileID: 0}
     - target: {fileID: 621369509121906834, guid: 5526e905aeba34040a1755fe223ec685, type: 3}
       propertyPath: m_Layer
@@ -266,7 +266,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3772355449284597473, guid: 5526e905aeba34040a1755fe223ec685, type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: -0.0000003874301
+      value: -0.0000003911554
       objectReference: {fileID: 0}
     - target: {fileID: 3785508902308497235, guid: 5526e905aeba34040a1755fe223ec685, type: 3}
       propertyPath: m_Layer
@@ -282,15 +282,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3942602736701017135, guid: 5526e905aeba34040a1755fe223ec685, type: 3}
       propertyPath: m_Color.b
-      value: 0.21754004
+      value: 0.24705882
       objectReference: {fileID: 0}
     - target: {fileID: 3942602736701017135, guid: 5526e905aeba34040a1755fe223ec685, type: 3}
       propertyPath: m_Color.g
-      value: 0.49614093
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 3942602736701017135, guid: 5526e905aeba34040a1755fe223ec685, type: 3}
       propertyPath: m_Color.r
-      value: 0.73
+      value: 0.6862745
       objectReference: {fileID: 0}
     - target: {fileID: 4018842914340952654, guid: 5526e905aeba34040a1755fe223ec685, type: 3}
       propertyPath: m_ConnectedAnchor.x
@@ -298,7 +298,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4018842914340952654, guid: 5526e905aeba34040a1755fe223ec685, type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: 0.00000011920926
+      value: 0.00000011548397
       objectReference: {fileID: 0}
     - target: {fileID: 4325361695769655887, guid: 5526e905aeba34040a1755fe223ec685, type: 3}
       propertyPath: m_Layer
@@ -386,15 +386,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5609311794784339469, guid: 5526e905aeba34040a1755fe223ec685, type: 3}
       propertyPath: jawColor.b
-      value: 0.21754004
+      value: 0.24705882
       objectReference: {fileID: 0}
     - target: {fileID: 5609311794784339469, guid: 5526e905aeba34040a1755fe223ec685, type: 3}
       propertyPath: jawColor.g
-      value: 0.49614093
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 5609311794784339469, guid: 5526e905aeba34040a1755fe223ec685, type: 3}
       propertyPath: jawColor.r
-      value: 0.73
+      value: 0.6862745
       objectReference: {fileID: 0}
     - target: {fileID: 5609311794784339469, guid: 5526e905aeba34040a1755fe223ec685, type: 3}
       propertyPath: bodyColor.b
@@ -442,7 +442,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6681091270923406618, guid: 5526e905aeba34040a1755fe223ec685, type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: -0.20439972
+      value: -0.20439939
       objectReference: {fileID: 0}
     - target: {fileID: 6780575691580013837, guid: 5526e905aeba34040a1755fe223ec685, type: 3}
       propertyPath: m_ConnectedAnchor.x
@@ -530,11 +530,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8203396594034860028, guid: 5526e905aeba34040a1755fe223ec685, type: 3}
       propertyPath: m_ConnectedAnchor.x
-      value: 0.15499996
+      value: 0.15499994
       objectReference: {fileID: 0}
     - target: {fileID: 8203396594034860028, guid: 5526e905aeba34040a1755fe223ec685, type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: 0.034000084
+      value: 0.034000117
       objectReference: {fileID: 0}
     - target: {fileID: 8301046193936554551, guid: 5526e905aeba34040a1755fe223ec685, type: 3}
       propertyPath: m_Layer

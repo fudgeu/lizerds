@@ -41,4 +41,8 @@ public class PlayerProfileInfo : MonoBehaviour
 
     public delegate void ProfileChangedDelegate();
     public event ProfileChangedDelegate OnProfileChanged;
+
+    public Color bodyColor;
+    public Color jawColor;
+    public Color eyeColor;
 }
