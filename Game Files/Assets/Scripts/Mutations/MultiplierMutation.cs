@@ -10,7 +10,7 @@ public class MultiplierMutation : MonoBehaviour
             mutationName = "Exploitative";
             description = "Increases the effect of player hp on knockback.";
 
-            applyEffect = (player) => player.knockbackForce += .1f;
-            removeEffect = (player) => player.knockbackForce -= .1f;
+            applyEffect = (player) => player.knockbackMultiplier += .1f;
+            removeEffect = (player) => player.knockbackMultiplier -= .1f;
         }
 }
