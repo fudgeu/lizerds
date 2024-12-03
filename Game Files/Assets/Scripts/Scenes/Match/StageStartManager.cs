@@ -27,7 +27,6 @@ public class StageStartManager : MonoBehaviour
         var usedSpawnPoints = new HashSet<GameObject>();
 
         int i = 1;
-        int countP = players.Count;
         foreach (var player in players)
         {
             // Create game player obj and set parent
@@ -39,7 +38,7 @@ public class StageStartManager : MonoBehaviour
             var attackController = gamePlayer.GetComponentInChildren<AttackController>();
             
             List<string> layers = new List<string>();
-            for (int j = 1; j <= countP; j++)
+            for (int j = 1; j <= 4; j++)
             {
                 if (j == i) continue;
                 layers.Add($"P{j}");
