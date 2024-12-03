@@ -33,6 +33,7 @@ public class StageStartManager : MonoBehaviour
             // Create game player obj and set parent
             var gamePlayer = Instantiate(gamePlayerPrefab, player.transform);
             gamePlayer.layer = LayerMask.NameToLayer($"P{i}");
+            SetLayerAllChildren(gamePlayer.transform, LayerMask.NameToLayer($"P{i}"));
             
             // Set up attack controller layers
             var attackController = gamePlayer.GetComponentInChildren<AttackController>();
@@ -115,5 +116,15 @@ public class StageStartManager : MonoBehaviour
             delay = 2,
         };
         gameObject.AddTween(bkgTween);
+    }
+    
+    void SetLayerAllChildren(Transform root, int layer)
+    {
+        var children = root.GetComponentsInChildren<Transform>(includeInactive: true);
+        foreach (var child in children)
+        {
+            if (!LayerMask.LayerToName(child.gameObject.layer).StartsWith("P")) continue;
+            child.gameObject.layer = layer;
+        }
     }
 }
