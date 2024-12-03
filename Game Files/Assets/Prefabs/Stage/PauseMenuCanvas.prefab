@@ -250,7 +250,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ContinueButton: {fileID: 6934492593630977155}
-  ExitToMenuButton: {fileID: 8386121752957608941}
+  ExitButton: {fileID: 8386121752957608941}
 --- !u!1 &7267294032584422376
 GameObject:
   m_ObjectHideFlags: 0
@@ -450,8 +450,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5023978124700642335, guid: 52e294f1a48aa94418a67a6c35aad3ac, type: 3}
       propertyPath: m_Navigation.m_Mode
-      value: -1
+      value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 5023978124700642335, guid: 52e294f1a48aa94418a67a6c35aad3ac, type: 3}
+      propertyPath: m_Navigation.m_SelectOnDown
+      value: 
+      objectReference: {fileID: 8386121752957608941}
     - target: {fileID: 6473046978120112194, guid: 52e294f1a48aa94418a67a6c35aad3ac, type: 3}
       propertyPath: m_Name
       value: ContinueButton
@@ -572,8 +576,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5023978124700642335, guid: 52e294f1a48aa94418a67a6c35aad3ac, type: 3}
       propertyPath: m_Navigation.m_Mode
-      value: -1
+      value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 5023978124700642335, guid: 52e294f1a48aa94418a67a6c35aad3ac, type: 3}
+      propertyPath: m_Navigation.m_SelectOnUp
+      value: 
+      objectReference: {fileID: 6934492593630977155}
     - target: {fileID: 6473046978120112194, guid: 52e294f1a48aa94418a67a6c35aad3ac, type: 3}
       propertyPath: m_Name
       value: ExitButton
