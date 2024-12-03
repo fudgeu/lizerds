@@ -37,10 +37,11 @@ public class PredatorGameMode : GameMode
     {
         if (_deadPlayers.Contains(player)) return;
         print("Player died!");
-        GameObject killer = null; // playerRoot.GetComponentInChildren<PlayerController>().lastAttacker;
+        GameObject killer = player.GetComponentInChildren<PlayerHealth>().lastAttacker?.gameObject;
         if (killer)
         {
-            _roundLifecycleManager.AdjustPlayerScore(player.transform.parent.gameObject, _roundLifecycleManager.GetPlayerScore(killer) + 1);
+            print(killer);
+            _roundLifecycleManager.AdjustPlayerScore(player.transform.parent.gameObject, _roundLifecycleManager.GetPlayerScore(killer.transform.parent.gameObject) + 1);
         }
         _deadPlayers.Add(player);
         StartCoroutine(RespawnPlayer(player));

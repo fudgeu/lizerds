@@ -5,7 +5,7 @@ public class PlayerHealth : MonoBehaviour
     public float CurrentHP { get; private set; }  // Current health, starts at 0% (no damage)
     
     // Track the last attacker who hit this player
-    public Transform lastAttacker;
+    public Transform lastAttacker = null;
     
     public delegate void PlayerHealthChanged(float newHP);
     public event PlayerHealthChanged OnHealthChanged;
