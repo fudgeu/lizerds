@@ -486,6 +486,10 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2189984188143311760, guid: fa9216f174249dd42b52a1581c7ca16d, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6154927015520878091, guid: fa9216f174249dd42b52a1581c7ca16d, type: 3}
       propertyPath: m_Camera
       value: 
@@ -543,7 +547,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c3c2d4dc482bae4cadd8a908570cf51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playersRequiredToStart: 1
+  playersRequiredToStart: 2
   holdToStartText: {fileID: 1339659787}
   startBarBackground: {fileID: 1770663156}
   startBar: {fileID: 282501168}
