@@ -91,7 +91,7 @@ public class AttackController : MonoBehaviour
             {
                 // Calculate knockback
                 float knockbackForce = attackForce + baseKnockback + (health.CurrentHP * knockbackMultiplier);
-                rb.AddForce(-attackDirection * knockbackForce, ForceMode2D.Impulse);
+                rb.AddForce(-attackDirection * knockbackForce, ForceMode2D.Force);
 
                 // Apply damage
                 health.AddDamage(attackForce, transform); // Pass the attacker reference here
